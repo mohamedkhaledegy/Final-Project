@@ -1,0 +1,49 @@
+
+def rpb_setMinimumSize(width, height)
+def rpb_setMaximumSize(width, height)
+def rpb_setMinimum(minValue)
+def rpb_setMaximum(maxValue)
+def rpb_setRange(minValue, maxValue)
+def rpb_setInitialPos(positionFlag)
+def rpb_setValue(value)
+def rpb_reset()
+def rpb_setGeometry(posX, posY)
+def rpb_setLineWidth(width)
+def rpb_setLineColor((R, G, B))
+def rpb_setPathColor((R, G, B))
+def rpb_setPathWidth(width)
+def rpb_setDirection(directionFlag)
+def rpb_setBarStyle(styleFlag)
+def rpb_setLineStyle(styleFlag)
+def rpb_setLineCap(capFlag)
+def rpb_setTextColor((R, G, B))
+def rpb_setTextFont(font)
+def rpb_setTextFormat(typeFlags)
+def rpb_setTextRatio(ratio)
+def rpb_setTextWidth(width)
+def rpb_setCircleColor((R, G, B))
+def rpb_setCircleRatio(ratio)
+def rpb_setPieColor((R, G, B))
+def rpb_setPieRatio(ratio)
+def rpb_enbaleText(bool)
+def rpb_getSize()
+def rpb_getValue()
+def rpb_getRange()
+def rpb_getTextWidth()
+
+Style: Donet
+Size: Dynamic: Changes with change in frame size.
+Range: 0 to 100
+Value: 12%
+Start Position: North
+Direction of Progress: Clockwise
+Text Type: Percentage
+Text Font: Segoe UI
+Text Color: (0, 159, 227)
+Text Size: Dynamic: changes with change in size of round Progress Bar.
+Line Width: 5px
+Line Color: (0, 159, 227)
+Line Cap: Square Cap
+Line Style: Solid Line
+Path Width: 5px
+Path Color: (218, 218, 218)

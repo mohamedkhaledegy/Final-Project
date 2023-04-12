@@ -1,0 +1,52 @@
+https://support.tetcos.com/support/solutions/articles/14000098272-how-to-enable-ip-forwarding-in-windows-for-emulation-using-netsim-
+لتفعيل تحويل الريكوستات اثناء عملية السبوف على جهاز فى الشبكة وتجنب قطع النت عنه
+الامر دة فى ال command 
+بيسمح ان الجهاز الماستر يقبل routing
+
+## لاظهار كل الشبكات الموجودة بالجهاز الماستر
+netsh interface ipv4 show interface
+
+netsh interface ipv4 show interface 1
+## رقم 1 دة رقم الواجهة اللى هو اسم كارت الشبكة
+
+## لو Forwarding = disabled
+
+
+Step 1 : 
+افتح ال run
+
+Step 2 : 
+اكتب regedit
+
+Step 3 : 
+دور على HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters
+دوس عليها واختار منها (IPEnableRouter) او (ForwardBroadcasts)
+غير قيمتها من 0 ل 1
+Registry Editor pop up, Navigate to the “HKEY_LOCAL_MACHINE” > SYSTEM > CurrentControlSet >Services> Tcpip >Parameters > IP Enable Router
+
+
+Step 4 : 
+
+When you reach the file name “IP Enable Router” right-click and select “Modify” and change 0 to 1 and hit the OK button.
+
+Step 5 : 
+
+Now go to the StartMenu and in the search box type “Run” and hit the enter button
+
+Step 6 : 
+
+In the Run box type “Services.msc” and hit the Enter button
+
+Step 7 : 
+
+Now navigate to Routing and Remote Access service, right-click to open its properties
+
+Step 8 : 
+
+Go to Startup Types and Change it to Automatic and click on Start and hit the OK button.
+
+Step 9 :
+try before spoof
+arp -a To Show ARP Connections Statics (ip,mac_address)
+try after spoof
+arp -a To Show ARP Connections Statics (ip,mac_address)
