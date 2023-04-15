@@ -4,7 +4,8 @@ import time
 import datetime
 import timeit
 import subprocess
-import threading
+#import numpy as np
+
 # from PyQt5.QtDesigner import *
 # from PyQt5.QtGui import *
 # from PyQt5.QtCore import *
@@ -36,20 +37,28 @@ from btns.btns import *
 
 ## Import Threads Functions
 from threads_custom.works import Worker
+
+## Test Speed Internet
 from threads_custom.test_speed import *
 
+## Bandwidth Functions
+from threads_custom.bandwidth_usage_worker import *
+from threads_custom.multi_usage_worker import *
+
 ## Import Database Models
-#from db.my_models import Device,PingInfo
+from db.my_models import Device,PingInfo
 ## Import Database Functions
 #from db.retrieve_from_db import get_all_dev
-
 from db_to_qt import *
 from db.db_config import db as my_db
-from db.my_models import Device,PingInfo
+
+from matplot_functions.set_sample import *
 
 ui_main,_ = loadUiType('front/main_window2.ui')
 
 ui_login,_ot = loadUiType('front/second_window.ui')
+
+is_program_running = True
 
 class Login(QMainWindow , ui_login):
     def __init__(self):
@@ -66,7 +75,12 @@ class Main(QMainWindow,ui_main):
     def __init__(self):
         QMainWindow.__init__(self)
         self.setupUi(self)
-        self.db = my_db
+        self.auto_run()
+        #self.threadsniffing()
+
+    def auto_run(self):
+        print("auto Run Enabled")
+        self.set_vars()
         try:
             #print("Start To Connect Database ..")
             self.db.connect()
@@ -78,9 +92,7 @@ class Main(QMainWindow,ui_main):
         except:
             print("Error To Connect Database")
         # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-        self.set_vars()
         #print("Maximum Threads : %d" % self.threadpool.maxThreadCount())
-
         # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         ## GUI Functions ##
         set_btns(self)
@@ -88,66 +100,13 @@ class Main(QMainWindow,ui_main):
         reset_circle_val(self)
         setup_btn(self)
         self.set_table_packet()
-
         # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         ## DataBase Functions ##
         #self.set_data_base()
 
         # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         ## Custom Functions ##
-        self.auto_run()
-        #self.insert_to_table()
-        #self.threadsniffing()
-        #self.table_cap.setItem(self.pkt_num,1,)
-
-    def set_data_base(self):
-        #all_devs = None
-        ## Start Threading To Set Database And Collect Data
-        config_data_base(self)
-        #all_devs , all_pings = collect_database_info()
-        #print(all_devs)
-        #print("Done Full Setup Database")
-        #all_devs = collect_database_info()
-        #print(self.all_devs)
-
-    def config_database_finish(self):
-        print("Finished")
-        from db_to_qt import devss as devs
-        from db_to_qt import pingss as devs_pngs
-        print(devs)
-        print(devs_pngs)
-
-    def set_table_packet(self):
-        pos = self.tableWidget_cap.verticalScrollBar().value()
-        print(len(self.packet_lista))
-        self.tableWidget_cap.setRowCount(10)
-        qtw.QApplication.processEvents()
-        self.tableWidget_cap.verticalScrollBar().setValue(pos)
-        self.tableWidget_cap.horizontalHeader().setStretchLastSection(True)
-    def insert_to_table(self):
-        row_packets = [{"no":"1","Time Stamp":"03:22"},{"no":"2","Time Stamp":"03:25"}]
-        #### 
-        for num_row, row_pkt in enumerate(row_packets):
-            print(num_row)
-            print(row_pkt)
-            item_no = qtw.QTableWidgetItem(row_pkt['no'])
-            item_time = qtw.QTableWidgetItem(row_pkt['Time Stamp'])
-            self.tableWidget_cap.setItem(num_row,0,item_no)
-            self.tableWidget_cap.setItem(num_row,1,item_time)
-        ## setItem(row,column,str(item))
-        #self.tableWidget_cap.setItem(int,int,item)
-
-    def set_vars(self):
-        self.all_devs = None
-        self.packet_lista = []
-        self.packet_dict = {}
-        self.SNF = True
-        self.pkt_num = 0
-        self.threadpool = QThreadPool()
-        self.layout = qtw.QHBoxLayout()
-        self.main_widget = self.findChild(qtw.QTabWidget,"tabWidget")
-    def auto_run(self):
-        print("auto Run Enabled")
+        self.set_matplot()
         # networks_cards = sc.get_if_list()
         # all_network_cards = sc.conf.ifaces
         # ip = sc.get_if_addr(sc.conf.iface)
@@ -167,7 +126,67 @@ class Main(QMainWindow,ui_main):
         self.win = Login()
         self.close()
         self.win.show()
+        
+    def set_vars(self):
+        self.db = my_db
+        self.all_devs = None
+        self.packet_lista = []
+        self.packet_dict = {}
+        self.SNF = True
+        self.pkt_num = 0
+        self.threadpool = QThreadPool()
+        self.layout = qtw.QHBoxLayout()
+        self.main_widget = self.findChild(qtw.QTabWidget,"tabWidget")
 
+    def set_data_base(self):
+        """
+            Connect With Data Base And Config It,
+            Get All quert and set it to variable
+            Device = devs
+            PingInfo = all_pings
+            
+        """
+        config_data_base(self)
+        #all_devs = collect_database_info()
+
+    def config_database_finish(self):
+        print("Finished")
+        from db_to_qt import devss as devs
+        from db_to_qt import pingss as devs_pngs
+        print(devs)
+        print(all_pings)
+
+    def set_matplot(self):
+        self.grafica = Canvas_grafica()
+        self.grafica1 = Canvas_grafica2()
+        self.grafica2 = Canvas_grafica3()
+        self.grafica3 = Canvas_grafica4()
+        self.grafica_uno.addWidget(self.grafica)
+        self.grafica_dos.addWidget(self.grafica1)
+        self.grafica_tres.addWidget(self.grafica2)
+        self.grafica_cuatro.addWidget(self.grafica3)
+
+    def set_table_packet(self):
+        pos = self.tableWidget_cap.verticalScrollBar().value()
+        print(len(self.packet_lista))
+        self.tableWidget_cap.setRowCount(10)
+        qtw.QApplication.processEvents()
+        self.tableWidget_cap.verticalScrollBar().setValue(pos)
+        self.tableWidget_cap.horizontalHeader().setStretchLastSection(True)
+
+    def insert_to_table(self):
+        row_packets = [{"no":"1","Time Stamp":"03:22"},{"no":"2","Time Stamp":"03:25"}]
+        #### 
+        for num_row, row_pkt in enumerate(row_packets):
+            print(num_row)
+            print(row_pkt)
+            item_no = qtw.QTableWidgetItem(row_pkt['no'])
+            item_time = qtw.QTableWidgetItem(row_pkt['Time Stamp'])
+            ## setItem(row,column,str(item))
+            #self.tableWidget_cap.setItem(int,int,item)
+            self.tableWidget_cap.setItem(num_row,0,item_no)
+            self.tableWidget_cap.setItem(num_row,1,item_time)
+    
     ########################## Start ##########################
     ###########     General methods for Network     ###########
     ###########################################################
@@ -228,6 +247,13 @@ class Main(QMainWindow,ui_main):
     ########################## Start ##########################
     ### Methods For (Thread , Worker ) Instance and Objects ###
     ###########################################################
+        # in this function we create our thread and run it
+    def threadRunner(self):
+        worker_1 = Worker(self.first_thread, num=1)# create our thread and give it a function as argument with its args
+        worker_1.signals.result.connect(self.first_thread_result) # connect result signal of our thread to thread_result
+        worker_1.signals.finished.connect(self.first_thread_finished) # connect finish signal of our thread to thread_complete
+        self.threadpool.start(worker_1) # start thread
+
     def first_thread(self, num):
         print("first_thread")
         # some long processing
@@ -254,6 +280,14 @@ class Main(QMainWindow,ui_main):
             self.frame_2_circle_progres.rpb_setValue(i)
             QThread.msleep(stop_point_of_100)
         return num
+
+    def first_thread_result(self):
+        #self.frame_2_circle_progres.rpb_setValue(100)
+        print("First Thread Result")
+    
+    def first_thread_finished(self):
+        print("First Thread Scan finished")
+        self.btn_thread.setText("Finished")
         
     def second_thrd_scan_network(self):
         global ip_scanned
@@ -295,10 +329,6 @@ class Main(QMainWindow,ui_main):
             self.frame_4_circle_progres.rpb_setValue(i)
             QThread.msleep(stop_point_of_100)
 
-    def first_thread_result(self):
-        #self.frame_2_circle_progres.rpb_setValue(100)
-        print("First Thread Result")
-
     def second_thread_scan_result(self):
         """
             Scan Network Results
@@ -324,9 +354,6 @@ class Main(QMainWindow,ui_main):
     def fourth_thrd_speed_test_result(self):
         print("Fourth Thread Speed Test Progress Result")
 
-    def first_thread_finished(self):
-        print("First Thread Scan finished")
-        self.btn_thread.setText("Finished")
 
     def second_thread_scan_finished(self):
         print("Second Thread Scan finished")
@@ -368,12 +395,7 @@ class Main(QMainWindow,ui_main):
         worker_2.signals.result.connect(self.second_thread_scan_result) # connect result signal of our thread to thread_result
         worker_2.signals.finished.connect(self.second_thread_scan_finished) # connect finish signal of our thread to thread_complete
         self.threadpool.start(worker_2)
-    # in this function we create our thread and run it
-    def threadRunner(self):
-        worker_1 = Worker(self.first_thread, num=1)# create our thread and give it a function as argument with its args
-        worker_1.signals.result.connect(self.first_thread_result) # connect result signal of our thread to thread_result
-        worker_1.signals.finished.connect(self.first_thread_finished) # connect finish signal of our thread to thread_complete
-        self.threadpool.start(worker_1) # start thread
+
 
     def threadsniffing(self):
         worker = Worker(self.sniffer_start)
@@ -384,7 +406,7 @@ class Main(QMainWindow,ui_main):
         self.pkt_num += 1
         ## Full Date
         ## strftime("%H:%M:%S"
-        dt_object = datetime.datetime.fromtimestamp(pkt.time)        
+        dt_object = datetime.fromtimestamp(pkt.time)        
         t1 = str(self.pkt_num)
         pckt_dict = {
             'num':self.pkt_num,
@@ -421,6 +443,7 @@ class Main(QMainWindow,ui_main):
             counter += count_pkt
             print("Packet Lista >>",len(self.packet_lista))
             self.tableWidget_cap.setRowCount(counter)
+
     def sniffer_results(self):
         print("Results cap")
 
@@ -435,6 +458,7 @@ class Main(QMainWindow,ui_main):
         #worker.signals.result.connect(self.sniffer_results)
         #self.threadpool.stop()
         return self.SNF
+
     def continue_snifer(self):
         self.SNF = True
         print(self.SNF)
@@ -463,10 +487,209 @@ class Main(QMainWindow,ui_main):
         while self.SNF == True:
             sc.sniff(iface="Ethernet",prn=self.analyzer_sniff,count=count_pkt)
 
-    def thread_ping_save_in_db(self):
-        worker = Worker(self.ping_checker)
+
+
+    #####################################
+    ######### Site Blocked Threads #########
+    def block_site_worker(self):
+        worker = Worker(self.start_block_site_sample)
         #worker.signals.result.connect(self.ping_checker_results)
         self.threadpool.start(worker)
+        
+    def start_block_site_sample(self):
+        """
+            BandWidth Calculate Functions Start Thread
+        """
+        strt_bndwds = "Start Blocked Site Thread"
+        print(strt_bndwds)
+        site_1 = self.lineEdit_site_name1.text()
+        site_2 = self.lineEdit_site_name2.text()
+        site_3 = self.lineEdit_site_name3.text()
+        print(site_1)
+        print(site_2)
+        print(site_3)
+
+    #####################################
+    ######### BandWidth Threads #########
+    def bandwidth_sample_worker(self):
+        worker = Worker(self.start_calculate_bandwitdh_sample)
+        #worker.signals.result.connect(self.ping_checker_results)
+        self.threadpool.start(worker)
+        
+    def start_calculate_bandwitdh_sample(self):
+        """
+            BandWidth Calculate Functions Start Thread
+        """
+        strt_bndwds = "Start Bandwidth Thread"
+        print(strt_bndwds)
+        io = psutil.net_io_counters()
+        #print(io)
+        update_delay = 1 # in seconds
+        # extract the total bytes sent and received
+        bytes_sent, bytes_recv = io.bytes_sent, io.bytes_recv    
+        gui_step_by = self.findChild(qtw.QDoubleSpinBox,"doubleSpinBox_bandwidth").text()
+        gui_timeout_ping = self.findChild(qtw.QSpinBox,"spinBox_timeout_bandwidth").text()
+        timeout_counter = 0
+        step_by = float(gui_step_by)
+        timeout_ping = float(gui_timeout_ping)
+        time_st = datetime.datetime.now()
+        print("Bandwidth Traffic Start")
+        while timeout_counter < timeout_ping:
+            res = calc_bandwidth(self,bytes_sent=bytes_sent,bytes_recv=bytes_recv,update_delay=update_delay)
+            time.sleep(step_by)
+            print(res)
+            self.bandwidth_set_to_dict(response_dic=res)
+            #timeout_counter += step_by
+            time_end = datetime.now()
+            all_time = time_end - time_st
+            timeout_counter = float(all_time.seconds)
+            print(all_time.seconds)
+
+    def bandwidth_services_worker(self):
+        worker = Worker(self.start_calculate_bandwitdh_services_method1)
+        worker2 = Worker(self.start_calculate_bandwitdh_services_method2)
+        worker3 = Worker(self.start_sniff_services)
+        #worker.signals.result.connect(self.ping_checker_results)
+        self.threadpool.start(worker)
+        self.threadpool.start(worker2)
+        self.threadpool.start(worker3)
+
+    def start_calculate_bandwitdh_services_method1(self):
+        """Simple function that keeps printing the stats"""
+        strt_bndwds = "Start Bandwidth Services Collect"
+        print(strt_bndwds)
+        #update_delay = 1 # in seconds
+        # extract the total bytes sent and received
+        gui_step_by = self.findChild(qtw.QDoubleSpinBox,"doubleSpinBox_bandwidth_services").text()
+        gui_timeout_ping = self.findChild(qtw.QSpinBox,"spinBox_timeout_bandwidth_services").text()
+        timeout_counter = 0
+        step_by = float(gui_step_by)
+        timeout_ping = float(gui_timeout_ping)
+        time_st = datetime.now()
+        print("Bandwidth Traffic Start")
+        self.tableWidget_bandwidth_services.setColumnCount(4)
+        columns = ['PID','Name','Download','Upload']
+        self.tableWidget_bandwidth_services.setHorizontalHeaderLabels(columns)
+        while timeout_counter < timeout_ping:
+            time.sleep(step_by)
+            # self.bandwidth_set_to_dict(response_dic=res)
+            #timeout_counter += step_by
+            time_end = datetime.now()
+            all_time = time_end - time_st
+            all_time = all_time.seconds
+            timeout_counter = float(all_time)
+            print(all_time)
+            response_services = print_pid2traffic()
+            self.set_services_bandwidth_to_table(response_services)
+
+    def set_services_bandwidth_to_table(self,resp):
+        """
+            Convert From Global DataFrame which created by pandas to Gui Table Widget
+        """
+        self.tableWidget_bandwidth_services.clear()
+        self.tableWidget_bandwidth_services.setRowCount(len(resp))
+        dict_resp = resp.to_dict()
+        #print(dict_resp)
+        if 'name' in dict_resp:
+            for key , dict_values in dict_resp.items():
+                #print("key >>>   ",key)
+                #print("dict_values >>>>     ",dict_values)
+                count_services = 0
+                for pid,value in dict_values.items():
+                    #print("pid #",pid)
+                    item_pid = qtw.QTableWidgetItem(str(pid))
+                    self.tableWidget_bandwidth_services.setItem(count_services,0,item_pid)
+                    if key == "name":
+                        item_name = qtw.QTableWidgetItem(str(value))
+                        self.tableWidget_bandwidth_services.setItem(count_services,1,item_name)
+                    if key == "Download":
+                        item_download = qtw.QTableWidgetItem(str(value))
+                        self.tableWidget_bandwidth_services.setItem(count_services,2,item_download)
+                    if key == "Upload":
+                        item_upload = qtw.QTableWidgetItem(str(value))
+                        self.tableWidget_bandwidth_services.setItem(count_services,3,item_upload)
+                        #print("Key", key)
+                        #print("value ############ ",value)
+                    #print("dict_resp",dict_resp['name'])
+                    count_services += 1
+                
+    def start_calculate_bandwitdh_services_method2(self):
+        """
+            A function that keeps listening for connections on this machine 
+            and adds them to `connection2pid` global variable
+        """
+        global connection2pid    
+        gui_step_by = self.findChild(qtw.QDoubleSpinBox,"doubleSpinBox_bandwidth_services").text()
+        gui_timeout_ping = self.findChild(qtw.QSpinBox,"spinBox_timeout_bandwidth_services").text()
+        timeout_counter = 0
+        step_by = float(gui_step_by)
+        timeout_ping = float(gui_timeout_ping)
+        time_st = datetime.now()
+        #print("Bandwidth Traffic Start")
+        while timeout_counter < timeout_ping:
+            time.sleep(step_by)
+            time_end = datetime.now()
+            all_time = time_end - time_st
+            all_time = all_time.seconds
+            timeout_counter = float(all_time)
+            print(all_time)
+            while True:
+                # using psutil, we can grab each connection's source and destination ports
+                # and their process ID
+                for c in psutil.net_connections():
+                    if c.laddr and c.raddr and c.pid:
+                        # if local address, remote address and PID are in the connection
+                        # add them to our global dictionary
+                        connection2pid[(c.laddr.port, c.raddr.port)] = c.pid
+                        connection2pid[(c.raddr.port, c.laddr.port)] = c.pid
+                #print(connection2pid)
+
+    def start_sniff_services(self):
+        gui_step_by = self.findChild(qtw.QDoubleSpinBox,"doubleSpinBox_bandwidth_services").text()
+        gui_timeout_ping = self.findChild(qtw.QSpinBox,"spinBox_timeout_bandwidth_services").text()
+        timeout_counter = 0
+        step_by = float(gui_step_by)
+        timeout_ping = float(gui_timeout_ping)
+        time_st = datetime.now()
+        while timeout_counter < timeout_ping:
+            time.sleep(step_by)
+            time_end = datetime.now()
+            all_time = time_end - time_st
+            all_time = all_time.seconds
+            timeout_counter = float(all_time)
+            print(all_time)
+            #time.sleep(step_by)
+            sc.sniff(prn=process_packet, store=False)
+
+    def process_packet(self,packet):
+        global pid2traffic
+        try:
+            # get the packet source & destination IP addresses and ports
+            packet_connection = (packet.sport, packet.dport)
+        except (AttributeError, IndexError):
+            # sometimes the packet does not have TCP/UDP layers, we just ignore these packets
+            pass
+        else:
+            # get the PID responsible for this connection from our `connection2pid` global dictionary
+            packet_pid = connection2pid.get(packet_connection)
+            if packet_pid:
+                if packet.src in all_macs:
+                    # the source MAC address of the packet is our MAC address
+                    # so it's an outgoing packet, meaning it's upload
+                    pid2traffic[packet_pid][0] += len(packet)
+                else:
+                    # incoming packet, download
+                    pid2traffic[packet_pid][1] += len(packet)        
+
+    def bandwidth_set_to_dict(self,response_dic):
+        """
+            Gui Functions Signal To Set Results Bandwidth
+        """
+        res = response_dic
+        self.label_bandwidth_down_speed.setText(res['Download Speed'])
+        self.label_bandwidth_upload_speed.setText(res['Upload Speed'])
+        self.lineEdit_bandwidth_down.setText(res['Download'])
+        self.lineEdit_bandwidth_upload.setText(res['Upload'])
 
     def thread_ping_check_auto_save(self):
         worker = Worker(self.ping_checker_auto)
@@ -480,17 +703,22 @@ class Main(QMainWindow,ui_main):
         timeout_counter = 0
         step_by = float(gui_step_by)
         timeout_ping = float(gui_timeout_ping)
-        time_st = datetime.datetime.now()
+        time_st = datetime.now()
         while timeout_counter < timeout_ping:
             self.ping_checker()
             time.sleep(step_by)
             #timeout_counter += step_by
             print("Ping Checker Is Running")
-            time_end = datetime.datetime.now()
+            time_end = datetime.now()
             all_time = time_end - time_st
             timeout_counter = float(all_time.seconds)
             print(all_time.seconds)
         #print(str_time)
+
+    def thread_ping_save_in_db(self):
+        worker = Worker(self.ping_checker)
+        #worker.signals.result.connect(self.ping_checker_results)
+        self.threadpool.start(worker)
 
     def ping_checker(self):
         #print("Start Create If Not In DB")
@@ -590,7 +818,7 @@ class Main(QMainWindow,ui_main):
 
     def ping_checker_results(self):
         print("Done Results")
-        
+
 
 
 def create_app():
@@ -598,6 +826,7 @@ def create_app():
     #window = Main()
     window = Login()
     window.show()
+    
     app.exec_()
 
 if __name__ == '__main__':
@@ -609,3 +838,5 @@ if __name__ == '__main__':
         _style = f.read()
         app.setStyleSheet(_style)
     create_app()
+    is_program_running = True
+

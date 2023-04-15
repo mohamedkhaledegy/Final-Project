@@ -54,21 +54,24 @@ def set_btns(self):
     
     
 def setup_btn(self):
-
-    ## System Functions Tab
+    ###### System Functions Tab
     # Ping
     self.findChild(qtw.QPushButton,"pushButton_save_ping").pressed.connect(self.thread_ping_save_in_db)
     self.findChild(qtw.QPushButton,"pushButton_chcker_ping").pressed.connect(self.thread_ping_check_auto_save)
-
-    ## Test Speed
-    self.pushButton_test_speed.pressed.connect(lambda : self.threadRunner3())
-    self.pushButton_test_speed.pressed.connect(lambda : self.threadRunner4())
+    #### Bandwidth
+    self.findChild(qtw.QPushButton,"pushButton_start_bandwidth").pressed.connect(self.bandwidth_sample_worker)
+    self.findChild(qtw.QPushButton,"pushButton_bandwidth_services").pressed.connect(self.bandwidth_services_worker)
+    #### Site Block Config
+    self.findChild(qtw.QPushButton,"pushButton_site_block").pressed.connect(self.block_site_worker)
+    
     ## New Window
     self.btn_dtls.pressed.connect(lambda : self.open_new_win())
     ## Scan Network For Ip & Progress Circle
     self.btn_thread.pressed.connect(self.threadRunner)
     self.btn_thread.pressed.connect(self.threadRunner2)
-
+    ## Test Speed
+    self.pushButton_test_speed.pressed.connect(lambda : self.threadRunner3())
+    self.pushButton_test_speed.pressed.connect(lambda : self.threadRunner4())
     ## Ping
     try:
         self.btn_ping1.pressed.connect(lambda : self.which_ip_to_ping(num_ip=1))
@@ -78,11 +81,11 @@ def setup_btn(self):
         self.btn_ping5.pressed.connect(lambda : self.which_ip_to_ping(num_ip=5))
     except:
         pass
-
     ## Capture Start & Stop
     self.pushButton_capture.clicked.connect(self.threadsniffing1)
     self.btn_start_cap.clicked.connect(self.continue_snifer)
     self.btn_stop_cap.clicked.connect(self.stop_snifer)
+    #### Side Bar Buttons ####
     try:
         self.btn_network_config.clicked.connect(lambda : self.main_widget.setCurrentIndex(1))
         self.btn_acc_config.clicked.connect(lambda : self.main_widget.setCurrentIndex(2))
@@ -93,7 +96,7 @@ def setup_btn(self):
         self.btn_system_functions.clicked.connect(lambda : self.main_widget.setCurrentIndex(5))
         self.btn_devices.clicked.connect(lambda : self.main_widget.setCurrentIndex(7))
         self.btn_home.clicked.connect(lambda : self.main_widget.setCurrentIndex(0))
-        self.main_widget.setCurrentIndex(0)
+        self.main_widget.setCurrentIndex(1)
     except Exception as err:
-        print("Error Btns :",err)
+        print("Failed to Set SideBar Buttons Signals :",err)
         pass
