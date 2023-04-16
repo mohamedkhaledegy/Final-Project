@@ -554,8 +554,8 @@ class Ui_MainWindow(object):
         self.gridLayout_6 = QGridLayout(self.frame_4)
         self.gridLayout_6.setObjectName(u"gridLayout_6")
         self.tableWidget_cap = QTableWidget(self.frame_4)
-        if (self.tableWidget_cap.columnCount() < 7):
-            self.tableWidget_cap.setColumnCount(7)
+        if (self.tableWidget_cap.columnCount() < 11):
+            self.tableWidget_cap.setColumnCount(11)
         __qtablewidgetitem = QTableWidgetItem()
         self.tableWidget_cap.setHorizontalHeaderItem(0, __qtablewidgetitem)
         __qtablewidgetitem1 = QTableWidgetItem()
@@ -570,6 +570,14 @@ class Ui_MainWindow(object):
         self.tableWidget_cap.setHorizontalHeaderItem(5, __qtablewidgetitem5)
         __qtablewidgetitem6 = QTableWidgetItem()
         self.tableWidget_cap.setHorizontalHeaderItem(6, __qtablewidgetitem6)
+        __qtablewidgetitem7 = QTableWidgetItem()
+        self.tableWidget_cap.setHorizontalHeaderItem(7, __qtablewidgetitem7)
+        __qtablewidgetitem8 = QTableWidgetItem()
+        self.tableWidget_cap.setHorizontalHeaderItem(8, __qtablewidgetitem8)
+        __qtablewidgetitem9 = QTableWidgetItem()
+        self.tableWidget_cap.setHorizontalHeaderItem(9, __qtablewidgetitem9)
+        __qtablewidgetitem10 = QTableWidgetItem()
+        self.tableWidget_cap.setHorizontalHeaderItem(10, __qtablewidgetitem10)
         self.tableWidget_cap.setObjectName(u"tableWidget_cap")
         sizePolicy6 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         sizePolicy6.setHorizontalStretch(0)
@@ -578,14 +586,20 @@ class Ui_MainWindow(object):
         self.tableWidget_cap.setSizePolicy(sizePolicy6)
         self.tableWidget_cap.setMinimumSize(QSize(600, 30))
         self.tableWidget_cap.setMaximumSize(QSize(12132312, 16777215))
-        self.tableWidget_cap.setSizeAdjustPolicy(QAbstractScrollArea.AdjustIgnored)
+        self.tableWidget_cap.setAutoFillBackground(True)
+        self.tableWidget_cap.setFrameShape(QFrame.StyledPanel)
+        self.tableWidget_cap.setLineWidth(1)
+        self.tableWidget_cap.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
+        self.tableWidget_cap.setEditTriggers(QAbstractItemView.AnyKeyPressed|QAbstractItemView.DoubleClicked)
+        self.tableWidget_cap.setDragDropOverwriteMode(False)
         self.tableWidget_cap.setAlternatingRowColors(True)
         self.tableWidget_cap.setShowGrid(False)
+        self.tableWidget_cap.setSortingEnabled(True)
         self.tableWidget_cap.setRowCount(0)
         self.tableWidget_cap.horizontalHeader().setCascadingSectionResizes(True)
         self.tableWidget_cap.horizontalHeader().setProperty("showSortIndicator", True)
         self.tableWidget_cap.horizontalHeader().setStretchLastSection(True)
-        self.tableWidget_cap.verticalHeader().setStretchLastSection(False)
+        self.tableWidget_cap.verticalHeader().setStretchLastSection(True)
 
         self.gridLayout_6.addWidget(self.tableWidget_cap, 0, 0, 1, 1)
 
@@ -606,9 +620,37 @@ class Ui_MainWindow(object):
         self.frame_2.setFrameShadow(QFrame.Raised)
         self.groupBox = QGroupBox(self.frame_2)
         self.groupBox.setObjectName(u"groupBox")
-        self.groupBox.setGeometry(QRect(10, 10, 401, 321))
+        self.groupBox.setGeometry(QRect(10, 10, 401, 331))
         self.gridLayout_2 = QGridLayout(self.groupBox)
         self.gridLayout_2.setObjectName(u"gridLayout_2")
+        self.frame_13 = QFrame(self.groupBox)
+        self.frame_13.setObjectName(u"frame_13")
+        self.frame_13.setFrameShape(QFrame.StyledPanel)
+        self.frame_13.setFrameShadow(QFrame.Raised)
+        self.frame_14 = QFrame(self.frame_13)
+        self.frame_14.setObjectName(u"frame_14")
+        self.frame_14.setGeometry(QRect(119, 80, 111, 51))
+        self.frame_14.setFrameShape(QFrame.StyledPanel)
+        self.frame_14.setFrameShadow(QFrame.Raised)
+        self.frame_15 = QFrame(self.frame_13)
+        self.frame_15.setObjectName(u"frame_15")
+        self.frame_15.setGeometry(QRect(119, 10, 111, 51))
+        self.frame_15.setFrameShape(QFrame.StyledPanel)
+        self.frame_15.setFrameShadow(QFrame.Raised)
+        self.label_bandwidth_upload_speed = QLabel(self.frame_13)
+        self.label_bandwidth_upload_speed.setObjectName(u"label_bandwidth_upload_speed")
+        self.label_bandwidth_upload_speed.setGeometry(QRect(10, 80, 50, 51))
+        self.label_bandwidth_down_speed = QLabel(self.frame_13)
+        self.label_bandwidth_down_speed.setObjectName(u"label_bandwidth_down_speed")
+        self.label_bandwidth_down_speed.setGeometry(QRect(10, 10, 50, 51))
+
+        self.gridLayout_2.addWidget(self.frame_13, 4, 1, 2, 3)
+
+        self.lineEdit_bandwidth_down = QLineEdit(self.groupBox)
+        self.lineEdit_bandwidth_down.setObjectName(u"lineEdit_bandwidth_down")
+
+        self.gridLayout_2.addWidget(self.lineEdit_bandwidth_down, 1, 2, 1, 1)
+
         self.horizontalLayout_8 = QHBoxLayout()
         self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
         self.label_14 = QLabel(self.groupBox)
@@ -628,12 +670,12 @@ class Ui_MainWindow(object):
         self.horizontalLayout_8.addWidget(self.label_50)
 
 
-        self.gridLayout_2.addLayout(self.horizontalLayout_8, 2, 4, 1, 1)
+        self.gridLayout_2.addLayout(self.horizontalLayout_8, 2, 3, 1, 1)
 
-        self.lineEdit_bandwidth_down = QLineEdit(self.groupBox)
-        self.lineEdit_bandwidth_down.setObjectName(u"lineEdit_bandwidth_down")
+        self.pushButton_start_bandwidth_2 = QPushButton(self.groupBox)
+        self.pushButton_start_bandwidth_2.setObjectName(u"pushButton_start_bandwidth_2")
 
-        self.gridLayout_2.addWidget(self.lineEdit_bandwidth_down, 1, 3, 1, 1)
+        self.gridLayout_2.addWidget(self.pushButton_start_bandwidth_2, 0, 1, 1, 1)
 
         self.horizontalLayout_3 = QHBoxLayout()
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
@@ -655,32 +697,27 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3.addWidget(self.label_4)
 
 
-        self.gridLayout_2.addLayout(self.horizontalLayout_3, 1, 4, 1, 1)
-
-        self.pushButton_start_bandwidth = QPushButton(self.groupBox)
-        self.pushButton_start_bandwidth.setObjectName(u"pushButton_start_bandwidth")
-
-        self.gridLayout_2.addWidget(self.pushButton_start_bandwidth, 0, 3, 1, 1)
-
-        self.pushButton_start_bandwidth_2 = QPushButton(self.groupBox)
-        self.pushButton_start_bandwidth_2.setObjectName(u"pushButton_start_bandwidth_2")
-
-        self.gridLayout_2.addWidget(self.pushButton_start_bandwidth_2, 0, 2, 1, 1)
+        self.gridLayout_2.addLayout(self.horizontalLayout_3, 1, 3, 1, 1)
 
         self.lineEdit_bandwidth_upload = QLineEdit(self.groupBox)
         self.lineEdit_bandwidth_upload.setObjectName(u"lineEdit_bandwidth_upload")
 
-        self.gridLayout_2.addWidget(self.lineEdit_bandwidth_upload, 2, 3, 1, 1)
+        self.gridLayout_2.addWidget(self.lineEdit_bandwidth_upload, 2, 2, 1, 1)
 
-        self.label_bandwidth_3 = QLabel(self.groupBox)
-        self.label_bandwidth_3.setObjectName(u"label_bandwidth_3")
+        self.pushButton_start_bandwidth = QPushButton(self.groupBox)
+        self.pushButton_start_bandwidth.setObjectName(u"pushButton_start_bandwidth")
 
-        self.gridLayout_2.addWidget(self.label_bandwidth_3, 2, 2, 1, 1)
+        self.gridLayout_2.addWidget(self.pushButton_start_bandwidth, 0, 2, 1, 1)
 
         self.label_bandwidth = QLabel(self.groupBox)
         self.label_bandwidth.setObjectName(u"label_bandwidth")
 
-        self.gridLayout_2.addWidget(self.label_bandwidth, 1, 2, 1, 1)
+        self.gridLayout_2.addWidget(self.label_bandwidth, 1, 1, 1, 1)
+
+        self.label_bandwidth_3 = QLabel(self.groupBox)
+        self.label_bandwidth_3.setObjectName(u"label_bandwidth_3")
+
+        self.gridLayout_2.addWidget(self.label_bandwidth_3, 2, 1, 1, 1)
 
         self.horizontalLayout_2 = QHBoxLayout()
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
@@ -696,34 +733,12 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2.addWidget(self.comboBox)
 
 
-        self.gridLayout_2.addLayout(self.horizontalLayout_2, 0, 4, 1, 1)
+        self.gridLayout_2.addLayout(self.horizontalLayout_2, 0, 3, 1, 1)
 
-        self.frame_13 = QFrame(self.groupBox)
-        self.frame_13.setObjectName(u"frame_13")
-        self.frame_13.setFrameShape(QFrame.StyledPanel)
-        self.frame_13.setFrameShadow(QFrame.Raised)
+        self.label_5 = QLabel(self.groupBox)
+        self.label_5.setObjectName(u"label_5")
 
-        self.gridLayout_2.addWidget(self.frame_13, 3, 3, 2, 2)
-
-        self.label_bandwidth_down_speed = QLabel(self.groupBox)
-        self.label_bandwidth_down_speed.setObjectName(u"label_bandwidth_down_speed")
-
-        self.gridLayout_2.addWidget(self.label_bandwidth_down_speed, 3, 1, 1, 1)
-
-        self.label_bandwidth_upload_speed = QLabel(self.groupBox)
-        self.label_bandwidth_upload_speed.setObjectName(u"label_bandwidth_upload_speed")
-
-        self.gridLayout_2.addWidget(self.label_bandwidth_upload_speed, 4, 1, 1, 1)
-
-        self.label_bandwidth_down_speed_2 = QLabel(self.groupBox)
-        self.label_bandwidth_down_speed_2.setObjectName(u"label_bandwidth_down_speed_2")
-
-        self.gridLayout_2.addWidget(self.label_bandwidth_down_speed_2, 3, 2, 1, 1)
-
-        self.label_bandwidth_upload_speed_2 = QLabel(self.groupBox)
-        self.label_bandwidth_upload_speed_2.setObjectName(u"label_bandwidth_upload_speed_2")
-
-        self.gridLayout_2.addWidget(self.label_bandwidth_upload_speed_2, 4, 2, 1, 1)
+        self.gridLayout_2.addWidget(self.label_5, 3, 1, 1, 3)
 
         self.widget_4 = QWidget(self.frame_2)
         self.widget_4.setObjectName(u"widget_4")
@@ -782,14 +797,14 @@ class Ui_MainWindow(object):
         self.tableWidget_bandwidth_services = QTableWidget(self.widget_4)
         if (self.tableWidget_bandwidth_services.columnCount() < 4):
             self.tableWidget_bandwidth_services.setColumnCount(4)
-        __qtablewidgetitem7 = QTableWidgetItem()
-        self.tableWidget_bandwidth_services.setHorizontalHeaderItem(0, __qtablewidgetitem7)
-        __qtablewidgetitem8 = QTableWidgetItem()
-        self.tableWidget_bandwidth_services.setHorizontalHeaderItem(1, __qtablewidgetitem8)
-        __qtablewidgetitem9 = QTableWidgetItem()
-        self.tableWidget_bandwidth_services.setHorizontalHeaderItem(2, __qtablewidgetitem9)
-        __qtablewidgetitem10 = QTableWidgetItem()
-        self.tableWidget_bandwidth_services.setHorizontalHeaderItem(3, __qtablewidgetitem10)
+        __qtablewidgetitem11 = QTableWidgetItem()
+        self.tableWidget_bandwidth_services.setHorizontalHeaderItem(0, __qtablewidgetitem11)
+        __qtablewidgetitem12 = QTableWidgetItem()
+        self.tableWidget_bandwidth_services.setHorizontalHeaderItem(1, __qtablewidgetitem12)
+        __qtablewidgetitem13 = QTableWidgetItem()
+        self.tableWidget_bandwidth_services.setHorizontalHeaderItem(2, __qtablewidgetitem13)
+        __qtablewidgetitem14 = QTableWidgetItem()
+        self.tableWidget_bandwidth_services.setHorizontalHeaderItem(3, __qtablewidgetitem14)
         self.tableWidget_bandwidth_services.setObjectName(u"tableWidget_bandwidth_services")
         self.tableWidget_bandwidth_services.setGeometry(QRect(10, 200, 391, 401))
         self.groupBox_2 = QGroupBox(self.frame_2)
@@ -924,19 +939,19 @@ class Ui_MainWindow(object):
         self.char0.setObjectName(u"char0")
         self.gridLayout_32 = QGridLayout(self.char0)
         self.gridLayout_32.setObjectName(u"gridLayout_32")
-        self.tableWidget = QTableWidget(self.char0)
-        self.tableWidget.setObjectName(u"tableWidget")
+        self.tableWidget_ping_ip1 = QTableWidget(self.char0)
+        self.tableWidget_ping_ip1.setObjectName(u"tableWidget_ping_ip1")
 
-        self.gridLayout_32.addWidget(self.tableWidget, 0, 0, 1, 1)
+        self.gridLayout_32.addWidget(self.tableWidget_ping_ip1, 0, 0, 1, 1)
 
         self.verticalSpacer_5 = QSpacerItem(20, 259, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.gridLayout_32.addItem(self.verticalSpacer_5, 0, 1, 1, 1)
 
-        self.tableWidget_2 = QTableWidget(self.char0)
-        self.tableWidget_2.setObjectName(u"tableWidget_2")
+        self.tableWidget_ping_ip2 = QTableWidget(self.char0)
+        self.tableWidget_ping_ip2.setObjectName(u"tableWidget_ping_ip2")
 
-        self.gridLayout_32.addWidget(self.tableWidget_2, 0, 2, 1, 1)
+        self.gridLayout_32.addWidget(self.tableWidget_ping_ip2, 0, 2, 1, 1)
 
         self.tabWidget_pinger.addTab(self.char0, "")
         self.char1 = QWidget()
@@ -1115,7 +1130,7 @@ class Ui_MainWindow(object):
 
         self.verticalSpacer_6 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
-        self.gridLayout_33.addItem(self.verticalSpacer_6, 3, 0, 1, 1)
+        self.gridLayout_33.addItem(self.verticalSpacer_6, 3, 1, 1, 1)
 
         self.splitter_18.addWidget(self.frame_9)
 
@@ -1238,26 +1253,14 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_8.addWidget(self.label_upload_meter)
 
-        self.label_39 = QLabel(self.frame_circle_3)
-        self.label_39.setObjectName(u"label_39")
-        font3 = QFont()
-        font3.setFamily(u"Roboto")
-        font3.setPointSize(8)
-        self.label_39.setFont(font3)
-        self.label_39.setStyleSheet(u"border: none;\n"
-" color: rgb(128, 102, 168);")
-        self.label_39.setAlignment(Qt.AlignCenter)
-
-        self.verticalLayout_8.addWidget(self.label_39)
-
         self.label_40 = QLabel(self.frame_circle_3)
         self.label_40.setObjectName(u"label_40")
         sizePolicy5.setHeightForWidth(self.label_40.sizePolicy().hasHeightForWidth())
         self.label_40.setSizePolicy(sizePolicy5)
-        font4 = QFont()
-        font4.setFamily(u"Roboto")
-        font4.setPointSize(10)
-        self.label_40.setFont(font4)
+        font3 = QFont()
+        font3.setFamily(u"Roboto")
+        font3.setPointSize(10)
+        self.label_40.setFont(font3)
         self.label_40.setStyleSheet(u"border: none;\n"
 "color: rgb(60, 231, 195);")
         self.label_40.setAlignment(Qt.AlignCenter)
@@ -1293,32 +1296,26 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_6.addWidget(self.label_3)
 
-        self.label_5 = QLabel(self.frame_circle_1)
-        self.label_5.setObjectName(u"label_5")
-        self.label_5.setFont(font3)
-        self.label_5.setStyleSheet(u"border: none;\n"
+        self.label_meter_ip = QLabel(self.frame_circle_1)
+        self.label_meter_ip.setObjectName(u"label_meter_ip")
+        font4 = QFont()
+        font4.setFamily(u"Roboto")
+        font4.setPointSize(8)
+        self.label_meter_ip.setFont(font4)
+        self.label_meter_ip.setStyleSheet(u"border: none;\n"
 " color: rgb(128, 102, 168);")
-        self.label_5.setAlignment(Qt.AlignCenter)
+        self.label_meter_ip.setAlignment(Qt.AlignCenter)
 
-        self.verticalLayout_6.addWidget(self.label_5)
+        self.verticalLayout_6.addWidget(self.label_meter_ip)
 
-        self.label_10 = QLabel(self.frame_circle_1)
-        self.label_10.setObjectName(u"label_10")
-        self.label_10.setFont(font2)
-        self.label_10.setStyleSheet(u"border: none;\n"
+        self.label_meter_ping = QLabel(self.frame_circle_1)
+        self.label_meter_ping.setObjectName(u"label_meter_ping")
+        self.label_meter_ping.setFont(font2)
+        self.label_meter_ping.setStyleSheet(u"border: none;\n"
 "color: rgb(220,220,220);")
-        self.label_10.setAlignment(Qt.AlignCenter)
+        self.label_meter_ping.setAlignment(Qt.AlignCenter)
 
-        self.verticalLayout_6.addWidget(self.label_10)
-
-        self.label_32 = QLabel(self.frame_circle_1)
-        self.label_32.setObjectName(u"label_32")
-        self.label_32.setFont(font4)
-        self.label_32.setStyleSheet(u"border: none;\n"
-"color: rgb(60, 231, 195);")
-        self.label_32.setAlignment(Qt.AlignCenter)
-
-        self.verticalLayout_6.addWidget(self.label_32)
+        self.verticalLayout_6.addWidget(self.label_meter_ping)
 
 
         self.gridLayout_14.addWidget(self.frame_circle_1, 0, 0, 1, 1)
@@ -1358,20 +1355,11 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_9.addWidget(self.label_download_meter)
 
-        self.label_58 = QLabel(self.frame_circle_4)
-        self.label_58.setObjectName(u"label_58")
-        self.label_58.setFont(font3)
-        self.label_58.setStyleSheet(u"border: none;\n"
-" color: rgb(128, 102, 168);")
-        self.label_58.setAlignment(Qt.AlignCenter)
-
-        self.verticalLayout_9.addWidget(self.label_58)
-
         self.label_59 = QLabel(self.frame_circle_4)
         self.label_59.setObjectName(u"label_59")
         sizePolicy5.setHeightForWidth(self.label_59.sizePolicy().hasHeightForWidth())
         self.label_59.setSizePolicy(sizePolicy5)
-        self.label_59.setFont(font4)
+        self.label_59.setFont(font3)
         self.label_59.setStyleSheet(u"border: none;\n"
 "color: rgb(60, 231, 195);")
         self.label_59.setAlignment(Qt.AlignCenter)
@@ -1392,6 +1380,7 @@ class Ui_MainWindow(object):
         self.gridLayout_16.setObjectName(u"gridLayout_16")
         self.groupBox_4 = QGroupBox(self.frame_7)
         self.groupBox_4.setObjectName(u"groupBox_4")
+        self.groupBox_4.setMinimumSize(QSize(0, 200))
         self.gridLayout_15 = QGridLayout(self.groupBox_4)
         self.gridLayout_15.setObjectName(u"gridLayout_15")
         self.label_7 = QLabel(self.groupBox_4)
@@ -1710,7 +1699,7 @@ class Ui_MainWindow(object):
 
         self.tabWidget.setCurrentIndex(1)
         self.tabWidget_pinger.setCurrentIndex(0)
-        self.toolBox.setCurrentIndex(1)
+        self.toolBox.setCurrentIndex(0)
         self.toolBox.layout().setSpacing(10)
 
 
@@ -1742,10 +1731,10 @@ class Ui_MainWindow(object):
         self.groupBox_ip_discovered.setTitle(QCoreApplication.translate("MainWindow", u"Ip Discovered", None))
         self.label_21.setText(QCoreApplication.translate("MainWindow", u"Mac Address", None))
         self.label_12.setText(QCoreApplication.translate("MainWindow", u"Ip 1", None))
-        self.lineEdit_ip1.setText(QCoreApplication.translate("MainWindow", u"192.168.1.2", None))
+        self.lineEdit_ip1.setText("")
         self.label_20.setText(QCoreApplication.translate("MainWindow", u"Mac Address", None))
         self.label_19.setText(QCoreApplication.translate("MainWindow", u"Ip 2", None))
-        self.lineEdit_ip2.setText(QCoreApplication.translate("MainWindow", u"192.168.1.3", None))
+        self.lineEdit_ip2.setText("")
         self.label_25.setText(QCoreApplication.translate("MainWindow", u"Ip 3", None))
         self.lineEdit_ip3.setText("")
         self.label_24.setText(QCoreApplication.translate("MainWindow", u"Mac Address", None))
@@ -1772,42 +1761,49 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem3 = self.tableWidget_cap.horizontalHeaderItem(3)
         ___qtablewidgetitem3.setText(QCoreApplication.translate("MainWindow", u"Destination", None));
         ___qtablewidgetitem4 = self.tableWidget_cap.horizontalHeaderItem(4)
-        ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"Protocol", None));
+        ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"Service", None));
         ___qtablewidgetitem5 = self.tableWidget_cap.horizontalHeaderItem(5)
-        ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"Length", None));
+        ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"Site Name", None));
         ___qtablewidgetitem6 = self.tableWidget_cap.horizontalHeaderItem(6)
-        ___qtablewidgetitem6.setText(QCoreApplication.translate("MainWindow", u"Info", None));
+        ___qtablewidgetitem6.setText(QCoreApplication.translate("MainWindow", u"Port Src", None));
+        ___qtablewidgetitem7 = self.tableWidget_cap.horizontalHeaderItem(7)
+        ___qtablewidgetitem7.setText(QCoreApplication.translate("MainWindow", u"Port Dst", None));
+        ___qtablewidgetitem8 = self.tableWidget_cap.horizontalHeaderItem(8)
+        ___qtablewidgetitem8.setText(QCoreApplication.translate("MainWindow", u"Blocked", None));
+        ___qtablewidgetitem9 = self.tableWidget_cap.horizontalHeaderItem(9)
+        ___qtablewidgetitem9.setText(QCoreApplication.translate("MainWindow", u"Length Packet", None));
+        ___qtablewidgetitem10 = self.tableWidget_cap.horizontalHeaderItem(10)
+        ___qtablewidgetitem10.setText(QCoreApplication.translate("MainWindow", u"Info", None));
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.home), QCoreApplication.translate("MainWindow", u"home", None))
         self.groupBox.setTitle(QCoreApplication.translate("MainWindow", u"Network", None))
+        self.label_bandwidth_upload_speed.setText(QCoreApplication.translate("MainWindow", u"Upload ", None))
+        self.label_bandwidth_down_speed.setText(QCoreApplication.translate("MainWindow", u"Download ", None))
         self.label_14.setText(QCoreApplication.translate("MainWindow", u"Refresh Time", None))
         self.label_50.setText(QCoreApplication.translate("MainWindow", u"By Second", None))
+        self.pushButton_start_bandwidth_2.setText(QCoreApplication.translate("MainWindow", u"Stop Bandwidth", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Timeout", None))
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"By Second", None))
         self.pushButton_start_bandwidth.setText(QCoreApplication.translate("MainWindow", u"Start Bandwidth", None))
-        self.pushButton_start_bandwidth_2.setText(QCoreApplication.translate("MainWindow", u"Stop Bandwidth", None))
-        self.label_bandwidth_3.setText(QCoreApplication.translate("MainWindow", u"Uploaded : ", None))
         self.label_bandwidth.setText(QCoreApplication.translate("MainWindow", u"Downloaded : ", None))
+        self.label_bandwidth_3.setText(QCoreApplication.translate("MainWindow", u"Uploaded : ", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Interface", None))
         self.comboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"Local Area Connection", None))
 
-        self.label_bandwidth_down_speed.setText(QCoreApplication.translate("MainWindow", u"Download ", None))
-        self.label_bandwidth_upload_speed.setText(QCoreApplication.translate("MainWindow", u"Upload ", None))
-        self.label_bandwidth_down_speed_2.setText(QCoreApplication.translate("MainWindow", u"Kb/s", None))
-        self.label_bandwidth_upload_speed_2.setText(QCoreApplication.translate("MainWindow", u"Kb/s", None))
+        self.label_5.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
         self.pushButton_bandwidth_services.setText(QCoreApplication.translate("MainWindow", u"Bandwidth With Services Info", None))
         self.label_51.setText(QCoreApplication.translate("MainWindow", u"Refresh Time", None))
         self.label_57.setText(QCoreApplication.translate("MainWindow", u"By Second", None))
         self.label_60.setText(QCoreApplication.translate("MainWindow", u"Timeout", None))
         self.label_61.setText(QCoreApplication.translate("MainWindow", u"By Second", None))
         self.label_bandwidth_services.setText(QCoreApplication.translate("MainWindow", u"Services", None))
-        ___qtablewidgetitem7 = self.tableWidget_bandwidth_services.horizontalHeaderItem(0)
-        ___qtablewidgetitem7.setText(QCoreApplication.translate("MainWindow", u"PID", None));
-        ___qtablewidgetitem8 = self.tableWidget_bandwidth_services.horizontalHeaderItem(1)
-        ___qtablewidgetitem8.setText(QCoreApplication.translate("MainWindow", u"Name", None));
-        ___qtablewidgetitem9 = self.tableWidget_bandwidth_services.horizontalHeaderItem(2)
-        ___qtablewidgetitem9.setText(QCoreApplication.translate("MainWindow", u"Donwload", None));
-        ___qtablewidgetitem10 = self.tableWidget_bandwidth_services.horizontalHeaderItem(3)
-        ___qtablewidgetitem10.setText(QCoreApplication.translate("MainWindow", u"Upload", None));
+        ___qtablewidgetitem11 = self.tableWidget_bandwidth_services.horizontalHeaderItem(0)
+        ___qtablewidgetitem11.setText(QCoreApplication.translate("MainWindow", u"PID", None));
+        ___qtablewidgetitem12 = self.tableWidget_bandwidth_services.horizontalHeaderItem(1)
+        ___qtablewidgetitem12.setText(QCoreApplication.translate("MainWindow", u"Name", None));
+        ___qtablewidgetitem13 = self.tableWidget_bandwidth_services.horizontalHeaderItem(2)
+        ___qtablewidgetitem13.setText(QCoreApplication.translate("MainWindow", u"Donwload", None));
+        ___qtablewidgetitem14 = self.tableWidget_bandwidth_services.horizontalHeaderItem(3)
+        ___qtablewidgetitem14.setText(QCoreApplication.translate("MainWindow", u"Upload", None));
         self.groupBox_2.setTitle(QCoreApplication.translate("MainWindow", u"Sites Config", None))
         self.label_62.setText(QCoreApplication.translate("MainWindow", u"Site Name 1", None))
         self.label_63.setText(QCoreApplication.translate("MainWindow", u"Site Name 2", None))
@@ -1857,17 +1853,14 @@ class Ui_MainWindow(object):
         self.label_36.setText(QCoreApplication.translate("MainWindow", u"By Second", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_5), QCoreApplication.translate("MainWindow", u"System Functions", None))
         self.label_37.setText(QCoreApplication.translate("MainWindow", u"Upload", None))
-        self.label_upload_meter.setText(QCoreApplication.translate("MainWindow", u"8GB", None))
-        self.label_39.setText(QCoreApplication.translate("MainWindow", u"Total: 64gb", None))
-        self.label_40.setText(QCoreApplication.translate("MainWindow", u"4 Mb Uploaded", None))
+        self.label_upload_meter.setText(QCoreApplication.translate("MainWindow", u"--", None))
+        self.label_40.setText(QCoreApplication.translate("MainWindow", u"-- Mb Uploaded", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Ping", None))
-        self.label_5.setText(QCoreApplication.translate("MainWindow", u"192.168.1.2", None))
-        self.label_10.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" vertical-align:super;\">6.8 m/s</span></p></body></html>", None))
-        self.label_32.setText(QCoreApplication.translate("MainWindow", u"Temp: 45C\u00ba", None))
+        self.label_meter_ip.setText(QCoreApplication.translate("MainWindow", u"192.168.1.2", None))
+        self.label_meter_ping.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" vertical-align:super;\">0.0 m/s</span></p></body></html>", None))
         self.label_56.setText(QCoreApplication.translate("MainWindow", u"Download", None))
-        self.label_download_meter.setText(QCoreApplication.translate("MainWindow", u"8GB", None))
-        self.label_58.setText(QCoreApplication.translate("MainWindow", u"Total: 64gb", None))
-        self.label_59.setText(QCoreApplication.translate("MainWindow", u"65 Mb Downloaded", None))
+        self.label_download_meter.setText(QCoreApplication.translate("MainWindow", u"--", None))
+        self.label_59.setText(QCoreApplication.translate("MainWindow", u"-- Mb Downloaded", None))
         self.groupBox_4.setTitle(QCoreApplication.translate("MainWindow", u"Internet Speed", None))
         self.label_7.setText(QCoreApplication.translate("MainWindow", u"Download Speed", None))
         self.lineEdit_download.setText(QCoreApplication.translate("MainWindow", u"0", None))

@@ -132,10 +132,11 @@ class Main(QMainWindow,ui_main):
         self.all_devs = None
         self.packet_lista = []
         self.packet_dict = {}
+        self.ip_blocked = {}
         self.SNF = True
         self.pkt_num = 0
         self.threadpool = QThreadPool()
-        self.layout = qtw.QHBoxLayout()
+        #self.layout = qtw.QHBoxLayout()
         self.main_widget = self.findChild(qtw.QTabWidget,"tabWidget")
 
     def set_data_base(self):
@@ -354,7 +355,6 @@ class Main(QMainWindow,ui_main):
     def fourth_thrd_speed_test_result(self):
         print("Fourth Thread Speed Test Progress Result")
 
-
     def second_thread_scan_finished(self):
         print("Second Thread Scan finished")
 
@@ -365,10 +365,14 @@ class Main(QMainWindow,ui_main):
         # Convert To Limit 2 After ,
         dwn_mb = round(down_speed_mb,2)
         up_mb = round(up_speed_mb,2)
+        ping = round(speed_test_dict['ping'],2)
         # Set To Gui
         self.lineEdit_download.setText(str(dwn_mb))
+        self.label_download_meter.setText(str(dwn_mb))
         self.lineEdit_upload.setText(str(up_mb))
-        self.lineEdit_ping.setText(str(speed_test_dict['ping']))
+        self.label_upload_meter.setText(str(up_mb))
+        self.lineEdit_ping.setText(str(ping))
+        self.label_meter_ping.setText(str(ping))
         self.lineEdit_host.setText(str(speed_test_dict['server']['host']))
         self.lineEdit_city.setText(str(speed_test_dict['server']['name']))
         self.lineEdit_sponsor.setText(str(speed_test_dict['client']['isp']))
@@ -396,32 +400,133 @@ class Main(QMainWindow,ui_main):
         worker_2.signals.finished.connect(self.second_thread_scan_finished) # connect finish signal of our thread to thread_complete
         self.threadpool.start(worker_2)
 
-
     def threadsniffing(self):
         worker = Worker(self.sniffer_start)
         worker.signals.result.connect(self.sniffer_results)
         self.threadpool.start(worker)
 
+    def get_serv(self,src_port,dst_port):
+        try:
+            service = socket.getservbyport(src_port)
+        except:
+            service = socket.getservbyport(dst_port)
+            return service
+
+    def get_host_name(self,ip):
+        if "192.168" in ip :
+            name = "Local Device"
+        else:
+            try:
+                name = socket.getfqdn(ip)
+            except:
+                name = None
+        return name
+
     def analyzer_sniff(self,pkt):
-        self.pkt_num += 1
-        ## Full Date
-        ## strftime("%H:%M:%S"
-        dt_object = datetime.fromtimestamp(pkt.time)        
-        t1 = str(self.pkt_num)
-        pckt_dict = {
-            'num':self.pkt_num,
-            'time':dt_object,
-            'ip-src':pkt['IP'].src,
-            'ip-dst':pkt['IP'].dst,
-            }
-        self.set_pkt_on_table(pckt_dict)
-        self.packet_lista.append(pckt_dict['num'])
+        ## packet dictionary
+        # num
+        # time
+        # ip-src
+        # ip-dst
+        # mac-src
+        # mac-dst
+        # port-src
+        # port-dst
+        is_blocked = False
+        try:
+            ## Full Date
+            ## strftime("%H:%M:%S"
+            dt_object = datetime.fromtimestamp(pkt.time)
+            ######
+            src_ip = pkt[IP].src
+            dst_ip = pkt[IP].dst
+            ########################
+            mac_src = pkt.src
+            mac_dst = pkt.dst
+            ### Set Get And Set Host Name For Packet Captured
+            if pkt.haslayer(ICMP):
+                print("----------------------------------------")
+                #print("ICMP PACKET..." , "src-ip",src_ip,"dst-ip",dst_ip)
+                #print("SRC-MAC : " + mac_src)
+                #print("DST-MAC : " + mac_dst)
+                if pkt.haslayer(Raw):
+                    data = pkt[Raw].load
+                ####
+                self.pkt_num += 1
+                pckt_dict = {
+                    'num':self.pkt_num,
+                    'time':dt_object,
+                    'ip-src':pkt['IP'].src,
+                    'ip-dst':pkt['IP'].dst,
+                    'port-src':None,
+                    'port-dst':None,
+                    'host-name':None,
+                    'service':None,
+                    }
+                self.packet_lista.append(pckt_dict['num'])
+                self.set_pkt_on_table(pckt_dict)
+            else:
+                try:
+                    host_name = self.get_host_name(ip=src_ip)
+                except:
+                    host_name = self.get_host_name(ip=dst_ip)
+                else:
+                    host_name = None
+                    pass
+                if host_name != None and host_name != "Local Device":
+                    if host_name == self.ip_blocked[1]['host']:
+                        is_blocked = self.ip_blocked[1]['name']
+                        print("################ Blocked Site Entered",self.ip_blocked[1]['name'])
+                    if host_name == self.ip_blocked[2]['host']:
+                        is_blocked = self.ip_blocked[2]['name']
+                        print("################ Blocked Site Entered",self.ip_blocked[2]['name'])
+                else:
+                    host_name = None
+                src_port = pkt.sport
+                dst_port = pkt.dport
+                service  = self.get_serv(src_port,dst_port)
+                self.pkt_num += 1
+                pckt_dict = {
+                    'num':self.pkt_num,
+                    'time':dt_object,
+                    'ip-src':pkt['IP'].src,
+                    'ip-dst':pkt['IP'].dst,
+                    'port-src':str(src_port),
+                    'port-dst':str(dst_port),
+                    'host-name':host_name,
+                    'service':service,
+                    'blocked':is_blocked,
+                    }
+                #print("Service",service)
+                if pkt.haslayer(TCP):
+                    print("----------------------------------------")
+                    print("TCP PACKET..." , "src-ip",src_ip,'port-src',src_port,"dst-ip",dst_ip,'port-dst',dst_port,"service",service)
+                if pkt.haslayer(UDP):
+                    print("----------------------------------------")
+                    print("UDP PACKET..." , "src-ip",src_ip,"dst-ip",dst_ip,"service",service)
+                    # try:
+                    #     get_name = socket.gethostbyaddr(src_ip)
+                    #     print(get_name)
+                    # except:
+                    #     get_name = socket.gethostbyaddr(dst_ip)
+                    #     print(get_name)
+                    #     pass
+                self.set_pkt_on_table(pckt_dict)
+                self.packet_lista.append(pckt_dict['num'])                    
+        except:
+            pass
 
     def set_pkt_on_table(self,pkt_dict):
         row = pkt_dict['num']
+        count = self.tableWidget_cap.rowCount()
+        print(count)
+        self.tableWidget_cap.setRowCount(row + 1)
         #print(pkt_dict)
         #row-1
         #print("row",row)
+        if pkt_dict['service'] != None:
+            item_pkt_service = qtw.QTableWidgetItem(pkt_dict['service'])
+            self.tableWidget_cap.setItem(row,4,item_pkt_service)
         item_pkt_no = qtw.QTableWidgetItem(str(pkt_dict['num']))
         item_pkt_time = qtw.QTableWidgetItem(str(pkt_dict['time']))
         item_pkt_ip_src = qtw.QTableWidgetItem(pkt_dict['ip-src'])
@@ -430,10 +535,22 @@ class Main(QMainWindow,ui_main):
         self.tableWidget_cap.setItem(row,1,item_pkt_time)
         self.tableWidget_cap.setItem(row,2,item_pkt_ip_src)
         self.tableWidget_cap.setItem(row,3,item_pkt_ip_dst)
+        if pkt_dict['host-name'] != None:
+            item_pkt_host_name = qtw.QTableWidgetItem(pkt_dict['host-name'])
+            self.tableWidget_cap.setItem(row,5,item_pkt_host_name)
+        if pkt_dict['port-src'] != None:
+            item_pkt_port_src = qtw.QTableWidgetItem(pkt_dict['port-src'])
+            self.tableWidget_cap.setItem(row,6,item_pkt_port_src)
+        if pkt_dict['port-dst'] != None:
+            item_pkt_port_dst = qtw.QTableWidgetItem(pkt_dict['port-dst'])
+            self.tableWidget_cap.setItem(row,7,item_pkt_port_dst)
+        if pkt_dict['blocked'] != False:
+            item_pkt_blocked = qtw.QTableWidgetItem(str(pkt_dict['blocked']))
+            self.tableWidget_cap.setItem(row,8,item_pkt_blocked)
 
     def sniffer_start(self):
         print("Start Sniffer")
-        count_pkt = 0
+        count_pkt = 10
         if count_pkt == 0:
             counter = 1
         else:
@@ -441,8 +558,8 @@ class Main(QMainWindow,ui_main):
         while self.SNF == True:
             sc.sniff(iface="Realtek PCIe GBE Family Controller",prn=self.analyzer_sniff,count=count_pkt)
             counter += count_pkt
-            print("Packet Lista >>",len(self.packet_lista))
-            self.tableWidget_cap.setRowCount(counter)
+            print("Packet Lista >>",counter)
+            #self.tableWidget_cap.setRowCount(counter)
 
     def sniffer_results(self):
         print("Results cap")
@@ -468,15 +585,15 @@ class Main(QMainWindow,ui_main):
 
     def threadsniffing1(self):
         worker2 = Worker(self.sniffer1_start)
-        worker2.signals.result.connect(self.sniffer1_results)
+        #worker2.signals.result.connect(self.sniffer1_results)
         self.threadpool.start(worker2)
 
     def sniffer1_start(self):
         print("Start Sniffer")
         count_pkt = 4
-        capture = pyshark.LiveCapture(interface="Ethernet").sniff_continuously(packet_count=4)
-        #capture
-        #capture.sniff(timeout=5)
+        while True:
+            capture = pyshark.LiveCapture(interface="Ethernet").sniff(packet_count=4)
+            capture
         #cap.sniff(packet_count=20)
         print("Captured ",count_pkt)
 
@@ -487,10 +604,8 @@ class Main(QMainWindow,ui_main):
         while self.SNF == True:
             sc.sniff(iface="Ethernet",prn=self.analyzer_sniff,count=count_pkt)
 
-
-
     #####################################
-    ######### Site Blocked Threads #########
+    ####### Sites Blocked Threads #######
     def block_site_worker(self):
         worker = Worker(self.start_block_site_sample)
         #worker.signals.result.connect(self.ping_checker_results)
@@ -498,16 +613,32 @@ class Main(QMainWindow,ui_main):
         
     def start_block_site_sample(self):
         """
-            BandWidth Calculate Functions Start Thread
+            BlockSite Functions Start Thread
         """
         strt_bndwds = "Start Blocked Site Thread"
         print(strt_bndwds)
+        
         site_1 = self.lineEdit_site_name1.text()
         site_2 = self.lineEdit_site_name2.text()
-        site_3 = self.lineEdit_site_name3.text()
+        #site_3 = self.lineEdit_site_name3.text()
+        sites = 3
+        site_name1 = "www." + str(site_1) + ".com"
+        site_name2 = "www." + str(site_2) + ".com"
+        ip_1 = socket.gethostbyname(site_name1)
+        ip_2 = socket.gethostbyname(site_name2)
+        host_1 = socket.getfqdn(ip_1)
+        host_2 = socket.getfqdn(ip_2)
+        #host_2 = socket.gethostbyaddr(str(ip_2))
+        self.ip_blocked = {
+            1:{'ip' : ip_1, 'name':site_1 , 'host':host_1},
+            2:{'ip' : ip_2, 'name':site_2, 'host':host_2}
+            }
         print(site_1)
+        print(ip_1)
+        print(host_1)
         print(site_2)
-        print(site_3)
+        print(ip_2)
+        print(host_2)
 
     #####################################
     ######### BandWidth Threads #########
@@ -532,11 +663,11 @@ class Main(QMainWindow,ui_main):
         timeout_counter = 0
         step_by = float(gui_step_by)
         timeout_ping = float(gui_timeout_ping)
-        time_st = datetime.datetime.now()
+        time_st = datetime.now()
         print("Bandwidth Traffic Start")
         while timeout_counter < timeout_ping:
             res = calc_bandwidth(self,bytes_sent=bytes_sent,bytes_recv=bytes_recv,update_delay=update_delay)
-            time.sleep(step_by)
+            QThread.msleep(step_by)
             print(res)
             self.bandwidth_set_to_dict(response_dic=res)
             #timeout_counter += step_by
@@ -551,14 +682,18 @@ class Main(QMainWindow,ui_main):
         worker3 = Worker(self.start_sniff_services)
         #worker.signals.result.connect(self.ping_checker_results)
         self.threadpool.start(worker)
+        global worker_bandwidth_2 , worker_bandwidth_3
+        worker_bandwidth_2 = worker2
+        worker_bandwidth_3 = worker3
         self.threadpool.start(worker2)
         self.threadpool.start(worker3)
 
     def start_calculate_bandwitdh_services_method1(self):
-        """Simple function that keeps printing the stats"""
+        """
+            Simple function that keeps printing the stats
+        """
         strt_bndwds = "Start Bandwidth Services Collect"
         print(strt_bndwds)
-        #update_delay = 1 # in seconds
         # extract the total bytes sent and received
         gui_step_by = self.findChild(qtw.QDoubleSpinBox,"doubleSpinBox_bandwidth_services").text()
         gui_timeout_ping = self.findChild(qtw.QSpinBox,"spinBox_timeout_bandwidth_services").text()
@@ -567,9 +702,10 @@ class Main(QMainWindow,ui_main):
         timeout_ping = float(gui_timeout_ping)
         time_st = datetime.now()
         print("Bandwidth Traffic Start")
-        self.tableWidget_bandwidth_services.setColumnCount(4)
-        columns = ['PID','Name','Download','Upload']
-        self.tableWidget_bandwidth_services.setHorizontalHeaderLabels(columns)
+        # self.tableWidget_bandwidth_services.setColumnCount(4)
+        # columns = ('PID','Name','Download','Upload')
+        # self.tableWidget_bandwidth_services.setHorizontalHeaderLabels(columns)
+        
         while timeout_counter < timeout_ping:
             time.sleep(step_by)
             # self.bandwidth_set_to_dict(response_dic=res)
@@ -578,9 +714,11 @@ class Main(QMainWindow,ui_main):
             all_time = time_end - time_st
             all_time = all_time.seconds
             timeout_counter = float(all_time)
-            print(all_time)
             response_services = print_pid2traffic()
             self.set_services_bandwidth_to_table(response_services)
+        self.threadpool.clear()
+        #self.threadpool.cancel(worker_bandwidth_2)
+        #self.threadpool.cancel(worker_bandwidth_3)
 
     def set_services_bandwidth_to_table(self,resp):
         """
@@ -612,7 +750,7 @@ class Main(QMainWindow,ui_main):
                         #print("value ############ ",value)
                     #print("dict_resp",dict_resp['name'])
                     count_services += 1
-                
+
     def start_calculate_bandwitdh_services_method2(self):
         """
             A function that keeps listening for connections on this machine 
@@ -626,23 +764,25 @@ class Main(QMainWindow,ui_main):
         timeout_ping = float(gui_timeout_ping)
         time_st = datetime.now()
         #print("Bandwidth Traffic Start")
-        while timeout_counter < timeout_ping:
-            time.sleep(step_by)
-            time_end = datetime.now()
-            all_time = time_end - time_st
-            all_time = all_time.seconds
-            timeout_counter = float(all_time)
-            print(all_time)
-            while True:
-                # using psutil, we can grab each connection's source and destination ports
-                # and their process ID
-                for c in psutil.net_connections():
-                    if c.laddr and c.raddr and c.pid:
-                        # if local address, remote address and PID are in the connection
-                        # add them to our global dictionary
-                        connection2pid[(c.laddr.port, c.raddr.port)] = c.pid
-                        connection2pid[(c.raddr.port, c.laddr.port)] = c.pid
-                #print(connection2pid)
+        try:
+            while timeout_counter < timeout_ping:
+                time.sleep(step_by)
+                time_end = datetime.now()
+                all_time = time_end - time_st
+                all_time = all_time.seconds
+                timeout_counter = float(all_time)
+                while True:
+                    # using psutil, we can grab each connection's source and destination ports
+                    # and their process ID
+                    for c in psutil.net_connections():
+                        if c.laddr and c.raddr and c.pid:
+                            # if local address, remote address and PID are in the connection
+                            # add them to our global dictionary
+                            connection2pid[(c.laddr.port, c.raddr.port)] = c.pid
+                            connection2pid[(c.raddr.port, c.laddr.port)] = c.pid
+                    #print(connection2pid)
+        except:
+            pass
 
     def start_sniff_services(self):
         gui_step_by = self.findChild(qtw.QDoubleSpinBox,"doubleSpinBox_bandwidth_services").text()
@@ -651,15 +791,16 @@ class Main(QMainWindow,ui_main):
         step_by = float(gui_step_by)
         timeout_ping = float(gui_timeout_ping)
         time_st = datetime.now()
-        while timeout_counter < timeout_ping:
-            time.sleep(step_by)
-            time_end = datetime.now()
-            all_time = time_end - time_st
-            all_time = all_time.seconds
-            timeout_counter = float(all_time)
-            print(all_time)
-            #time.sleep(step_by)
-            sc.sniff(prn=process_packet, store=False)
+        try:
+            while timeout_counter < timeout_ping:
+                time_end = datetime.now()
+                all_time = time_end - time_st
+                all_time = all_time.seconds
+                timeout_counter = float(all_time)
+                sc.sniff(prn=process_packet, store=False)
+                time.sleep(step_by)
+        except:
+            pass
 
     def process_packet(self,packet):
         global pid2traffic
@@ -781,8 +922,10 @@ class Main(QMainWindow,ui_main):
                     self.db.close()
         except NameError:
             print("Scan Network First Please ....")
+            self.db.close()
             pass
         except:
+            self.db.close()
             pass
         
     def collect_ping_to_dict(self,ip_to_ping):
