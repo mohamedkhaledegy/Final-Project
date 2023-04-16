@@ -102,11 +102,10 @@ class Main(QMainWindow,ui_main):
         self.set_table_packet()
         # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         ## DataBase Functions ##
-        #self.set_data_base()
+        self.set_data_base()
 
         # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         ## Custom Functions ##
-        self.set_matplot()
         # networks_cards = sc.get_if_list()
         # all_network_cards = sc.conf.ifaces
         # ip = sc.get_if_addr(sc.conf.iface)
@@ -121,6 +120,8 @@ class Main(QMainWindow,ui_main):
         ## Thread For Test Speed Internet and get Donwload , Upload Sppeed In MB/S , and other info .
         #self.threadRunner3()
         #self.threadRunner4()
+        self.set_matplot()
+
     def open_new_win(self):
         print("Opened")
         self.win = Login()
@@ -128,10 +129,13 @@ class Main(QMainWindow,ui_main):
         self.win.show()
         
     def set_vars(self):
+        ## For DB
         self.db = my_db
         self.all_devs = None
+        ## For Sniff And Packet Show To Gui
         self.packet_lista = []
         self.packet_dict = {}
+        ## For Block Sites
         self.ip_blocked = {}
         self.SNF = True
         self.pkt_num = 0
@@ -145,17 +149,23 @@ class Main(QMainWindow,ui_main):
             Get All quert and set it to variable
             Device = devs
             PingInfo = all_pings
-            
         """
         config_data_base(self)
         #all_devs = collect_database_info()
 
     def config_database_finish(self):
-        print("Finished")
-        from db_to_qt import devss as devs
-        from db_to_qt import pingss as devs_pngs
-        print(devs)
-        print(all_pings)
+        print("Data Collected From Database Finished")
+        from db_to_qt import devss
+        from db_to_qt import pingss
+        #### Set To Gui Results Of Saved Records
+        try:
+            self.lineEdit_database_name.setText(str(db_file_name))
+            self.lineEdit_count_ping.setText(str(len(pingss)))
+            self.lineEdit_count_ip.setText(str(len(devss)))
+            print(len(devss))
+            print(len(pingss))
+        except:
+            pass
 
     def set_matplot(self):
         self.grafica = Canvas_grafica()
@@ -169,9 +179,10 @@ class Main(QMainWindow,ui_main):
 
     def set_table_packet(self):
         pos = self.tableWidget_cap.verticalScrollBar().value()
-        print(len(self.packet_lista))
-        self.tableWidget_cap.setRowCount(10)
-        qtw.QApplication.processEvents()
+        #print(len(self.packet_lista))
+        #self.tableWidget_cap.setRowCount(1)
+        table = QTableWidget()
+        #qtw.QApplication.processEvents()
         self.tableWidget_cap.verticalScrollBar().setValue(pos)
         self.tableWidget_cap.horizontalHeader().setStretchLastSection(True)
 
@@ -187,7 +198,7 @@ class Main(QMainWindow,ui_main):
             #self.tableWidget_cap.setItem(int,int,item)
             self.tableWidget_cap.setItem(num_row,0,item_no)
             self.tableWidget_cap.setItem(num_row,1,item_time)
-    
+
     ########################## Start ##########################
     ###########     General methods for Network     ###########
     ###########################################################
@@ -285,16 +296,27 @@ class Main(QMainWindow,ui_main):
     def first_thread_result(self):
         #self.frame_2_circle_progres.rpb_setValue(100)
         print("First Thread Result")
-    
+
     def first_thread_finished(self):
         print("First Thread Scan finished")
         self.btn_thread.setText("Finished")
-        
+
     def second_thrd_scan_network(self):
         global ip_scanned
         self.btn_thread.setText("Processing...")
         print("Start Scan")
-        ip_scanned = scan_network("192.168.1.1/24")
+        global ip_router , ip_master
+        ip_router = self.lineEdit_ip_router.text()
+        ip_master = self.lineEdit_ip_master.text()
+        if ip_master != "":
+            pass
+        else:
+            ip_master = None
+        if ip_router != "":
+            ip_scanned = scan_network(f"{str(ip_router)}/24")
+        else:
+            ip_router = None
+            ip_scanned = scan_network("192.168.1.1/24")
         #print("Finish Scan")
         #print(ip_scanned)
         return ip_scanned
@@ -337,12 +359,27 @@ class Main(QMainWindow,ui_main):
         """
         self.section_network.setEnabled(True)
         self.section_ip_discovered.setEnabled(True)
+        for n,info in ip_scanned.items():
+            print(info)
+            if info['IP'] == ip_master:
+                info['master'] = True
+            else:
+                info['master'] = False
+            if info['IP'] == ip_router:
+                info['host'] = True
+            else:
+                info['host'] = False
         print(len(ip_scanned))
         for row_num , row_info in ip_scanned.items():
             print(row_num)
             print(row_info)
             ip = row_info['IP']
             mac = row_info['Mac']
+            if row_info['host'] == True:
+                label_ip = self.findChild(qtw.QLineEdit,"lineEdit_ip_host")
+                label_mac = self.findChild(qtw.QLineEdit,"lineEdit_mac_host")
+                label_ip.setText(str(ip))
+                label_mac.setText(str(mac))
             label_ip = self.findChild(qtw.QLineEdit,f"lineEdit_ip{str(row_num)}")
             label_mac = self.findChild(qtw.QLineEdit,f"lineEdit_mac{str(row_num)}")
             #print(dir(self.label_ip))
@@ -403,6 +440,7 @@ class Main(QMainWindow,ui_main):
     def threadsniffing(self):
         worker = Worker(self.sniffer_start)
         worker.signals.result.connect(self.sniffer_results)
+        worker.signals.finished.connect(self.sniffer_finished)
         self.threadpool.start(worker)
 
     def get_serv(self,src_port,dst_port):
@@ -463,8 +501,8 @@ class Main(QMainWindow,ui_main):
                     'host-name':None,
                     'service':None,
                     }
-                self.packet_lista.append(pckt_dict['num'])
-                self.set_pkt_on_table(pckt_dict)
+                #self.packet_lista.append(pckt_dict['num'])
+                #self.set_pkt_on_table(pckt_dict)
             else:
                 try:
                     host_name = self.get_host_name(ip=src_ip)
@@ -511,8 +549,11 @@ class Main(QMainWindow,ui_main):
                     #     get_name = socket.gethostbyaddr(dst_ip)
                     #     print(get_name)
                     #     pass
+                #self.set_pkt_on_table(pckt_dict)
+                #self.packet_lista.append(pckt_dict['num'])
+            self.packet_lista.append(pkt)
+            if self.checkBox_show_packet.isChecked():
                 self.set_pkt_on_table(pckt_dict)
-                self.packet_lista.append(pckt_dict['num'])                    
         except:
             pass
 
@@ -550,7 +591,11 @@ class Main(QMainWindow,ui_main):
 
     def sniffer_start(self):
         print("Start Sniffer")
-        count_pkt = 10
+        count_pkt = self.spinBox_pkt_count_by.text()
+        count_pkt = int(count_pkt)
+        limit_pkt = self.spinBox_pkt_limit.text()
+        print(limit_pkt)
+        limit_pkt = int(limit_pkt)
         if count_pkt == 0:
             counter = 1
         else:
@@ -559,50 +604,35 @@ class Main(QMainWindow,ui_main):
             sc.sniff(iface="Realtek PCIe GBE Family Controller",prn=self.analyzer_sniff,count=count_pkt)
             counter += count_pkt
             print("Packet Lista >>",counter)
-            #self.tableWidget_cap.setRowCount(counter)
+            if limit_pkt == 0:
+                pass
+            else:
+                if counter >= limit_pkt:
+                    self.SNF = False
 
     def sniffer_results(self):
         print("Results cap")
 
+    def sniffer_finished(self):
+        save_to_db = self.checkBox_save_packet.isChecked()
+        if save_to_db:
+            print("Saving To DB")
+            return
+        else:
+            print("Finished Sniffer")
+        
+
     def stop_snifer(self):
         self.SNF = False
-        print(self.SNF)
         print("Stopped Sniff")
         print(len(self.packet_lista) ," Packet Captured"  )
-        #print(packet_lista[-1])
-        #self.event_stop.set()
-        #worker = Worker(self.sniffer_start)
-        #worker.signals.result.connect(self.sniffer_results)
-        #self.threadpool.stop()
         return self.SNF
 
     def continue_snifer(self):
         self.SNF = True
         print(self.SNF)
         self.threadsniffing()
-        #self.threadsniffing()
         return self.SNF
-
-    def threadsniffing1(self):
-        worker2 = Worker(self.sniffer1_start)
-        #worker2.signals.result.connect(self.sniffer1_results)
-        self.threadpool.start(worker2)
-
-    def sniffer1_start(self):
-        print("Start Sniffer")
-        count_pkt = 4
-        while True:
-            capture = pyshark.LiveCapture(interface="Ethernet").sniff(packet_count=4)
-            capture
-        #cap.sniff(packet_count=20)
-        print("Captured ",count_pkt)
-
-    def sniffer1_results(self):
-        print("Start Sniffer")
-        count_pkt = 4
-        counter = count_pkt
-        while self.SNF == True:
-            sc.sniff(iface="Ethernet",prn=self.analyzer_sniff,count=count_pkt)
 
     #####################################
     ####### Sites Blocked Threads #######
@@ -617,28 +647,38 @@ class Main(QMainWindow,ui_main):
         """
         strt_bndwds = "Start Blocked Site Thread"
         print(strt_bndwds)
-        
+        with_out_www = self.checkBox_disable_www.isChecked()
         site_1 = self.lineEdit_site_name1.text()
+        if site_1 != "":
+            if not with_out_www:
+                site_name1 = "www." + str(site_1) + ".com"
+            else:
+                site_name1 = str(site_1)    
+            ip_1 = socket.gethostbyname(site_name1)
+            host_1 = socket.getfqdn(ip_1)
+        else:
+            site_1 = None
         site_2 = self.lineEdit_site_name2.text()
+        if site_2 != "":
+            if not with_out_www:
+                site_name2 = "www." + str(site_2) + ".com"
+            else:
+                site_name2 = str(site_2)
+            ip_2 = socket.gethostbyname(site_name2)
+            host_2 = socket.getfqdn(ip_2)
+        else:
+            site_2 = None
         #site_3 = self.lineEdit_site_name3.text()
-        sites = 3
-        site_name1 = "www." + str(site_1) + ".com"
-        site_name2 = "www." + str(site_2) + ".com"
-        ip_1 = socket.gethostbyname(site_name1)
-        ip_2 = socket.gethostbyname(site_name2)
-        host_1 = socket.getfqdn(ip_1)
-        host_2 = socket.getfqdn(ip_2)
         #host_2 = socket.gethostbyaddr(str(ip_2))
-        self.ip_blocked = {
-            1:{'ip' : ip_1, 'name':site_1 , 'host':host_1},
-            2:{'ip' : ip_2, 'name':site_2, 'host':host_2}
+        if site_1 != None:
+            self.ip_blocked = {
+                1 : {'ip' : ip_1, 'name':site_1 , 'host':host_1} ,
             }
-        print(site_1)
-        print(ip_1)
-        print(host_1)
-        print(site_2)
-        print(ip_2)
-        print(host_2)
+        if site_2 != None:
+            self.ip_blocked = {
+                2 : {'ip' : ip_1, 'name':site_1 , 'host':host_1} ,
+            }
+        print(self.ip_blocked)
 
     #####################################
     ######### BandWidth Threads #########
@@ -705,18 +745,20 @@ class Main(QMainWindow,ui_main):
         # self.tableWidget_bandwidth_services.setColumnCount(4)
         # columns = ('PID','Name','Download','Upload')
         # self.tableWidget_bandwidth_services.setHorizontalHeaderLabels(columns)
-        
-        while timeout_counter < timeout_ping:
-            time.sleep(step_by)
-            # self.bandwidth_set_to_dict(response_dic=res)
-            #timeout_counter += step_by
-            time_end = datetime.now()
-            all_time = time_end - time_st
-            all_time = all_time.seconds
-            timeout_counter = float(all_time)
-            response_services = print_pid2traffic()
-            self.set_services_bandwidth_to_table(response_services)
-        self.threadpool.clear()
+        try:
+            while timeout_counter < timeout_ping:
+                time.sleep(step_by)
+                # self.bandwidth_set_to_dict(response_dic=res)
+                #timeout_counter += step_by
+                time_end = datetime.now()
+                all_time = time_end - time_st
+                all_time = all_time.seconds
+                timeout_counter = float(all_time)
+                response_services = print_pid2traffic()
+                self.set_services_bandwidth_to_table(response_services)
+        except:
+            print("Finished Bandwidth Traffic Start")
+        #self.threadpool.clear()
         #self.threadpool.cancel(worker_bandwidth_2)
         #self.threadpool.cancel(worker_bandwidth_3)
 
@@ -847,7 +889,7 @@ class Main(QMainWindow,ui_main):
         time_st = datetime.now()
         while timeout_counter < timeout_ping:
             self.ping_checker()
-            time.sleep(step_by)
+            QThread.msleep(step_by)
             #timeout_counter += step_by
             print("Ping Checker Is Running")
             time_end = datetime.now()
@@ -894,6 +936,7 @@ class Main(QMainWindow,ui_main):
                     print("Error In Save To db > ",err)
         except NameError:
             print("Scan Network First Please ....")
+            return
         except Exception as err:
             print("Error",err)
             pass
@@ -962,14 +1005,11 @@ class Main(QMainWindow,ui_main):
     def ping_checker_results(self):
         print("Done Results")
 
-
-
 def create_app():
     #widget_meters = AnalogGaugeWidget()
     #window = Main()
     window = Login()
     window.show()
-    
     app.exec_()
 
 if __name__ == '__main__':

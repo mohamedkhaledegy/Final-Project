@@ -23,7 +23,7 @@ def set_btns(self):
 
     ## Network Config
     # Network
-    
+
     # Internet Speed
     self.lineEdit_city = self.findChild(qtw.QLineEdit,"lineEdit_city") #
     self.lineEdit_download = self.findChild(qtw.QLineEdit,"lineEdit_download") #
@@ -45,25 +45,22 @@ def set_btns(self):
     self.btn_devices = self.findChild(qtw.QPushButton,"pushButton_devices")#
     self.btn_device_details = self.findChild(qtw.QPushButton,"pushButton_device_details")#
     self.btn_acc_config = self.findChild(qtw.QPushButton,"pushButton_acc_config")#
-    
     ## Table Widget
     #self.table_cap = self.findChild(qtw.QTableWidget,"tableWidget_cap")
 
-
-
-    
-    
 def setup_btn(self):
     ###### System Functions Tab
     # Ping
     self.findChild(qtw.QPushButton,"pushButton_save_ping").pressed.connect(self.thread_ping_save_in_db)
-    self.findChild(qtw.QPushButton,"pushButton_chcker_ping").pressed.connect(self.thread_ping_check_auto_save)
+    self.findChild(qtw.QPushButton,"pushButton_checker_ping").pressed.connect(self.thread_ping_check_auto_save)
     #### Bandwidth
     self.findChild(qtw.QPushButton,"pushButton_start_bandwidth").pressed.connect(self.bandwidth_sample_worker)
     self.findChild(qtw.QPushButton,"pushButton_bandwidth_services").pressed.connect(self.bandwidth_services_worker)
     #### Site Block Config
     self.findChild(qtw.QPushButton,"pushButton_site_block").pressed.connect(self.block_site_worker)
     
+    #### DB
+    self.findChild(qtw.QPushButton,"pushButton_refresh_db").pressed.connect(self.set_data_base)
     ## New Window
     self.btn_dtls.pressed.connect(lambda : self.open_new_win())
     ## Scan Network For Ip & Progress Circle
@@ -82,7 +79,7 @@ def setup_btn(self):
     except:
         pass
     ## Capture Start & Stop
-    self.pushButton_capture.clicked.connect(self.threadsniffing1)
+    #self.pushButton_capture.clicked.connect(self.threadsniffing1)
     self.btn_start_cap.clicked.connect(self.continue_snifer)
     self.btn_stop_cap.clicked.connect(self.stop_snifer)
     #### Side Bar Buttons ####

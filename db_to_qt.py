@@ -21,9 +21,9 @@ def collect_database_info():
     global all_pings
     all_devs = None
     all_pings = None
+    db_name = db_file_name
     all_devs = get_all_dev()
     all_pings = get_all_pings()
-    return all_devs , all_pings
 
 def config_data_base_resault():
     global devss
@@ -32,4 +32,3 @@ def config_data_base_resault():
     pingss = all_pings
     print("Database Configed Success")
     #print("all Devs",all_devs)
-    return devss , pingss
