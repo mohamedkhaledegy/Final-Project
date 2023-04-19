@@ -53,6 +53,7 @@ def setup_btn(self):
     # Ping
     self.findChild(qtw.QPushButton,"pushButton_save_ping").pressed.connect(self.thread_ping_save_in_db)
     self.findChild(qtw.QPushButton,"pushButton_checker_ping").pressed.connect(self.thread_ping_check_auto_save)
+    self.findChild(qtw.QPushButton,"pushButton_checker_ping_3").pressed.connect(self.thread_ping_check_auto_save)
     #### Bandwidth
     self.findChild(qtw.QPushButton,"pushButton_start_bandwidth").pressed.connect(self.bandwidth_sample_worker)
     self.findChild(qtw.QPushButton,"pushButton_bandwidth_services").pressed.connect(self.bandwidth_services_worker)
@@ -61,6 +62,7 @@ def setup_btn(self):
     
     #### DB
     self.findChild(qtw.QPushButton,"pushButton_refresh_db").pressed.connect(self.set_data_base)
+    self.findChild(qtw.QPushButton,"pushButton_refresh_db_2").pressed.connect(self.set_data_base)
     ## New Window
     self.btn_dtls.pressed.connect(lambda : self.open_new_win())
     ## Scan Network For Ip & Progress Circle

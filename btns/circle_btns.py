@@ -9,7 +9,7 @@ def set_circle_design(self):
     self.frame_2_circle_progres.hide()
     self.frame_3_circle_progres.hide()
     self.frame_4_circle_progres.hide()
-
+    
     self.frame_1_circle_progres.rpb_setBarStyle("Pie")
     self.frame_2_circle_progres.rpb_setBarStyle("Pizza")
     self.frame_3_circle_progres.rpb_setBarStyle("Donet")

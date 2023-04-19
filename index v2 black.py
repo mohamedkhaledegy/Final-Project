@@ -23,7 +23,7 @@ from PySide2.QtUiTools import loadUiType
 
 # Import Network Modules
 from scapy import all as sc
-import pyshark
+#import pyshark
 
 # from front import resource_rc
 
@@ -136,10 +136,15 @@ class Main(QMainWindow,ui_main):
         self.db = my_db
         self.all_devs = None
         ## For Sniff And Packet Show To Gui
+        self.counter_pkt = 0
         self.packet_lista = []
         self.packet_dict = {}
         ## For Block Sites
         self.ip_blocked = {}
+        ## Breaks
+        self.LOOPPINGER = True
+        self.LOOPTEST = True
+        self.LOOPSCAN = True
         self.SNF = True
         self.pkt_num = 0
         self.threadpool = QThreadPool()
@@ -164,6 +169,7 @@ class Main(QMainWindow,ui_main):
         try:
             self.lineEdit_database_name.setText(str(db_file_name))
             self.lineEdit_count_ping.setText(str(len(pingss)))
+            self.lineEdit_count_ping_3.setText(str(len(pingss)))
             self.lineEdit_count_ip.setText(str(len(devss)))
             print(len(devss))
             print(len(pingss))
@@ -277,7 +283,7 @@ class Main(QMainWindow,ui_main):
         #ip_scanned = scan_network("192.168.1.1/24")
         #print(ip_scanned)
         ## Time Top Process
-        time_choosed = 9
+        time_choosed = 20
         ## resault in %100
         stop_point_of_100 = time_choosed/100
         ## convert to msleep (sleep 1 second = mlsleep 1000 mlsecond) 
@@ -286,28 +292,41 @@ class Main(QMainWindow,ui_main):
         #QThread.sleep(2)
         num = 0
         for i in range(101):
-            print(i)
-            # if self.lineEdit_ip_host.text() != "":
-            #     self.frame_2_circle_progres.rpb_setValue(100)
-            #     break
-            num += 1
-            #val_now = self.frame_2_cricle_progres.rpb_getValue()
-            #print(val_now)
-            self.frame_1_circle_progres.rpb_setValue(i)
-            QThread.msleep(stop_point_of_100)
+            #get_v = self.frame_1_circle_progres.rpb_getValue()
+            if self.LOOPSCAN == True and i < 100:
+                print(i)
+                # if self.lineEdit_ip_host.text() != "":
+                #     self.frame_2_circle_progres.rpb_setValue(100)
+                #     break
+                num += 1
+                #val_now = self.frame_2_cricle_progres.rpb_getValue()
+                #print(val_now)
+                self.frame_1_circle_progres.rpb_setValue(i)
+                QThread.msleep(stop_point_of_100)
+            if self.LOOPSCAN == False:
+                print("Real Value Now",i)
+                for n in range(i,101):
+                    self.frame_1_circle_progres.rpb_setValue(n)
+                    QThread.msleep(10)
+                break
         return num
 
     def first_thread_result(self):
         #self.frame_2_circle_progres.rpb_setValue(100)
         print("First Thread Result")
+        self.btn_thread.setText("Finished")
+        time.sleep(1)
 
     def first_thread_finished(self):
         print("First Thread Scan finished")
-        self.btn_thread.setText("Finished")
+        self.btn_thread.setText("ReScan Network")
+        self.LOOPSCAN = True
+        QThread.msleep(10)
+        self.frame_1_circle_progres.hide()
 
     def second_thrd_scan_network(self):
         global ip_scanned
-        self.btn_thread.setText("Processing...")
+        #self.btn_thread.setText("Processing...")
         print("Start Scan")
         global ip_router , ip_master
         ip_router = self.lineEdit_ip_router.text()
@@ -330,14 +349,21 @@ class Main(QMainWindow,ui_main):
         print("Start Test Speed")
         global speed_test_dict
         st = speedtest.Speedtest()
+        
         st.get_best_server()
         download_speed = return_bytes_by_mb(st.download())
+        self.LOOPTESTDN = False
         uploaad_speed = return_bytes_by_mb(st.upload())
+        self.LOOPTESTUP = False
+
         speed_test_dict = st.results.dict()
-        #print(res_dict)
+        downloaded = return_bytes_by_mb(speed_test_dict['bytes_received'])
+        print(speed_test_dict)
+        print(downloaded)
         #print("Your Download speed is", download_speed, "MB")
         print("Finished Test Speed Internet")
         #print("End Result First Thread")
+        self.LOOPTEST = False
         return speed_test_dict
 
     def fourth_thrd_speed_test(self):
@@ -349,19 +375,22 @@ class Main(QMainWindow,ui_main):
         stop_point_of_100 = stop_point_of_100 * 1000
         print(stop_point_of_100)
         #QThread.sleep(2)
-        num = 0
         for i in range(101):
-            print(i)
-            num += 1
-            #self.frame_1_circle_progres.rpb_setValue(i)
-            self.frame_3_circle_progres.rpb_setValue(i)
-            QThread.msleep(stop_point_of_100)
+            if self.LOOPTEST == True:
+                print(i)
+                #self.frame_1_circle_progres.rpb_setValue(i)
+                self.frame_3_circle_progres.rpb_setValue(i)
+                QThread.msleep(stop_point_of_100)
+            else:
+                self.frame_3_circle_progres.rpb_setValue(i)
+                QThread.msleep(10)
 
     def second_thread_scan_result(self):
         """
             Scan Network Results
             Loop on IP Scanned for Collect Info Stored In Dictionary (global var) > Updated in method : self.thread_scan_network
         """
+        self.LOOPSCAN = False
         self.section_network.setEnabled(True)
         self.section_ip_discovered.setEnabled(True)
         for n,info in ip_scanned.items():
@@ -393,6 +422,7 @@ class Main(QMainWindow,ui_main):
 
     def third_thrd_speed_test_result(self):
         print("Third Thread Scan Result")
+    
 
     def fourth_thrd_speed_test_result(self):
         print("Fourth Thread Speed Test Progress Result")
@@ -448,6 +478,8 @@ class Main(QMainWindow,ui_main):
         worker.signals.finished.connect(self.sniffer_finished)
         self.threadpool.start(worker)
 
+
+    ###### Network Functions Custom for re view results catched
     def get_serv(self,src_port,dst_port):
         try:
             service = socket.getservbyport(src_port)
@@ -456,7 +488,7 @@ class Main(QMainWindow,ui_main):
             return service
 
     def get_host_name(self,ip):
-        if "192.168" in ip :
+        if "192.168" in ip:
             name = "Local Device"
         else:
             try:
@@ -478,15 +510,64 @@ class Main(QMainWindow,ui_main):
         is_blocked = False
         try:
             ## Full Date
-            ## strftime("%H:%M:%S"
+            ## strftime("%H:%M:%S")
             dt_object = datetime.fromtimestamp(pkt.time)
-            ######
-            src_ip = pkt[IP].src
-            dst_ip = pkt[IP].dst
-            ########################
-            mac_src = pkt.src
-            mac_dst = pkt.dst
-            ### Set Get And Set Host Name For Packet Captured
+            src = pkt.src
+            dst = pkt.dst
+            ttl_pkt = pkt.ttl
+            len_pkt = pkt.len
+            try:
+                ######
+                src_ip = pkt[IP].src
+                dst_ip = pkt[IP].dst
+                ########################
+                mac_src = pkt.src
+                mac_dst = pkt.dst
+            except:
+                src_ip = None
+                dst_ip = None
+                pass
+            ## Get Host NAme
+            host_name = None
+            host_name1 = None
+            host_name2 = None
+            try:
+                if src_ip != None and dst_ip != None:
+                    host_name1 = self.get_host_name(ip=src_ip)
+                    host_name2 = self.get_host_name(ip=dst_ip)
+            except Exception as err:
+                print(err)
+                pass
+            try:
+                if host_name1 != None:
+                    if host_name1 != "Local Device":
+                        host_name = host_name1
+                        if host_name1 == self.ip_blocked[1]['host'] or self.ip_blocked[1]['name'] in host_name1 :
+                            is_blocked = True
+                            print("Blocked")
+                if host_name2 != None:
+                    if host_name2 != "Local Device":
+                        host_name = host_name2
+                        if host_name2 == self.ip_blocked[1]['host'] or self.ip_blocked[1]['name'] in host_name2 :
+                            is_blocked = True
+                            print("Blocked")
+            except:
+                pass
+            self.pkt_num += 1
+            pckt_dict = {
+                'num':self.pkt_num,
+                'time':dt_object,
+                'ip-src':src,
+                'ip-dst':dst,
+                "ttl-pkt":ttl_pkt,
+                "len-pkt":len_pkt,
+                'port-src':None,
+                'port-dst':None,
+                'host-name':host_name,
+                'service':None,
+                'blocked': is_blocked,
+            }
+            #print(pckt_dict)
             if pkt.haslayer(ICMP):
                 print("----------------------------------------")
                 #print("ICMP PACKET..." , "src-ip",src_ip,"dst-ip",dst_ip)
@@ -495,95 +576,92 @@ class Main(QMainWindow,ui_main):
                 if pkt.haslayer(Raw):
                     data = pkt[Raw].load
                 ####
-                self.pkt_num += 1
                 pckt_dict = {
                     'num':self.pkt_num,
+                    'layer':"ICMP",
                     'time':dt_object,
                     'ip-src':pkt['IP'].src,
                     'ip-dst':pkt['IP'].dst,
+                    "ttl-pkt":ttl_pkt,
+                    "len-pkt":len_pkt,
                     'port-src':None,
                     'port-dst':None,
-                    'host-name':None,
+                    'host-name':host_name,
                     'service':None,
+                    'blocked': is_blocked,
                     }
                 #self.packet_lista.append(pckt_dict['num'])
                 #self.set_pkt_on_table(pckt_dict)
             else:
                 try:
-                    host_name1 = self.get_host_name(ip=src_ip)
+                    src_port = pkt.sport
+                    dst_port = pkt.dport
+                    service  = self.get_serv(src_port,dst_port)
+                    pckt_dict = {
+                        'num':self.pkt_num,
+                        'time':dt_object,
+                        'ip-src':pkt['IP'].src,
+                        'ip-dst':pkt['IP'].dst,
+                        "ttl-pkt":ttl_pkt,
+                        "len-pkt":len_pkt,
+                        'port-src':str(src_port),
+                        'port-dst':str(dst_port),
+                        'host-name':host_name,
+                        'service':service,
+                        'blocked':is_blocked,
+                        }
+                    #print("Service",service)
+                    if pkt.haslayer(TCP):
+                        print("----------------------------------------")
+                        print("TCP PACKET..." , "src-ip",src_ip,'port-src',src_port,"dst-ip",dst_ip,'port-dst',dst_port,"service",service)
+                    if pkt.haslayer(UDP):
+                        print("----------------------------------------")
+                        print("UDP PACKET..." , "src-ip",src_ip,"dst-ip",dst_ip,"service",service)
                 except:
-                    host_name2 = self.get_host_name(ip=dst_ip)
-                else:
-                    host_name = None
-                if host_name != None and host_name1 != "Local Device" or host_name2 != "Local Device":
-                    if host_name1 == self.ip_blocked[1]['host'] or self.ip_blocked[1]['name'] in host_name1 or\
-                            host_name2 == self.ip_blocked[1]['host'] or self.ip_blocked[1]['name'] in host_name2 :
-                        is_blocked = self.ip_blocked[1]['name']
-                        print("################ Blocked Site Entered",self.ip_blocked[1]['name'])
-                    if host_name1 == self.ip_blocked[2]['host'] or self.ip_blocked[2]['name'] in host_name1 or\
-                            host_name2 == self.ip_blocked[2]['host'] or self.ip_blocked[2]['name'] in host_name2 :
-                        print("################ Blocked Site Entered",self.ip_blocked[2]['name'])
-
-                src_port = pkt.sport
-                dst_port = pkt.dport
-                service  = self.get_serv(src_port,dst_port)
-                self.pkt_num += 1
-                pckt_dict = {
-                    'num':self.pkt_num,
-                    'time':dt_object,
-                    'ip-src':pkt['IP'].src,
-                    'ip-dst':pkt['IP'].dst,
-                    'port-src':str(src_port),
-                    'port-dst':str(dst_port),
-                    'host-name':host_name,
-                    'service':service,
-                    'blocked':is_blocked,
-                    }
-                #print("Service",service)
-                if pkt.haslayer(TCP):
-                    print("----------------------------------------")
-                    print("TCP PACKET..." , "src-ip",src_ip,'port-src',src_port,"dst-ip",dst_ip,'port-dst',dst_port,"service",service)
-                if pkt.haslayer(UDP):
-                    print("----------------------------------------")
-                    print("UDP PACKET..." , "src-ip",src_ip,"dst-ip",dst_ip,"service",service)
+                    pass
             if self.checkBox_show_packet.isChecked():
+                print("Printing Packet To Table")
                 self.set_pkt_on_table(pckt_dict)
-                self.packet_dict[pkt.num]
-        except:
-            
+                #self.packet_dict[pkt.num]
+        except Exception as err:
+            print(err)
             pass
 
     def set_pkt_on_table(self,pkt_dict):
-        row = pkt_dict['num']
-        count = self.tableWidget_cap.rowCount()
-        print(count)
-        self.tableWidget_cap.setRowCount(row + 1)
-        #print(pkt_dict)
-        #row-1
-        #print("row",row)
-        if pkt_dict['service'] != None:
-            item_pkt_service = qtw.QTableWidgetItem(pkt_dict['service'])
-            self.tableWidget_cap.setItem(row,4,item_pkt_service)
-        item_pkt_no = qtw.QTableWidgetItem(str(pkt_dict['num']))
-        item_pkt_time = qtw.QTableWidgetItem(str(pkt_dict['time']))
-        item_pkt_ip_src = qtw.QTableWidgetItem(pkt_dict['ip-src'])
-        item_pkt_ip_dst = qtw.QTableWidgetItem(pkt_dict['ip-dst'])
-        self.tableWidget_cap.setItem(row,0,item_pkt_no)
-        self.tableWidget_cap.setItem(row,1,item_pkt_time)
-        self.tableWidget_cap.setItem(row,2,item_pkt_ip_src)
-        self.tableWidget_cap.setItem(row,3,item_pkt_ip_dst)
-        if pkt_dict['host-name'] != None:
-            item_pkt_host_name = qtw.QTableWidgetItem(pkt_dict['host-name'])
-            self.tableWidget_cap.setItem(row,5,item_pkt_host_name)
-        if pkt_dict['port-src'] != None:
-            item_pkt_port_src = qtw.QTableWidgetItem(pkt_dict['port-src'])
-            self.tableWidget_cap.setItem(row,6,item_pkt_port_src)
-        if pkt_dict['port-dst'] != None:
-            item_pkt_port_dst = qtw.QTableWidgetItem(pkt_dict['port-dst'])
-            self.tableWidget_cap.setItem(row,7,item_pkt_port_dst)
-        if pkt_dict['blocked'] != False:
-            item_pkt_blocked = qtw.QTableWidgetItem(str(pkt_dict['blocked']))
-            self.tableWidget_cap.setItem(row,8,item_pkt_blocked)
+        try:
+            print("Packet Insert To Table Widget")
+            row = pkt_dict['num']
+            print(row)
+            self.tableWidget_cap.setRowCount(row + 1)
+            item_pkt_no = qtw.QTableWidgetItem(str(pkt_dict['num']))
+            item_pkt_time = qtw.QTableWidgetItem(str(pkt_dict['time']))
+            item_pkt_ip_src = qtw.QTableWidgetItem(pkt_dict['ip-src'])
+            item_pkt_ip_dst = qtw.QTableWidgetItem(pkt_dict['ip-dst'])
+            item_pkt_len = qtw.QTableWidgetItem(pkt_dict['len-pkt'])
+            item_pkt_ttl = qtw.QTableWidgetItem(pkt_dict['ttl-pkt'])
+            self.tableWidget_cap.setItem(row,0,item_pkt_no)
+            self.tableWidget_cap.setItem(row,1,item_pkt_time)
+            self.tableWidget_cap.setItem(row,2,item_pkt_ip_src)
+            self.tableWidget_cap.setItem(row,3,item_pkt_ip_dst)
+            self.tableWidget_cap.setItem(row,9,item_pkt_len)
+            self.tableWidget_cap.setItem(row,10,item_pkt_ttl)
+            if pkt_dict['service'] != None:
+                item_pkt_service = qtw.QTableWidgetItem(pkt_dict['service'])
+                self.tableWidget_cap.setItem(row,4,item_pkt_service)
+            if pkt_dict['host-name'] != None:
+                item_pkt_host_name = qtw.QTableWidgetItem(pkt_dict['host-name'])
+                self.tableWidget_cap.setItem(row,5,item_pkt_host_name)
+            if pkt_dict['port-src'] != None:
+                item_pkt_port_src = qtw.QTableWidgetItem(pkt_dict['port-src'])
+                self.tableWidget_cap.setItem(row,6,item_pkt_port_src)
+            if pkt_dict['port-dst'] != None:
+                item_pkt_port_dst = qtw.QTableWidgetItem(pkt_dict['port-dst'])
+                self.tableWidget_cap.setItem(row,7,item_pkt_port_dst)
+            if pkt_dict['blocked'] != False:
+                item_pkt_blocked = qtw.QTableWidgetItem("Blocked Site")
+                self.tableWidget_cap.setItem(row,8,item_pkt_blocked)
+        except Exception as err:
+            print(err)
 
     def sniffer_start(self):
         print("Start Sniffer")
@@ -591,14 +669,16 @@ class Main(QMainWindow,ui_main):
         count_pkt = int(count_pkt)
         limit_pkt = self.spinBox_pkt_limit.text()
         print(limit_pkt)
+        self.counter_pkt = 0
         limit_pkt = int(limit_pkt)
         if count_pkt == 0:
-            counter = 1
+            counter = 0
         else:
             counter = count_pkt
         while self.SNF == True:
             sc.sniff(iface="Realtek PCIe GBE Family Controller",prn=self.analyzer_sniff,count=count_pkt)
             counter += count_pkt
+            self.counter_pkt = counter
             print("Packet Lista >>",counter)
             if limit_pkt == 0:
                 pass
@@ -616,12 +696,11 @@ class Main(QMainWindow,ui_main):
             return
         else:
             print("Finished Sniffer")
-        
 
     def stop_snifer(self):
         self.SNF = False
         print("Stopped Sniff")
-        print(len(self.packet_lista) ," Packet Captured"  )
+        print(len(self.packet_lista) ," Packet Captured" )
         return self.SNF
 
     def continue_snifer(self):
@@ -634,7 +713,6 @@ class Main(QMainWindow,ui_main):
     ####### Sites Blocked Threads #######
     def block_site_worker(self):
         worker = Worker(self.start_block_site_sample)
-        #worker.signals.result.connect(self.ping_checker_results)
         self.threadpool.start(worker)
         
     def start_block_site_sample(self):
@@ -883,15 +961,19 @@ class Main(QMainWindow,ui_main):
         step_by = float(gui_step_by)
         timeout_ping = float(gui_timeout_ping)
         time_st = datetime.now()
-        while timeout_counter < timeout_ping:
+        multi_check = self.checkBox_ping_timer.isChecked()
+        print("Ping Checker Is Running")
+        if multi_check:
+            while timeout_counter < timeout_ping:
+                self.ping_checker()
+                QThread.msleep(step_by)
+                #timeout_counter += step_by
+                time_end = datetime.now()
+                all_time = time_end - time_st
+                timeout_counter = float(all_time.seconds)
+                print(all_time.seconds)
+        else:
             self.ping_checker()
-            QThread.msleep(step_by)
-            #timeout_counter += step_by
-            print("Ping Checker Is Running")
-            time_end = datetime.now()
-            all_time = time_end - time_st
-            timeout_counter = float(all_time.seconds)
-            print(all_time.seconds)
         #print(str_time)
 
     def thread_ping_save_in_db(self):
@@ -900,42 +982,74 @@ class Main(QMainWindow,ui_main):
         self.threadpool.start(worker)
 
     def ping_checker(self):
+        ip_scanned_checked = self.checkBox_ping_ip_scanned.isChecked()
+        save_ping_to_db_checked = self.checkBox_save_ping_db.isChecked()
+        list_to_check = []
+        for n in range(4):
+            try:
+                text = self.findChild(qtw.QLineEdit,f'lineEdit_ip_to_ping_{str(n)}').text()
+                if text != "":
+                    list_to_check.append(text)
+            except:
+                pass
         #print("Start Create If Not In DB")
-        try:
-            #print("Create IP Scanned In Database Info")
-            self.insert_ip_to_db()
-        except:
-            self.db.close()
-            pass
+        
         #print("Start Ping Checker")
-        try:
-            for row_num , row_info in ip_scanned.items():
-                ip = row_info['IP']
-                mac = row_info['Mac']
+        if ip_scanned_checked:
+            try:
+                #print("Create IP Scanned In Database Info")
+                self.insert_ip_to_db()
+            except:
+                self.db.close()
+                pass
+            try:
+                for row_num , row_info in ip_scanned.items():
+                    ip = row_info['IP']
+                    mac = row_info['Mac']
+                    ip_ping_response = self.collect_ping_to_dict(ip)
+                    if save_ping_to_db_checked:
+                        try:
+                            print("Start To Create Ping")
+                            self.db.connect()
+                            dev = Device.select().where(Device.mac_address == mac).get()
+                            #print(dev)
+                            #print(dev.ip_dev)
+                            ping_obj = PingInfo.create(
+                                owner=dev,
+                                is_anwsred = ip_ping_response['Response'] ,
+                                details = ip_ping_response
+                            )
+                            ping_obj.save()
+                            self.db.close()
+                            print("Created",ip)
+                        except Exception as err:
+                            self.db.close()
+                            print("Error In Save To db > ",err)
+            except NameError:
+                print("Scan Network First Please ....")
+                return
+            except Exception as err:
+                print("Error",err)
+                pass
+        else:
+            for ip in list_to_check:
                 ip_ping_response = self.collect_ping_to_dict(ip)
-                try:
-                    print("Start To Create Ping")
-                    self.db.connect()
-                    dev = Device.select().where(Device.mac_address == mac).get()
-                    #print(dev)
-                    #print(dev.ip_dev)
-                    ping_obj = PingInfo.create(
-                        owner=dev,
-                        is_anwsred = ip_ping_response['Response'] ,
-                        details = ip_ping_response
-                    )
-                    ping_obj.save()
-                    self.db.close()
-                    print("Created",ip)
-                except Exception as err:
-                    self.db.close()
-                    print("Error In Save To db > ",err)
-        except NameError:
-            print("Scan Network First Please ....")
-            return
-        except Exception as err:
-            print("Error",err)
-            pass
+                print(ip_ping_response)
+                if save_ping_to_db_checked:
+                    try:
+                        self.db.connect()
+                        ping_obj = PingInfo.create(
+                                is_anwsred = ip_ping_response['Response'] ,
+                                details = ip_ping_response
+                            )
+                        ping_obj.save()
+                        self.db.close()
+                        print("Created",ip)
+                    except Exception as err:
+                        self.db.close()
+                        print("Error",err)
+                        pass
+            #print(list_to_check)
                     
     def insert_ip_to_db(self):
         try:
@@ -993,9 +1107,11 @@ class Main(QMainWindow,ui_main):
                 ip_ping_response['Response'] = True
                 ip_ping_response['TTL'] = ttl
                 ip_ping_response['ResTime'] = time_ping
-            else:
+            if  "Reply from" in ping_response :
                 ip_ping_response['Checked'] = True
-                ip_ping_response['Response'] = False
+                print(ping_response)
+                if "Destination host unreachable." in ping_response:
+                    ip_ping_response['Response'] = False
         return ip_ping_response
 
     def ping_checker_results(self):

@@ -534,8 +534,8 @@ class Ui_MainWindow(object):
         self.gridLayout_6 = QGridLayout(self.frame_4)
         self.gridLayout_6.setObjectName(u"gridLayout_6")
         self.tableWidget_cap = QTableWidget(self.frame_4)
-        if (self.tableWidget_cap.columnCount() < 11):
-            self.tableWidget_cap.setColumnCount(11)
+        if (self.tableWidget_cap.columnCount() < 12):
+            self.tableWidget_cap.setColumnCount(12)
         __qtablewidgetitem = QTableWidgetItem()
         self.tableWidget_cap.setHorizontalHeaderItem(0, __qtablewidgetitem)
         __qtablewidgetitem1 = QTableWidgetItem()
@@ -558,6 +558,8 @@ class Ui_MainWindow(object):
         self.tableWidget_cap.setHorizontalHeaderItem(9, __qtablewidgetitem9)
         __qtablewidgetitem10 = QTableWidgetItem()
         self.tableWidget_cap.setHorizontalHeaderItem(10, __qtablewidgetitem10)
+        __qtablewidgetitem11 = QTableWidgetItem()
+        self.tableWidget_cap.setHorizontalHeaderItem(11, __qtablewidgetitem11)
         self.tableWidget_cap.setObjectName(u"tableWidget_cap")
         sizePolicy5 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         sizePolicy5.setHorizontalStretch(0)
@@ -651,14 +653,14 @@ class Ui_MainWindow(object):
         self.tableWidget_bandwidth_services = QTableWidget(self.widget_4)
         if (self.tableWidget_bandwidth_services.columnCount() < 4):
             self.tableWidget_bandwidth_services.setColumnCount(4)
-        __qtablewidgetitem11 = QTableWidgetItem()
-        self.tableWidget_bandwidth_services.setHorizontalHeaderItem(0, __qtablewidgetitem11)
         __qtablewidgetitem12 = QTableWidgetItem()
-        self.tableWidget_bandwidth_services.setHorizontalHeaderItem(1, __qtablewidgetitem12)
+        self.tableWidget_bandwidth_services.setHorizontalHeaderItem(0, __qtablewidgetitem12)
         __qtablewidgetitem13 = QTableWidgetItem()
-        self.tableWidget_bandwidth_services.setHorizontalHeaderItem(2, __qtablewidgetitem13)
+        self.tableWidget_bandwidth_services.setHorizontalHeaderItem(1, __qtablewidgetitem13)
         __qtablewidgetitem14 = QTableWidgetItem()
-        self.tableWidget_bandwidth_services.setHorizontalHeaderItem(3, __qtablewidgetitem14)
+        self.tableWidget_bandwidth_services.setHorizontalHeaderItem(2, __qtablewidgetitem14)
+        __qtablewidgetitem15 = QTableWidgetItem()
+        self.tableWidget_bandwidth_services.setHorizontalHeaderItem(3, __qtablewidgetitem15)
         self.tableWidget_bandwidth_services.setObjectName(u"tableWidget_bandwidth_services")
 
         self.gridLayout_27.addWidget(self.tableWidget_bandwidth_services, 3, 0, 1, 2)
@@ -1084,9 +1086,6 @@ class Ui_MainWindow(object):
         self.frame_16.setObjectName(u"frame_16")
         self.frame_16.setFrameShape(QFrame.StyledPanel)
         self.frame_16.setFrameShadow(QFrame.Raised)
-        self.checkBox_save_packet = QCheckBox(self.frame_16)
-        self.checkBox_save_packet.setObjectName(u"checkBox_save_packet")
-        self.checkBox_save_packet.setGeometry(QRect(20, 20, 221, 21))
         self.checkBox_show_packet = QCheckBox(self.frame_16)
         self.checkBox_show_packet.setObjectName(u"checkBox_show_packet")
         self.checkBox_show_packet.setGeometry(QRect(20, 50, 221, 21))
@@ -1372,50 +1371,6 @@ class Ui_MainWindow(object):
         self.comboBox_2 = QComboBox(self.tab_5)
         self.comboBox_2.setObjectName(u"comboBox_2")
         self.comboBox_2.setGeometry(QRect(130, 90, 161, 31))
-        self.layoutWidget = QWidget(self.tab_5)
-        self.layoutWidget.setObjectName(u"layoutWidget")
-        self.layoutWidget.setGeometry(QRect(130, 50, 191, 31))
-        self.horizontalLayout_4 = QHBoxLayout(self.layoutWidget)
-        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
-        self.horizontalLayout_4.setContentsMargins(0, 0, 0, 0)
-        self.label_33 = QLabel(self.layoutWidget)
-        self.label_33.setObjectName(u"label_33")
-
-        self.horizontalLayout_4.addWidget(self.label_33)
-
-        self.spinBox_ping_timeout = QSpinBox(self.layoutWidget)
-        self.spinBox_ping_timeout.setObjectName(u"spinBox_ping_timeout")
-        self.spinBox_ping_timeout.setValue(10)
-
-        self.horizontalLayout_4.addWidget(self.spinBox_ping_timeout)
-
-        self.label_34 = QLabel(self.layoutWidget)
-        self.label_34.setObjectName(u"label_34")
-
-        self.horizontalLayout_4.addWidget(self.label_34)
-
-        self.layoutWidget_2 = QWidget(self.tab_5)
-        self.layoutWidget_2.setObjectName(u"layoutWidget_2")
-        self.layoutWidget_2.setGeometry(QRect(332, 50, 161, 31))
-        self.horizontalLayout_5 = QHBoxLayout(self.layoutWidget_2)
-        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
-        self.horizontalLayout_5.setContentsMargins(0, 0, 0, 0)
-        self.label_35 = QLabel(self.layoutWidget_2)
-        self.label_35.setObjectName(u"label_35")
-
-        self.horizontalLayout_5.addWidget(self.label_35)
-
-        self.doubleSpinBox_ping_stepby = QDoubleSpinBox(self.layoutWidget_2)
-        self.doubleSpinBox_ping_stepby.setObjectName(u"doubleSpinBox_ping_stepby")
-        self.doubleSpinBox_ping_stepby.setValue(1.000000000000000)
-
-        self.horizontalLayout_5.addWidget(self.doubleSpinBox_ping_stepby)
-
-        self.label_36 = QLabel(self.layoutWidget_2)
-        self.label_36.setObjectName(u"label_36")
-
-        self.horizontalLayout_5.addWidget(self.label_36)
-
         self.tabWidget.addTab(self.tab_5, "")
         self.tab = QWidget()
         self.tab.setObjectName(u"tab")
@@ -1756,11 +1711,11 @@ class Ui_MainWindow(object):
         self.label_32 = QLabel(self.splitter_19)
         self.label_32.setObjectName(u"label_32")
         self.splitter_19.addWidget(self.label_32)
-        self.lineEdit_ip1_to_ping = QLineEdit(self.splitter_19)
-        self.lineEdit_ip1_to_ping.setObjectName(u"lineEdit_ip1_to_ping")
-        sizePolicy.setHeightForWidth(self.lineEdit_ip1_to_ping.sizePolicy().hasHeightForWidth())
-        self.lineEdit_ip1_to_ping.setSizePolicy(sizePolicy)
-        self.splitter_19.addWidget(self.lineEdit_ip1_to_ping)
+        self.lineEdit_ip_to_ping_1 = QLineEdit(self.splitter_19)
+        self.lineEdit_ip_to_ping_1.setObjectName(u"lineEdit_ip_to_ping_1")
+        sizePolicy.setHeightForWidth(self.lineEdit_ip_to_ping_1.sizePolicy().hasHeightForWidth())
+        self.lineEdit_ip_to_ping_1.setSizePolicy(sizePolicy)
+        self.splitter_19.addWidget(self.lineEdit_ip_to_ping_1)
         self.splitter_20 = QSplitter(self.groupBox_3)
         self.splitter_20.setObjectName(u"splitter_20")
         self.splitter_20.setGeometry(QRect(210, 30, 111, 23))
@@ -1808,11 +1763,11 @@ class Ui_MainWindow(object):
         self.label_66 = QLabel(self.splitter_23)
         self.label_66.setObjectName(u"label_66")
         self.splitter_23.addWidget(self.label_66)
-        self.lineEdit_ip1_ping_count_2 = QLineEdit(self.splitter_23)
-        self.lineEdit_ip1_ping_count_2.setObjectName(u"lineEdit_ip1_ping_count_2")
-        sizePolicy.setHeightForWidth(self.lineEdit_ip1_ping_count_2.sizePolicy().hasHeightForWidth())
-        self.lineEdit_ip1_ping_count_2.setSizePolicy(sizePolicy)
-        self.splitter_23.addWidget(self.lineEdit_ip1_ping_count_2)
+        self.lineEdit_ip2_ping_count = QLineEdit(self.splitter_23)
+        self.lineEdit_ip2_ping_count.setObjectName(u"lineEdit_ip2_ping_count")
+        sizePolicy.setHeightForWidth(self.lineEdit_ip2_ping_count.sizePolicy().hasHeightForWidth())
+        self.lineEdit_ip2_ping_count.setSizePolicy(sizePolicy)
+        self.splitter_23.addWidget(self.lineEdit_ip2_ping_count)
         self.splitter_24 = QSplitter(self.groupBox_3)
         self.splitter_24.setObjectName(u"splitter_24")
         self.splitter_24.setGeometry(QRect(20, 60, 178, 23))
@@ -1821,11 +1776,11 @@ class Ui_MainWindow(object):
         self.label_67 = QLabel(self.splitter_24)
         self.label_67.setObjectName(u"label_67")
         self.splitter_24.addWidget(self.label_67)
-        self.lineEdit_ip1_to_ping_2 = QLineEdit(self.splitter_24)
-        self.lineEdit_ip1_to_ping_2.setObjectName(u"lineEdit_ip1_to_ping_2")
-        sizePolicy.setHeightForWidth(self.lineEdit_ip1_to_ping_2.sizePolicy().hasHeightForWidth())
-        self.lineEdit_ip1_to_ping_2.setSizePolicy(sizePolicy)
-        self.splitter_24.addWidget(self.lineEdit_ip1_to_ping_2)
+        self.lineEdit_ip_to_ping_2 = QLineEdit(self.splitter_24)
+        self.lineEdit_ip_to_ping_2.setObjectName(u"lineEdit_ip_to_ping_2")
+        sizePolicy.setHeightForWidth(self.lineEdit_ip_to_ping_2.sizePolicy().hasHeightForWidth())
+        self.lineEdit_ip_to_ping_2.setSizePolicy(sizePolicy)
+        self.splitter_24.addWidget(self.lineEdit_ip_to_ping_2)
         self.splitter_25 = QSplitter(self.groupBox_3)
         self.splitter_25.setObjectName(u"splitter_25")
         self.splitter_25.setGeometry(QRect(330, 90, 178, 23))
@@ -1847,11 +1802,11 @@ class Ui_MainWindow(object):
         self.label_69 = QLabel(self.splitter_26)
         self.label_69.setObjectName(u"label_69")
         self.splitter_26.addWidget(self.label_69)
-        self.lineEdit_ip1_ping_count_3 = QLineEdit(self.splitter_26)
-        self.lineEdit_ip1_ping_count_3.setObjectName(u"lineEdit_ip1_ping_count_3")
-        sizePolicy.setHeightForWidth(self.lineEdit_ip1_ping_count_3.sizePolicy().hasHeightForWidth())
-        self.lineEdit_ip1_ping_count_3.setSizePolicy(sizePolicy)
-        self.splitter_26.addWidget(self.lineEdit_ip1_ping_count_3)
+        self.lineEdit_ip3_ping_count = QLineEdit(self.splitter_26)
+        self.lineEdit_ip3_ping_count.setObjectName(u"lineEdit_ip3_ping_count")
+        sizePolicy.setHeightForWidth(self.lineEdit_ip3_ping_count.sizePolicy().hasHeightForWidth())
+        self.lineEdit_ip3_ping_count.setSizePolicy(sizePolicy)
+        self.splitter_26.addWidget(self.lineEdit_ip3_ping_count)
         self.splitter_27 = QSplitter(self.groupBox_3)
         self.splitter_27.setObjectName(u"splitter_27")
         self.splitter_27.setGeometry(QRect(20, 90, 178, 23))
@@ -1860,11 +1815,11 @@ class Ui_MainWindow(object):
         self.label_70 = QLabel(self.splitter_27)
         self.label_70.setObjectName(u"label_70")
         self.splitter_27.addWidget(self.label_70)
-        self.lineEdit_ip1_to_ping_3 = QLineEdit(self.splitter_27)
-        self.lineEdit_ip1_to_ping_3.setObjectName(u"lineEdit_ip1_to_ping_3")
-        sizePolicy.setHeightForWidth(self.lineEdit_ip1_to_ping_3.sizePolicy().hasHeightForWidth())
-        self.lineEdit_ip1_to_ping_3.setSizePolicy(sizePolicy)
-        self.splitter_27.addWidget(self.lineEdit_ip1_to_ping_3)
+        self.lineEdit_ip_to_ping_3 = QLineEdit(self.splitter_27)
+        self.lineEdit_ip_to_ping_3.setObjectName(u"lineEdit_ip_to_ping_3")
+        sizePolicy.setHeightForWidth(self.lineEdit_ip_to_ping_3.sizePolicy().hasHeightForWidth())
+        self.lineEdit_ip_to_ping_3.setSizePolicy(sizePolicy)
+        self.splitter_27.addWidget(self.lineEdit_ip_to_ping_3)
         self.label_76 = QLabel(self.groupBox_3)
         self.label_76.setObjectName(u"label_76")
         self.label_76.setGeometry(QRect(670, 20, 81, 21))
@@ -1873,7 +1828,53 @@ class Ui_MainWindow(object):
         self.lineEdit_count_ping_3.setGeometry(QRect(760, 20, 61, 20))
         self.pushButton_refresh_db_2 = QPushButton(self.groupBox_3)
         self.pushButton_refresh_db_2.setObjectName(u"pushButton_refresh_db_2")
-        self.pushButton_refresh_db_2.setGeometry(QRect(740, 50, 91, 31))
+        self.pushButton_refresh_db_2.setGeometry(QRect(730, 50, 91, 31))
+        self.layoutWidget_3 = QWidget(self.groupBox_3)
+        self.layoutWidget_3.setObjectName(u"layoutWidget_3")
+        self.layoutWidget_3.setGeometry(QRect(690, 210, 121, 31))
+        self.horizontalLayout_12 = QHBoxLayout(self.layoutWidget_3)
+        self.horizontalLayout_12.setObjectName(u"horizontalLayout_12")
+        self.horizontalLayout_12.setContentsMargins(0, 0, 0, 0)
+        self.label_77 = QLabel(self.layoutWidget_3)
+        self.label_77.setObjectName(u"label_77")
+
+        self.horizontalLayout_12.addWidget(self.label_77)
+
+        self.doubleSpinBox_ping_stepby = QDoubleSpinBox(self.layoutWidget_3)
+        self.doubleSpinBox_ping_stepby.setObjectName(u"doubleSpinBox_ping_stepby")
+        self.doubleSpinBox_ping_stepby.setValue(1.000000000000000)
+
+        self.horizontalLayout_12.addWidget(self.doubleSpinBox_ping_stepby)
+
+        self.pushButton_checker_ping_3 = QPushButton(self.groupBox_3)
+        self.pushButton_checker_ping_3.setObjectName(u"pushButton_checker_ping_3")
+        self.pushButton_checker_ping_3.setGeometry(QRect(690, 250, 121, 31))
+        self.layoutWidget_4 = QWidget(self.groupBox_3)
+        self.layoutWidget_4.setObjectName(u"layoutWidget_4")
+        self.layoutWidget_4.setGeometry(QRect(560, 210, 121, 31))
+        self.horizontalLayout_13 = QHBoxLayout(self.layoutWidget_4)
+        self.horizontalLayout_13.setObjectName(u"horizontalLayout_13")
+        self.horizontalLayout_13.setContentsMargins(0, 0, 0, 0)
+        self.label_79 = QLabel(self.layoutWidget_4)
+        self.label_79.setObjectName(u"label_79")
+
+        self.horizontalLayout_13.addWidget(self.label_79)
+
+        self.spinBox_ping_timeout = QSpinBox(self.layoutWidget_4)
+        self.spinBox_ping_timeout.setObjectName(u"spinBox_ping_timeout")
+        self.spinBox_ping_timeout.setValue(10)
+
+        self.horizontalLayout_13.addWidget(self.spinBox_ping_timeout)
+
+        self.checkBox_save_ping_db = QCheckBox(self.groupBox_3)
+        self.checkBox_save_ping_db.setObjectName(u"checkBox_save_ping_db")
+        self.checkBox_save_ping_db.setGeometry(QRect(560, 256, 121, 21))
+        self.checkBox_ping_timer = QCheckBox(self.groupBox_3)
+        self.checkBox_ping_timer.setObjectName(u"checkBox_ping_timer")
+        self.checkBox_ping_timer.setGeometry(QRect(690, 180, 121, 21))
+        self.checkBox_ping_ip_scanned = QCheckBox(self.groupBox_3)
+        self.checkBox_ping_ip_scanned.setObjectName(u"checkBox_ping_ip_scanned")
+        self.checkBox_ping_ip_scanned.setGeometry(QRect(560, 180, 121, 21))
         self.frame_19 = QFrame(self.frame_devices)
         self.frame_19.setObjectName(u"frame_19")
         self.frame_19.setGeometry(QRect(10, 350, 841, 271))
@@ -1892,9 +1893,7 @@ class Ui_MainWindow(object):
         self.menu_widget = QWidget(self.centralwidget)
         self.menu_widget.setObjectName(u"menu_widget")
         self.menu_widget.setMinimumSize(QSize(170, 0))
-        self.menu_widget.setStyleSheet(u"background-color: #06162d;\n"
-"color: #fff;\n"
-"border: none;")
+        self.menu_widget.setStyleSheet(u"")
         self.gridLayout = QGridLayout(self.menu_widget)
         self.gridLayout.setSpacing(0)
         self.gridLayout.setObjectName(u"gridLayout")
@@ -1904,10 +1903,7 @@ class Ui_MainWindow(object):
         font5 = QFont()
         font5.setPointSize(12)
         self.toolBox.setFont(font5)
-        self.toolBox.setStyleSheet(u"#toolBox {\n"
-"	color: #fff;\n"
-"}\n"
-"\n"
+        self.toolBox.setStyleSheet(u"\n"
 "#toolBox::tab {\n"
 "	padding-left:5px;\n"
 "	text-align:left;\n"
@@ -1916,7 +1912,6 @@ class Ui_MainWindow(object):
 "\n"
 "\n"
 "#toolBox::tab:selected {\n"
-"	background-color: #2d9cdb;\n"
 "	font-weight: bold;\n"
 "}\n"
 "\n"
@@ -1926,13 +1921,6 @@ class Ui_MainWindow(object):
 "	border-radius: 3px;\n"
 "}\n"
 "\n"
-"#toolBox QPushButton:hover {\n"
-"	background-color: #85C1E9;\n"
-"}\n"
-"\n"
-"#toolBox QPushButton:checked {\n"
-"	background-color: #3498DB;\n"
-"}\n"
 "\n"
 "")
         self.general_page = QWidget()
@@ -2057,7 +2045,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         self.pushButton_8.toggled.connect(self.menu_widget.setHidden)
 
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(2)
         self.tabWidget_pinger.setCurrentIndex(1)
         self.toolBox.setCurrentIndex(0)
         self.toolBox.layout().setSpacing(10)
@@ -2127,21 +2115,23 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem9 = self.tableWidget_cap.horizontalHeaderItem(9)
         ___qtablewidgetitem9.setText(QCoreApplication.translate("MainWindow", u"Length Packet", None));
         ___qtablewidgetitem10 = self.tableWidget_cap.horizontalHeaderItem(10)
-        ___qtablewidgetitem10.setText(QCoreApplication.translate("MainWindow", u"Info", None));
+        ___qtablewidgetitem10.setText(QCoreApplication.translate("MainWindow", u"TTL", None));
+        ___qtablewidgetitem11 = self.tableWidget_cap.horizontalHeaderItem(11)
+        ___qtablewidgetitem11.setText(QCoreApplication.translate("MainWindow", u"Info", None));
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_home), QCoreApplication.translate("MainWindow", u"Home", None))
         self.groupBox_network.setTitle(QCoreApplication.translate("MainWindow", u"Network", None))
         self.label_13.setText(QCoreApplication.translate("MainWindow", u"Host IP", None))
         self.lineEdit_ip_host.setText("")
         self.label_23.setText(QCoreApplication.translate("MainWindow", u"Host Mac Address", None))
         self.label_bandwidth_services.setText(QCoreApplication.translate("MainWindow", u"Services", None))
-        ___qtablewidgetitem11 = self.tableWidget_bandwidth_services.horizontalHeaderItem(0)
-        ___qtablewidgetitem11.setText(QCoreApplication.translate("MainWindow", u"PID", None));
-        ___qtablewidgetitem12 = self.tableWidget_bandwidth_services.horizontalHeaderItem(1)
-        ___qtablewidgetitem12.setText(QCoreApplication.translate("MainWindow", u"Name", None));
-        ___qtablewidgetitem13 = self.tableWidget_bandwidth_services.horizontalHeaderItem(2)
-        ___qtablewidgetitem13.setText(QCoreApplication.translate("MainWindow", u"Donwload", None));
-        ___qtablewidgetitem14 = self.tableWidget_bandwidth_services.horizontalHeaderItem(3)
-        ___qtablewidgetitem14.setText(QCoreApplication.translate("MainWindow", u"Upload", None));
+        ___qtablewidgetitem12 = self.tableWidget_bandwidth_services.horizontalHeaderItem(0)
+        ___qtablewidgetitem12.setText(QCoreApplication.translate("MainWindow", u"PID", None));
+        ___qtablewidgetitem13 = self.tableWidget_bandwidth_services.horizontalHeaderItem(1)
+        ___qtablewidgetitem13.setText(QCoreApplication.translate("MainWindow", u"Name", None));
+        ___qtablewidgetitem14 = self.tableWidget_bandwidth_services.horizontalHeaderItem(2)
+        ___qtablewidgetitem14.setText(QCoreApplication.translate("MainWindow", u"Donwload", None));
+        ___qtablewidgetitem15 = self.tableWidget_bandwidth_services.horizontalHeaderItem(3)
+        ___qtablewidgetitem15.setText(QCoreApplication.translate("MainWindow", u"Upload", None));
         self.label_60.setText(QCoreApplication.translate("MainWindow", u"Timeout", None))
         self.label_61.setText(QCoreApplication.translate("MainWindow", u"By Second", None))
         self.label_51.setText(QCoreApplication.translate("MainWindow", u"Refresh Time", None))
@@ -2191,7 +2181,6 @@ class Ui_MainWindow(object):
         self.label_71.setText(QCoreApplication.translate("MainWindow", u"IP Master", None))
         self.label_72.setText(QCoreApplication.translate("MainWindow", u"Network Card Name", None))
         self.label_73.setText(QCoreApplication.translate("MainWindow", u"IP Router", None))
-        self.checkBox_save_packet.setText(QCoreApplication.translate("MainWindow", u"Save Captured Packets To Db", None))
         self.checkBox_show_packet.setText(QCoreApplication.translate("MainWindow", u"Show Packets (While Sniff )", None))
         self.checkBox_listen_blocked_sites.setText(QCoreApplication.translate("MainWindow", u"Listen While sniff To Blocked Sites", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_account), QCoreApplication.translate("MainWindow", u"Account Configuration", None))
@@ -2221,10 +2210,6 @@ class Ui_MainWindow(object):
         self.pushButton_capture.setText(QCoreApplication.translate("MainWindow", u"Start Capture 2", None))
         self.pushButton_checker_ping.setText(QCoreApplication.translate("MainWindow", u"Start Ping Checker", None))
         self.pushButton_save_ping.setText(QCoreApplication.translate("MainWindow", u"Save Ping In DB", None))
-        self.label_33.setText(QCoreApplication.translate("MainWindow", u"Timeout", None))
-        self.label_34.setText(QCoreApplication.translate("MainWindow", u"By Second", None))
-        self.label_35.setText(QCoreApplication.translate("MainWindow", u"Step By", None))
-        self.label_36.setText(QCoreApplication.translate("MainWindow", u"By Second", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_5), QCoreApplication.translate("MainWindow", u"System Functions", None))
         self.label_37.setText(QCoreApplication.translate("MainWindow", u"Upload", None))
         self.label_upload_meter.setText(QCoreApplication.translate("MainWindow", u"--", None))
@@ -2258,7 +2243,7 @@ class Ui_MainWindow(object):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QCoreApplication.translate("MainWindow", u"Internet Meters", None))
         self.groupBox_3.setTitle(QCoreApplication.translate("MainWindow", u"Devices Ping", None))
         self.label_32.setText(QCoreApplication.translate("MainWindow", u"Ip 1", None))
-        self.lineEdit_ip1_to_ping.setText("")
+        self.lineEdit_ip_to_ping_1.setText("")
         self.label_39.setText(QCoreApplication.translate("MainWindow", u"Count Ping", None))
         self.lineEdit_ip1_ping_count.setText("")
         self.label_58.setText(QCoreApplication.translate("MainWindow", u"Last Seen", None))
@@ -2266,18 +2251,24 @@ class Ui_MainWindow(object):
         self.label_65.setText(QCoreApplication.translate("MainWindow", u"Last Seen", None))
         self.lineEdit_ip1_ping_last_2.setText("")
         self.label_66.setText(QCoreApplication.translate("MainWindow", u"Count Ping", None))
-        self.lineEdit_ip1_ping_count_2.setText("")
+        self.lineEdit_ip2_ping_count.setText("")
         self.label_67.setText(QCoreApplication.translate("MainWindow", u"Ip 2", None))
-        self.lineEdit_ip1_to_ping_2.setText("")
+        self.lineEdit_ip_to_ping_2.setText("")
         self.label_68.setText(QCoreApplication.translate("MainWindow", u"Last Seen", None))
         self.lineEdit_ip1_ping_last_3.setText("")
         self.label_69.setText(QCoreApplication.translate("MainWindow", u"Count Ping", None))
-        self.lineEdit_ip1_ping_count_3.setText("")
+        self.lineEdit_ip3_ping_count.setText("")
         self.label_70.setText(QCoreApplication.translate("MainWindow", u"Ip 3", None))
-        self.lineEdit_ip1_to_ping_3.setText("")
+        self.lineEdit_ip_to_ping_3.setText("")
         self.label_76.setText(QCoreApplication.translate("MainWindow", u"Pings Count (DB)", None))
         self.lineEdit_count_ping_3.setText("")
         self.pushButton_refresh_db_2.setText(QCoreApplication.translate("MainWindow", u"Refresh", None))
+        self.label_77.setText(QCoreApplication.translate("MainWindow", u"Step By", None))
+        self.pushButton_checker_ping_3.setText(QCoreApplication.translate("MainWindow", u"Start Ping Checker", None))
+        self.label_79.setText(QCoreApplication.translate("MainWindow", u"Timeout", None))
+        self.checkBox_save_ping_db.setText(QCoreApplication.translate("MainWindow", u"Save To DB", None))
+        self.checkBox_ping_timer.setText(QCoreApplication.translate("MainWindow", u" Timer Check", None))
+        self.checkBox_ping_ip_scanned.setText(QCoreApplication.translate("MainWindow", u"IP Scanned", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_6), QCoreApplication.translate("MainWindow", u"Devices", None))
         self.pushButton_home.setText(QCoreApplication.translate("MainWindow", u"Home", None))
         self.pushButton_device_details.setText(QCoreApplication.translate("MainWindow", u"Specific Device", None))

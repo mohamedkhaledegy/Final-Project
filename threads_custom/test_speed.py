@@ -17,7 +17,7 @@ def test_speed_net():
     download_speed = bytes_to_mb(st.download())
     uploaad_speed = bytes_to_mb(st.upload())
     res_dict = st.results.dict()
-    #print(res_dict)
+    print(res_dict)
     #print("Your Download speed is", download_speed, "MB")
     info = res_dict
     print("Speed Test")

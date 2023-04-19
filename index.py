@@ -103,7 +103,6 @@ class Main(QMainWindow,ui_main):
         # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         ## DataBase Functions ##
         self.set_data_base()
-
         # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         ## Custom Functions ##
         # networks_cards = sc.get_if_list()
@@ -561,7 +560,7 @@ class Main(QMainWindow,ui_main):
         row = pkt_dict['num']
         count = self.tableWidget_cap.rowCount()
         print(count)
-        self.tableWidget_cap.setRowCount(row + 1)
+        self.tableWidget_cap.setRowCount(count + 1)
         #print(pkt_dict)
         #row-1
         #print("row",row)
@@ -621,7 +620,6 @@ class Main(QMainWindow,ui_main):
         else:
             print("Finished Sniffer")
         
-
     def stop_snifer(self):
         self.SNF = False
         print("Stopped Sniff")
