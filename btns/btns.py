@@ -43,7 +43,6 @@ def set_btns(self):
     self.btn_network_config = self.findChild(qtw.QPushButton,"pushButton_network_config")#
     self.btn_system_functions = self.findChild(qtw.QPushButton,"pushButton_system_functions")#
     self.btn_devices = self.findChild(qtw.QPushButton,"pushButton_devices")#
-    self.btn_device_details = self.findChild(qtw.QPushButton,"pushButton_device_details")#
     self.btn_acc_config = self.findChild(qtw.QPushButton,"pushButton_acc_config")#
     ## Table Widget
     #self.table_cap = self.findChild(qtw.QTableWidget,"tableWidget_cap")
@@ -51,15 +50,14 @@ def set_btns(self):
 def setup_btn(self):
     ###### System Functions Tab
     # Ping
-    self.findChild(qtw.QPushButton,"pushButton_save_ping").pressed.connect(self.thread_ping_save_in_db)
-    self.findChild(qtw.QPushButton,"pushButton_checker_ping").pressed.connect(self.thread_ping_check_auto_save)
+    #self.findChild(qtw.QPushButton,"pushButton_save_ping").pressed.connect(self.thread_ping_save_in_db)
+    #self.findChild(qtw.QPushButton,"pushButton_checker_ping").pressed.connect(self.thread_ping_check_auto_save)
     self.findChild(qtw.QPushButton,"pushButton_checker_ping_3").pressed.connect(self.thread_ping_check_auto_save)
     #### Bandwidth
     self.findChild(qtw.QPushButton,"pushButton_start_bandwidth").pressed.connect(self.bandwidth_sample_worker)
     self.findChild(qtw.QPushButton,"pushButton_bandwidth_services").pressed.connect(self.bandwidth_services_worker)
     #### Site Block Config
     self.findChild(qtw.QPushButton,"pushButton_site_block").pressed.connect(self.block_site_worker)
-    
     #### DB
     self.findChild(qtw.QPushButton,"pushButton_refresh_db").pressed.connect(self.set_data_base)
     self.findChild(qtw.QPushButton,"pushButton_refresh_db_2").pressed.connect(self.set_data_base)
@@ -90,11 +88,8 @@ def setup_btn(self):
         self.btn_network_config.clicked.connect(lambda : self.main_widget.setCurrentIndex(1))
         self.btn_acc_config.clicked.connect(lambda : self.main_widget.setCurrentIndex(2))
         self.btn_database_settings.clicked.connect(lambda : self.main_widget.setCurrentIndex(3))
-        self.btn_device_details.clicked.connect(lambda : self.main_widget.setCurrentIndex(4))
-        self.btn_system_functions.clicked.connect(lambda : self.main_widget.setCurrentIndex(5))
-        self.btn_meters.clicked.connect(lambda : self.main_widget.setCurrentIndex(6))
-        self.btn_system_functions.clicked.connect(lambda : self.main_widget.setCurrentIndex(5))
-        self.btn_devices.clicked.connect(lambda : self.main_widget.setCurrentIndex(7))
+        self.btn_meters.clicked.connect(lambda : self.main_widget.setCurrentIndex(5))
+        self.btn_devices.clicked.connect(lambda : self.main_widget.setCurrentIndex(6))
         self.btn_home.clicked.connect(lambda : self.main_widget.setCurrentIndex(0))
         self.main_widget.setCurrentIndex(1)
     except Exception as err:

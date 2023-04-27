@@ -144,10 +144,11 @@ class Ui_MainWindow(object):
 "	\n"
 "	image: url(:/icon/icon/x-mark-4-48.ico);\n"
 "}")
+        self.tabWidget.setTabPosition(QTabWidget.North)
         self.tabWidget.setIconSize(QSize(10, 10))
         self.tabWidget.setUsesScrollButtons(False)
         self.tabWidget.setTabsClosable(False)
-        self.tabWidget.setTabBarAutoHide(False)
+        self.tabWidget.setTabBarAutoHide(True)
         self.tab_home = QWidget()
         self.tab_home.setObjectName(u"tab_home")
         self.gridLayout_5 = QGridLayout(self.tab_home)
@@ -1258,242 +1259,10 @@ class Ui_MainWindow(object):
         self.lineEdit_count_ping = QLineEdit(self.groupBox_7)
         self.lineEdit_count_ping.setObjectName(u"lineEdit_count_ping")
         self.lineEdit_count_ping.setGeometry(QRect(110, 90, 61, 20))
-        self.lineEdit_count_ping_2 = QLineEdit(self.groupBox_7)
-        self.lineEdit_count_ping_2.setObjectName(u"lineEdit_count_ping_2")
-        self.lineEdit_count_ping_2.setGeometry(QRect(110, 120, 61, 20))
-        self.label_74 = QLabel(self.groupBox_7)
-        self.label_74.setObjectName(u"label_74")
-        self.label_74.setGeometry(QRect(20, 120, 81, 21))
         self.pushButton_refresh_db = QPushButton(self.groupBox_7)
         self.pushButton_refresh_db.setObjectName(u"pushButton_refresh_db")
         self.pushButton_refresh_db.setGeometry(QRect(184, 182, 91, 31))
         self.tabWidget.addTab(self.tab_database, "")
-        self.tab_ping = QWidget()
-        self.tab_ping.setObjectName(u"tab_ping")
-        self.frame_12 = QFrame(self.tab_ping)
-        self.frame_12.setObjectName(u"frame_12")
-        self.frame_12.setGeometry(QRect(10, 0, 861, 649))
-        self.frame_12.setFrameShape(QFrame.StyledPanel)
-        self.frame_12.setFrameShadow(QFrame.Raised)
-        self.gridLayout_18 = QGridLayout(self.frame_12)
-        self.gridLayout_18.setObjectName(u"gridLayout_18")
-        self.splitter_18 = QSplitter(self.frame_12)
-        self.splitter_18.setObjectName(u"splitter_18")
-        self.splitter_18.setOrientation(Qt.Horizontal)
-        self.frame_8 = QFrame(self.splitter_18)
-        self.frame_8.setObjectName(u"frame_8")
-        self.frame_8.setFrameShape(QFrame.StyledPanel)
-        self.frame_8.setFrameShadow(QFrame.Raised)
-        self.gridLayout_37 = QGridLayout(self.frame_8)
-        self.gridLayout_37.setObjectName(u"gridLayout_37")
-        self.verticalSpacer_4 = QSpacerItem(20, 147, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.gridLayout_37.addItem(self.verticalSpacer_4, 0, 0, 1, 1)
-
-        self.tabWidget_pinger = QTabWidget(self.frame_8)
-        self.tabWidget_pinger.setObjectName(u"tabWidget_pinger")
-        self.char0 = QWidget()
-        self.char0.setObjectName(u"char0")
-        self.gridLayout_32 = QGridLayout(self.char0)
-        self.gridLayout_32.setObjectName(u"gridLayout_32")
-        self.tableWidget_ping_ip1 = QTableWidget(self.char0)
-        self.tableWidget_ping_ip1.setObjectName(u"tableWidget_ping_ip1")
-
-        self.gridLayout_32.addWidget(self.tableWidget_ping_ip1, 0, 0, 1, 1)
-
-        self.verticalSpacer_5 = QSpacerItem(20, 259, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.gridLayout_32.addItem(self.verticalSpacer_5, 0, 1, 1, 1)
-
-        self.tableWidget_ping_ip2 = QTableWidget(self.char0)
-        self.tableWidget_ping_ip2.setObjectName(u"tableWidget_ping_ip2")
-
-        self.gridLayout_32.addWidget(self.tableWidget_ping_ip2, 0, 2, 1, 1)
-
-        self.tabWidget_pinger.addTab(self.char0, "")
-        self.char1 = QWidget()
-        self.char1.setObjectName(u"char1")
-        self.gridLayout_20 = QGridLayout(self.char1)
-        self.gridLayout_20.setObjectName(u"gridLayout_20")
-        self.widget = QWidget(self.char1)
-        self.widget.setObjectName(u"widget")
-        self.gridLayout_22 = QGridLayout(self.widget)
-        self.gridLayout_22.setObjectName(u"gridLayout_22")
-        self.frame_10 = QFrame(self.widget)
-        self.frame_10.setObjectName(u"frame_10")
-        self.frame_10.setStyleSheet(u"")
-        self.frame_10.setFrameShape(QFrame.StyledPanel)
-        self.frame_10.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_3 = QVBoxLayout(self.frame_10)
-        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
-        self.grafica_uno = QVBoxLayout()
-        self.grafica_uno.setObjectName(u"grafica_uno")
-
-        self.verticalLayout_3.addLayout(self.grafica_uno)
-
-
-        self.gridLayout_22.addWidget(self.frame_10, 0, 0, 1, 1)
-
-
-        self.gridLayout_20.addWidget(self.widget, 0, 0, 1, 1)
-
-        self.tabWidget_pinger.addTab(self.char1, "")
-        self.char2 = QWidget()
-        self.char2.setObjectName(u"char2")
-        self.gridLayout_24 = QGridLayout(self.char2)
-        self.gridLayout_24.setObjectName(u"gridLayout_24")
-        self.widget_2 = QWidget(self.char2)
-        self.widget_2.setObjectName(u"widget_2")
-        self.gridLayout_23 = QGridLayout(self.widget_2)
-        self.gridLayout_23.setObjectName(u"gridLayout_23")
-        self.frame_18 = QFrame(self.widget_2)
-        self.frame_18.setObjectName(u"frame_18")
-        self.frame_18.setStyleSheet(u"")
-        self.frame_18.setFrameShape(QFrame.StyledPanel)
-        self.frame_18.setFrameShadow(QFrame.Raised)
-        self.gridLayout_30 = QGridLayout(self.frame_18)
-        self.gridLayout_30.setObjectName(u"gridLayout_30")
-        self.grafica_tres = QVBoxLayout()
-        self.grafica_tres.setObjectName(u"grafica_tres")
-
-        self.gridLayout_30.addLayout(self.grafica_tres, 0, 0, 1, 1)
-
-
-        self.gridLayout_23.addWidget(self.frame_18, 0, 0, 1, 1)
-
-
-        self.gridLayout_24.addWidget(self.widget_2, 0, 0, 1, 1)
-
-        self.tabWidget_pinger.addTab(self.char2, "")
-        self.char3 = QWidget()
-        self.char3.setObjectName(u"char3")
-        self.gridLayout_35 = QGridLayout(self.char3)
-        self.gridLayout_35.setObjectName(u"gridLayout_35")
-        self.widget_6 = QWidget(self.char3)
-        self.widget_6.setObjectName(u"widget_6")
-        self.gridLayout_29 = QGridLayout(self.widget_6)
-        self.gridLayout_29.setObjectName(u"gridLayout_29")
-        self.frame_21 = QFrame(self.widget_6)
-        self.frame_21.setObjectName(u"frame_21")
-        self.frame_21.setStyleSheet(u"")
-        self.frame_21.setFrameShape(QFrame.StyledPanel)
-        self.frame_21.setFrameShadow(QFrame.Raised)
-        self.gridLayout_34 = QGridLayout(self.frame_21)
-        self.gridLayout_34.setObjectName(u"gridLayout_34")
-        self.grafica_cuatro = QVBoxLayout()
-        self.grafica_cuatro.setObjectName(u"grafica_cuatro")
-
-        self.gridLayout_34.addLayout(self.grafica_cuatro, 0, 0, 1, 1)
-
-
-        self.gridLayout_29.addWidget(self.frame_21, 0, 0, 1, 1)
-
-
-        self.gridLayout_35.addWidget(self.widget_6, 0, 0, 1, 1)
-
-        self.tabWidget_pinger.addTab(self.char3, "")
-        self.char4 = QWidget()
-        self.char4.setObjectName(u"char4")
-        self.gridLayout_36 = QGridLayout(self.char4)
-        self.gridLayout_36.setObjectName(u"gridLayout_36")
-        self.widget_7 = QWidget(self.char4)
-        self.widget_7.setObjectName(u"widget_7")
-        self.gridLayout_31 = QGridLayout(self.widget_7)
-        self.gridLayout_31.setObjectName(u"gridLayout_31")
-        self.frame_11 = QFrame(self.widget_7)
-        self.frame_11.setObjectName(u"frame_11")
-        self.frame_11.setStyleSheet(u"")
-        self.frame_11.setFrameShape(QFrame.StyledPanel)
-        self.frame_11.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_4 = QVBoxLayout(self.frame_11)
-        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
-        self.grafica_dos = QVBoxLayout()
-        self.grafica_dos.setObjectName(u"grafica_dos")
-
-        self.verticalLayout_4.addLayout(self.grafica_dos)
-
-
-        self.gridLayout_31.addWidget(self.frame_11, 0, 0, 1, 1)
-
-
-        self.gridLayout_36.addWidget(self.widget_7, 0, 0, 1, 1)
-
-        self.tabWidget_pinger.addTab(self.char4, "")
-
-        self.gridLayout_37.addWidget(self.tabWidget_pinger, 1, 0, 1, 1)
-
-        self.verticalSpacer_7 = QSpacerItem(20, 146, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.gridLayout_37.addItem(self.verticalSpacer_7, 2, 0, 1, 1)
-
-        self.splitter_18.addWidget(self.frame_8)
-        self.frame_9 = QFrame(self.splitter_18)
-        self.frame_9.setObjectName(u"frame_9")
-        self.frame_9.setFrameShape(QFrame.StyledPanel)
-        self.frame_9.setFrameShadow(QFrame.Raised)
-        self.gridLayout_33 = QGridLayout(self.frame_9)
-        self.gridLayout_33.setObjectName(u"gridLayout_33")
-        self.horizontalLayout_6 = QHBoxLayout()
-        self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
-        self.label_38 = QLabel(self.frame_9)
-        self.label_38.setObjectName(u"label_38")
-
-        self.horizontalLayout_6.addWidget(self.label_38)
-
-        self.doubleSpinBox_ping_stepby_2 = QDoubleSpinBox(self.frame_9)
-        self.doubleSpinBox_ping_stepby_2.setObjectName(u"doubleSpinBox_ping_stepby_2")
-        self.doubleSpinBox_ping_stepby_2.setValue(1.000000000000000)
-
-        self.horizontalLayout_6.addWidget(self.doubleSpinBox_ping_stepby_2)
-
-        self.label_47 = QLabel(self.frame_9)
-        self.label_47.setObjectName(u"label_47")
-
-        self.horizontalLayout_6.addWidget(self.label_47)
-
-
-        self.gridLayout_33.addLayout(self.horizontalLayout_6, 2, 0, 1, 2)
-
-        self.horizontalLayout_7 = QHBoxLayout()
-        self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
-        self.label_48 = QLabel(self.frame_9)
-        self.label_48.setObjectName(u"label_48")
-
-        self.horizontalLayout_7.addWidget(self.label_48)
-
-        self.spinBox_ping_timeout_2 = QSpinBox(self.frame_9)
-        self.spinBox_ping_timeout_2.setObjectName(u"spinBox_ping_timeout_2")
-        self.spinBox_ping_timeout_2.setValue(10)
-
-        self.horizontalLayout_7.addWidget(self.spinBox_ping_timeout_2)
-
-        self.label_49 = QLabel(self.frame_9)
-        self.label_49.setObjectName(u"label_49")
-
-        self.horizontalLayout_7.addWidget(self.label_49)
-
-
-        self.gridLayout_33.addLayout(self.horizontalLayout_7, 1, 0, 1, 2)
-
-        self.pushButton_2 = QPushButton(self.frame_9)
-        self.pushButton_2.setObjectName(u"pushButton_2")
-
-        self.gridLayout_33.addWidget(self.pushButton_2, 0, 0, 1, 1)
-
-        self.pushButton_chcker_ping_2 = QPushButton(self.frame_9)
-        self.pushButton_chcker_ping_2.setObjectName(u"pushButton_chcker_ping_2")
-
-        self.gridLayout_33.addWidget(self.pushButton_chcker_ping_2, 0, 1, 1, 1)
-
-        self.verticalSpacer_6 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.gridLayout_33.addItem(self.verticalSpacer_6, 3, 1, 1, 1)
-
-        self.splitter_18.addWidget(self.frame_9)
-
-        self.gridLayout_18.addWidget(self.splitter_18, 0, 0, 1, 1)
-
-        self.tabWidget.addTab(self.tab_ping, "")
         self.tab_5 = QWidget()
         self.tab_5.setObjectName(u"tab_5")
         self.pushButton_capture = QPushButton(self.tab_5)
@@ -2264,16 +2033,6 @@ class Ui_MainWindow(object):
 
         self.gridLayout_45.addWidget(self.pushButton_get_db_tables, 0, 1, 1, 1)
 
-        self.label_89 = QLabel(self.frame_19)
-        self.label_89.setObjectName(u"label_89")
-
-        self.gridLayout_45.addWidget(self.label_89, 0, 2, 1, 1)
-
-        self.pushButton_4 = QPushButton(self.frame_19)
-        self.pushButton_4.setObjectName(u"pushButton_4")
-
-        self.gridLayout_45.addWidget(self.pushButton_4, 0, 0, 1, 1)
-
         self.splitter_30 = QSplitter(self.frame_19)
         self.splitter_30.setObjectName(u"splitter_30")
         self.splitter_30.setOrientation(Qt.Horizontal)
@@ -2333,6 +2092,11 @@ class Ui_MainWindow(object):
         self.splitter_30.addWidget(self.layoutWidget_2)
 
         self.gridLayout_45.addWidget(self.splitter_30, 1, 0, 1, 3)
+
+        self.pushButton_4 = QPushButton(self.frame_19)
+        self.pushButton_4.setObjectName(u"pushButton_4")
+
+        self.gridLayout_45.addWidget(self.pushButton_4, 0, 0, 1, 1)
 
         self.splitter_31.addWidget(self.frame_19)
 
@@ -2399,24 +2163,6 @@ class Ui_MainWindow(object):
         self.pushButton_home.setChecked(False)
 
         self.verticalLayout.addWidget(self.pushButton_home)
-
-        self.pushButton_device_details = QPushButton(self.general_page)
-        self.pushButton_device_details.setObjectName(u"pushButton_device_details")
-        self.pushButton_device_details.setFont(font)
-        self.pushButton_device_details.setFocusPolicy(Qt.NoFocus)
-        self.pushButton_device_details.setStyleSheet(u"")
-        self.pushButton_device_details.setCheckable(False)
-
-        self.verticalLayout.addWidget(self.pushButton_device_details)
-
-        self.pushButton_system_functions = QPushButton(self.general_page)
-        self.pushButton_system_functions.setObjectName(u"pushButton_system_functions")
-        self.pushButton_system_functions.setFont(font)
-        self.pushButton_system_functions.setFocusPolicy(Qt.NoFocus)
-        self.pushButton_system_functions.setStyleSheet(u"")
-        self.pushButton_system_functions.setCheckable(False)
-
-        self.verticalLayout.addWidget(self.pushButton_system_functions)
 
         self.pushButton_devices = QPushButton(self.general_page)
         self.pushButton_devices.setObjectName(u"pushButton_devices")
@@ -2504,8 +2250,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         self.pushButton_8.toggled.connect(self.menu_widget.setHidden)
 
-        self.tabWidget.setCurrentIndex(7)
-        self.tabWidget_pinger.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(4)
         self.toolBox.setCurrentIndex(0)
         self.toolBox.layout().setSpacing(10)
 
@@ -2665,22 +2410,8 @@ class Ui_MainWindow(object):
         self.lineEdit_count_ip.setText("")
         self.label_55.setText(QCoreApplication.translate("MainWindow", u"Pings Count", None))
         self.lineEdit_count_ping.setText("")
-        self.lineEdit_count_ping_2.setText("")
-        self.label_74.setText(QCoreApplication.translate("MainWindow", u"Packet Count", None))
         self.pushButton_refresh_db.setText(QCoreApplication.translate("MainWindow", u"Refresh", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_database), QCoreApplication.translate("MainWindow", u"Database Settings", None))
-        self.tabWidget_pinger.setTabText(self.tabWidget_pinger.indexOf(self.char0), QCoreApplication.translate("MainWindow", u"Table", None))
-        self.tabWidget_pinger.setTabText(self.tabWidget_pinger.indexOf(self.char1), QCoreApplication.translate("MainWindow", u"Tab 2", None))
-        self.tabWidget_pinger.setTabText(self.tabWidget_pinger.indexOf(self.char2), QCoreApplication.translate("MainWindow", u"Tab2", None))
-        self.tabWidget_pinger.setTabText(self.tabWidget_pinger.indexOf(self.char3), QCoreApplication.translate("MainWindow", u"Tab3", None))
-        self.tabWidget_pinger.setTabText(self.tabWidget_pinger.indexOf(self.char4), QCoreApplication.translate("MainWindow", u"Tab4", None))
-        self.label_38.setText(QCoreApplication.translate("MainWindow", u"Step By", None))
-        self.label_47.setText(QCoreApplication.translate("MainWindow", u"By Second", None))
-        self.label_48.setText(QCoreApplication.translate("MainWindow", u"Timeout", None))
-        self.label_49.setText(QCoreApplication.translate("MainWindow", u"By Second", None))
-        self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
-        self.pushButton_chcker_ping_2.setText(QCoreApplication.translate("MainWindow", u"Start Ping Checker", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_ping), QCoreApplication.translate("MainWindow", u"Devices Checker", None))
         self.pushButton_capture.setText(QCoreApplication.translate("MainWindow", u"Start Capture 2", None))
         self.pushButton_checker_ping.setText(QCoreApplication.translate("MainWindow", u"Start Ping Checker", None))
         self.pushButton_save_ping.setText(QCoreApplication.translate("MainWindow", u"Save Ping In DB", None))
@@ -2757,8 +2488,6 @@ class Ui_MainWindow(object):
         self.pushButton_refresh_db_2.setText(QCoreApplication.translate("MainWindow", u"Refresh", None))
         self.pushButton_checker_ping_3.setText(QCoreApplication.translate("MainWindow", u"Start Ping Checker", None))
         self.pushButton_get_db_tables.setText(QCoreApplication.translate("MainWindow", u"Get Data From Db", None))
-        self.label_89.setText(QCoreApplication.translate("MainWindow", u"Refresh .. seconds ago", None))
-        self.pushButton_4.setText(QCoreApplication.translate("MainWindow", u"Refresh", None))
         self.label_87.setText(QCoreApplication.translate("MainWindow", u"Ping Table", None))
         ___qtablewidgetitem16 = self.tableWidget1_ping.horizontalHeaderItem(0)
         ___qtablewidgetitem16.setText(QCoreApplication.translate("MainWindow", u"ID", None));
@@ -2779,12 +2508,11 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem23.setText(QCoreApplication.translate("MainWindow", u"Mac", None));
         ___qtablewidgetitem24 = self.tableWidget_dev_db.horizontalHeaderItem(3)
         ___qtablewidgetitem24.setText(QCoreApplication.translate("MainWindow", u"Name", None));
+        self.pushButton_4.setText(QCoreApplication.translate("MainWindow", u"Refresh", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_6), QCoreApplication.translate("MainWindow", u"Devices", None))
         self.pushButton_home.setText(QCoreApplication.translate("MainWindow", u"Home", None))
-        self.pushButton_device_details.setText(QCoreApplication.translate("MainWindow", u"Specific Device", None))
-        self.pushButton_system_functions.setText(QCoreApplication.translate("MainWindow", u"System Functions", None))
-        self.pushButton_devices.setText(QCoreApplication.translate("MainWindow", u"Devices", None))
-        self.pushButton_meters.setText(QCoreApplication.translate("MainWindow", u"Meters", None))
+        self.pushButton_devices.setText(QCoreApplication.translate("MainWindow", u"Ping Devices", None))
+        self.pushButton_meters.setText(QCoreApplication.translate("MainWindow", u"Internet Meters", None))
         self.toolBox.setItemText(self.toolBox.indexOf(self.general_page), QCoreApplication.translate("MainWindow", u"General", None))
         self.pushButton_network_config.setText(QCoreApplication.translate("MainWindow", u"Network Configuration", None))
         self.pushButton_acc_config.setText(QCoreApplication.translate("MainWindow", u"Account Configuration", None))

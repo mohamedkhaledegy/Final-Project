@@ -138,7 +138,7 @@ class Main(QMainWindow,ui_main):
         ## Thread For Test Speed Internet and get Donwload , Upload Sppeed In MB/S , and other info .
         #self.threadRunner3()
         #self.threadRunner4()
-        self.set_matplot()
+        #self.set_matplot()
 
     def open_new_win(self):
         print("Opened")
@@ -1223,7 +1223,7 @@ class Main(QMainWindow,ui_main):
         global dev_db , ping_db , max_ping_table
         dev_db = devss
         ping_db = pingss
-        #max_ping_table = -5
+        max_ping_table = 100
         self.tableWidget1_ping.setRowCount(len(ping_db))
         # self.tableWidget1_ping.setRowCount(max_ping_table)
         print(len(devss))
@@ -1233,11 +1233,8 @@ class Main(QMainWindow,ui_main):
         print("Done Get Data")
         try:
             for counter , ping in enumerate(ping_db):
-                print("Counter",counter)
-                print("ID Ping",ping.id)
                 try:
                     time_ping = str(ping.created_at).split(".")[0]
-                    print(time_ping)
                 except:
                     pass
                 try:
@@ -1254,7 +1251,6 @@ class Main(QMainWindow,ui_main):
                 self.tableWidget1_ping.setItem(counter,0,item_id)
                 self.tableWidget1_ping.setItem(counter,2,item_anwser)
                 self.tableWidget1_ping.setItem(counter,3,item_time)
-                print("time",counter)
         except Exception as err:
             print(err)
         print("Finished")

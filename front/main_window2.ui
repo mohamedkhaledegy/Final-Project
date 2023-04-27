@@ -267,8 +267,11 @@ QTabBar::close-button:hover {
 	image: url(:/icon/icon/x-mark-4-48.ico);
 }</string>
          </property>
+         <property name="tabPosition">
+          <enum>QTabWidget::North</enum>
+         </property>
          <property name="currentIndex">
-          <number>7</number>
+          <number>4</number>
          </property>
          <property name="iconSize">
           <size>
@@ -283,7 +286,7 @@ QTabBar::close-button:hover {
           <bool>false</bool>
          </property>
          <property name="tabBarAutoHide">
-          <bool>false</bool>
+          <bool>true</bool>
          </property>
          <widget class="QWidget" name="tab_home">
           <attribute name="title">
@@ -2143,32 +2146,6 @@ background-color:slategray;
              <string/>
             </property>
            </widget>
-           <widget class="QLineEdit" name="lineEdit_count_ping_2">
-            <property name="geometry">
-             <rect>
-              <x>110</x>
-              <y>120</y>
-              <width>61</width>
-              <height>20</height>
-             </rect>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-           <widget class="QLabel" name="label_74">
-            <property name="geometry">
-             <rect>
-              <x>20</x>
-              <y>120</y>
-              <width>81</width>
-              <height>21</height>
-             </rect>
-            </property>
-            <property name="text">
-             <string>Packet Count</string>
-            </property>
-           </widget>
            <widget class="QPushButton" name="pushButton_refresh_db">
             <property name="geometry">
              <rect>
@@ -2182,316 +2159,6 @@ background-color:slategray;
              <string>Refresh</string>
             </property>
            </widget>
-          </widget>
-         </widget>
-         <widget class="QWidget" name="tab_ping">
-          <attribute name="title">
-           <string>Devices Checker</string>
-          </attribute>
-          <widget class="QFrame" name="frame_12">
-           <property name="geometry">
-            <rect>
-             <x>10</x>
-             <y>0</y>
-             <width>861</width>
-             <height>649</height>
-            </rect>
-           </property>
-           <property name="frameShape">
-            <enum>QFrame::StyledPanel</enum>
-           </property>
-           <property name="frameShadow">
-            <enum>QFrame::Raised</enum>
-           </property>
-           <layout class="QGridLayout" name="gridLayout_18">
-            <item row="0" column="0">
-             <widget class="QSplitter" name="splitter_18">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <widget class="QFrame" name="frame_8">
-               <property name="frameShape">
-                <enum>QFrame::StyledPanel</enum>
-               </property>
-               <property name="frameShadow">
-                <enum>QFrame::Raised</enum>
-               </property>
-               <layout class="QGridLayout" name="gridLayout_37">
-                <item row="0" column="0">
-                 <spacer name="verticalSpacer_4">
-                  <property name="orientation">
-                   <enum>Qt::Vertical</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>20</width>
-                    <height>147</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item row="1" column="0">
-                 <widget class="QTabWidget" name="tabWidget_pinger">
-                  <property name="currentIndex">
-                   <number>1</number>
-                  </property>
-                  <widget class="QWidget" name="char0">
-                   <attribute name="title">
-                    <string>Table</string>
-                   </attribute>
-                   <layout class="QGridLayout" name="gridLayout_32">
-                    <item row="0" column="0">
-                     <widget class="QTableWidget" name="tableWidget_ping_ip1"/>
-                    </item>
-                    <item row="0" column="1">
-                     <spacer name="verticalSpacer_5">
-                      <property name="orientation">
-                       <enum>Qt::Vertical</enum>
-                      </property>
-                      <property name="sizeHint" stdset="0">
-                       <size>
-                        <width>20</width>
-                        <height>259</height>
-                       </size>
-                      </property>
-                     </spacer>
-                    </item>
-                    <item row="0" column="2">
-                     <widget class="QTableWidget" name="tableWidget_ping_ip2"/>
-                    </item>
-                   </layout>
-                  </widget>
-                  <widget class="QWidget" name="char1">
-                   <attribute name="title">
-                    <string>Tab 2</string>
-                   </attribute>
-                   <layout class="QGridLayout" name="gridLayout_20">
-                    <item row="0" column="0">
-                     <widget class="QWidget" name="widget" native="true">
-                      <layout class="QGridLayout" name="gridLayout_22">
-                       <item row="0" column="0">
-                        <widget class="QFrame" name="frame_10">
-                         <property name="styleSheet">
-                          <string notr="true"/>
-                         </property>
-                         <property name="frameShape">
-                          <enum>QFrame::StyledPanel</enum>
-                         </property>
-                         <property name="frameShadow">
-                          <enum>QFrame::Raised</enum>
-                         </property>
-                         <layout class="QVBoxLayout" name="verticalLayout_3" stretch="0">
-                          <item>
-                           <layout class="QVBoxLayout" name="grafica_uno"/>
-                          </item>
-                         </layout>
-                        </widget>
-                       </item>
-                      </layout>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
-                  <widget class="QWidget" name="char2">
-                   <attribute name="title">
-                    <string>Tab2</string>
-                   </attribute>
-                   <layout class="QGridLayout" name="gridLayout_24">
-                    <item row="0" column="0">
-                     <widget class="QWidget" name="widget_2" native="true">
-                      <layout class="QGridLayout" name="gridLayout_23">
-                       <item row="0" column="0">
-                        <widget class="QFrame" name="frame_18">
-                         <property name="styleSheet">
-                          <string notr="true"/>
-                         </property>
-                         <property name="frameShape">
-                          <enum>QFrame::StyledPanel</enum>
-                         </property>
-                         <property name="frameShadow">
-                          <enum>QFrame::Raised</enum>
-                         </property>
-                         <layout class="QGridLayout" name="gridLayout_30">
-                          <item row="0" column="0">
-                           <layout class="QVBoxLayout" name="grafica_tres"/>
-                          </item>
-                         </layout>
-                        </widget>
-                       </item>
-                      </layout>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
-                  <widget class="QWidget" name="char3">
-                   <attribute name="title">
-                    <string>Tab3</string>
-                   </attribute>
-                   <layout class="QGridLayout" name="gridLayout_35">
-                    <item row="0" column="0">
-                     <widget class="QWidget" name="widget_6" native="true">
-                      <layout class="QGridLayout" name="gridLayout_29">
-                       <item row="0" column="0">
-                        <widget class="QFrame" name="frame_21">
-                         <property name="styleSheet">
-                          <string notr="true"/>
-                         </property>
-                         <property name="frameShape">
-                          <enum>QFrame::StyledPanel</enum>
-                         </property>
-                         <property name="frameShadow">
-                          <enum>QFrame::Raised</enum>
-                         </property>
-                         <layout class="QGridLayout" name="gridLayout_34">
-                          <item row="0" column="0">
-                           <layout class="QVBoxLayout" name="grafica_cuatro"/>
-                          </item>
-                         </layout>
-                        </widget>
-                       </item>
-                      </layout>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
-                  <widget class="QWidget" name="char4">
-                   <attribute name="title">
-                    <string>Tab4</string>
-                   </attribute>
-                   <layout class="QGridLayout" name="gridLayout_36">
-                    <item row="0" column="0">
-                     <widget class="QWidget" name="widget_7" native="true">
-                      <layout class="QGridLayout" name="gridLayout_31">
-                       <item row="0" column="0">
-                        <widget class="QFrame" name="frame_11">
-                         <property name="styleSheet">
-                          <string notr="true"/>
-                         </property>
-                         <property name="frameShape">
-                          <enum>QFrame::StyledPanel</enum>
-                         </property>
-                         <property name="frameShadow">
-                          <enum>QFrame::Raised</enum>
-                         </property>
-                         <layout class="QVBoxLayout" name="verticalLayout_4" stretch="0">
-                          <item>
-                           <layout class="QVBoxLayout" name="grafica_dos"/>
-                          </item>
-                         </layout>
-                        </widget>
-                       </item>
-                      </layout>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
-                 </widget>
-                </item>
-                <item row="2" column="0">
-                 <spacer name="verticalSpacer_7">
-                  <property name="orientation">
-                   <enum>Qt::Vertical</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>20</width>
-                    <height>146</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-               </layout>
-              </widget>
-              <widget class="QFrame" name="frame_9">
-               <property name="frameShape">
-                <enum>QFrame::StyledPanel</enum>
-               </property>
-               <property name="frameShadow">
-                <enum>QFrame::Raised</enum>
-               </property>
-               <layout class="QGridLayout" name="gridLayout_33">
-                <item row="2" column="0" colspan="2">
-                 <layout class="QHBoxLayout" name="horizontalLayout_6">
-                  <item>
-                   <widget class="QLabel" name="label_38">
-                    <property name="text">
-                     <string>Step By</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QDoubleSpinBox" name="doubleSpinBox_ping_stepby_2">
-                    <property name="value">
-                     <double>1.000000000000000</double>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QLabel" name="label_47">
-                    <property name="text">
-                     <string>By Second</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </item>
-                <item row="1" column="0" colspan="2">
-                 <layout class="QHBoxLayout" name="horizontalLayout_7">
-                  <item>
-                   <widget class="QLabel" name="label_48">
-                    <property name="text">
-                     <string>Timeout</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QSpinBox" name="spinBox_ping_timeout_2">
-                    <property name="value">
-                     <number>10</number>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QLabel" name="label_49">
-                    <property name="text">
-                     <string>By Second</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </item>
-                <item row="0" column="0">
-                 <widget class="QPushButton" name="pushButton_2">
-                  <property name="text">
-                   <string>PushButton</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="0" column="1">
-                 <widget class="QPushButton" name="pushButton_chcker_ping_2">
-                  <property name="text">
-                   <string>Start Ping Checker</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="3" column="1">
-                 <spacer name="verticalSpacer_6">
-                  <property name="orientation">
-                   <enum>Qt::Vertical</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>20</width>
-                    <height>40</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-               </layout>
-              </widget>
-             </widget>
-            </item>
-           </layout>
           </widget>
          </widget>
          <widget class="QWidget" name="tab_5">
@@ -3845,20 +3512,6 @@ color: rgb(60, 231, 195);</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="0" column="2">
-                   <widget class="QLabel" name="label_89">
-                    <property name="text">
-                     <string>Refresh .. seconds ago</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="0">
-                   <widget class="QPushButton" name="pushButton_4">
-                    <property name="text">
-                     <string>Refresh</string>
-                    </property>
-                   </widget>
-                  </item>
                   <item row="1" column="0" colspan="3">
                    <widget class="QSplitter" name="splitter_30">
                     <property name="orientation">
@@ -3939,6 +3592,13 @@ color: rgb(60, 231, 195);</string>
                       </item>
                      </layout>
                     </widget>
+                   </widget>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QPushButton" name="pushButton_4">
+                    <property name="text">
+                     <string>Refresh</string>
+                    </property>
                    </widget>
                   </item>
                  </layout>
@@ -4082,48 +3742,6 @@ color: rgb(60, 231, 195);</string>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_device_details">
-             <property name="font">
-              <font>
-               <pointsize>10</pointsize>
-              </font>
-             </property>
-             <property name="focusPolicy">
-              <enum>Qt::NoFocus</enum>
-             </property>
-             <property name="styleSheet">
-              <string notr="true"/>
-             </property>
-             <property name="text">
-              <string>Specific Device</string>
-             </property>
-             <property name="checkable">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="pushButton_system_functions">
-             <property name="font">
-              <font>
-               <pointsize>10</pointsize>
-              </font>
-             </property>
-             <property name="focusPolicy">
-              <enum>Qt::NoFocus</enum>
-             </property>
-             <property name="styleSheet">
-              <string notr="true"/>
-             </property>
-             <property name="text">
-              <string>System Functions</string>
-             </property>
-             <property name="checkable">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item>
             <widget class="QPushButton" name="pushButton_devices">
              <property name="font">
               <font>
@@ -4137,7 +3755,7 @@ color: rgb(60, 231, 195);</string>
               <string notr="true"/>
              </property>
              <property name="text">
-              <string>Devices</string>
+              <string>Ping Devices</string>
              </property>
              <property name="checkable">
               <bool>false</bool>
@@ -4158,7 +3776,7 @@ color: rgb(60, 231, 195);</string>
               <string notr="true"/>
              </property>
              <property name="text">
-              <string>Meters</string>
+              <string>Internet Meters</string>
              </property>
              <property name="checkable">
               <bool>false</bool>
