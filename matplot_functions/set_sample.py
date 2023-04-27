@@ -11,7 +11,6 @@ class Canvas_grafica(FigureCanvas):
         nombres = ['15', '25', '30', '35','40']
         colores = ['red','red','blue','red', 'red']
         tamaño = [10, 15, 20, 25, 30]
-
         self.ax.bar(nombres, tamaño, color = colores)
         self.fig.suptitle('Grafica de Barras',size=9)
 

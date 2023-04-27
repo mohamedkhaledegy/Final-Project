@@ -63,6 +63,7 @@ def setup_btn(self):
     #### DB
     self.findChild(qtw.QPushButton,"pushButton_refresh_db").pressed.connect(self.set_data_base)
     self.findChild(qtw.QPushButton,"pushButton_refresh_db_2").pressed.connect(self.set_data_base)
+    self.findChild(qtw.QPushButton,"pushButton_get_db_tables").pressed.connect(self.set_table_widget_from_db)
     ## New Window
     self.btn_dtls.pressed.connect(lambda : self.open_new_win())
     ## Scan Network For Ip & Progress Circle

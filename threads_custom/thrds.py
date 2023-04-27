@@ -71,7 +71,6 @@ def foo_thread(self, num):
         num += 1
         self.frame_1_cricle_progres.rpb_setValue(i)
         time.sleep(.1)
-        
     return num
 # we'll use this function when 'result' signal is emited
 def thread_finished(self):

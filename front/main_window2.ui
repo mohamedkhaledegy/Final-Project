@@ -6,19 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1076</width>
-    <height>771</height>
+    <width>1065</width>
+    <height>764</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">#menu_widget, #toolBox {
-	background-color: #3333FF;
-}
-
-</string>
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_11">
@@ -272,7 +268,7 @@ QTabBar::close-button:hover {
 }</string>
          </property>
          <property name="currentIndex">
-          <number>2</number>
+          <number>7</number>
          </property>
          <property name="iconSize">
           <size>
@@ -367,52 +363,10 @@ QTabBar::close-button:hover {
                       <widget class="QLineEdit" name="lineEdit_interface"/>
                      </widget>
                     </item>
-                    <item row="0" column="4">
-                     <widget class="QPushButton" name="pushButton_test_speed">
-                      <property name="enabled">
-                       <bool>true</bool>
-                      </property>
-                      <property name="sizePolicy">
-                       <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-                        <horstretch>0</horstretch>
-                        <verstretch>0</verstretch>
-                       </sizepolicy>
-                      </property>
-                      <property name="text">
-                       <string>Test Speed</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="1" column="5">
-                     <widget class="QPushButton" name="pushButton_start_cap">
-                      <property name="sizePolicy">
-                       <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-                        <horstretch>0</horstretch>
-                        <verstretch>0</verstretch>
-                       </sizepolicy>
-                      </property>
-                      <property name="text">
-                       <string>Start Capture</string>
-                      </property>
-                     </widget>
-                    </item>
                     <item row="1" column="0">
                      <widget class="QLabel" name="label_18">
                       <property name="text">
                        <string>Main Device</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="1" column="4">
-                     <widget class="QPushButton" name="pushButton_stop_cap">
-                      <property name="sizePolicy">
-                       <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-                        <horstretch>0</horstretch>
-                        <verstretch>0</verstretch>
-                       </sizepolicy>
-                      </property>
-                      <property name="text">
-                       <string>Stop Capture</string>
                       </property>
                      </widget>
                     </item>
@@ -447,6 +401,32 @@ QTabBar::close-button:hover {
                       </property>
                      </widget>
                     </item>
+                    <item row="0" column="4" rowspan="2">
+                     <widget class="QPushButton" name="pushButton_stop_cap">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="text">
+                       <string>Stop Capture</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="5" rowspan="2">
+                     <widget class="QPushButton" name="pushButton_start_cap">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="text">
+                       <string>Start Capture</string>
+                      </property>
+                     </widget>
+                    </item>
                    </layout>
                   </widget>
                   <widget class="QGroupBox" name="groupBox_ip_discovered">
@@ -463,294 +443,99 @@ QTabBar::close-button:hover {
                     <string>Ip Discovered</string>
                    </property>
                    <layout class="QGridLayout" name="gridLayout_8">
-                    <item row="2" column="1">
-                     <widget class="QSplitter" name="splitter_5">
-                      <property name="minimumSize">
-                       <size>
-                        <width>180</width>
-                        <height>0</height>
-                       </size>
+                    <item row="0" column="0" colspan="5">
+                     <widget class="QFrame" name="frame_20">
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
                       </property>
-                      <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
                       </property>
-                      <widget class="QLabel" name="label_21">
-                       <property name="text">
-                        <string>Mac Address</string>
-                       </property>
-                      </widget>
-                      <widget class="QLineEdit" name="lineEdit_mac2">
-                       <property name="sizePolicy">
-                        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                         <horstretch>0</horstretch>
-                         <verstretch>0</verstretch>
-                        </sizepolicy>
-                       </property>
-                      </widget>
+                      <layout class="QHBoxLayout" name="horizontalLayout_4">
+                       <item>
+                        <widget class="QLabel" name="label_36">
+                         <property name="font">
+                          <font>
+                           <weight>75</weight>
+                           <bold>true</bold>
+                          </font>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">color:white;background-color:rgb(255, 0, 0); border-radius:10px;</string>
+                         </property>
+                         <property name="text">
+                          <string>Offline</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLabel" name="label_34">
+                         <property name="styleSheet">
+                          <string notr="true">color:white;
+background-color:rgb(0, 255, 0);
+ border-radius:10px;</string>
+                         </property>
+                         <property name="text">
+                          <string>Online</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLabel" name="label_33">
+                         <property name="styleSheet">
+                          <string notr="true">color:white;
+background-color:slategray;
+ border-radius:10px;</string>
+                         </property>
+                         <property name="text">
+                          <string>Empty</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <spacer name="horizontalSpacer_11">
+                         <property name="orientation">
+                          <enum>Qt::Horizontal</enum>
+                         </property>
+                         <property name="sizeHint" stdset="0">
+                          <size>
+                           <width>40</width>
+                           <height>20</height>
+                          </size>
+                         </property>
+                        </spacer>
+                       </item>
+                       <item>
+                        <widget class="QLabel" name="label_35">
+                         <property name="text">
+                          <string>Ping Status</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <spacer name="horizontalSpacer_12">
+                         <property name="orientation">
+                          <enum>Qt::Horizontal</enum>
+                         </property>
+                         <property name="sizeHint" stdset="0">
+                          <size>
+                           <width>40</width>
+                           <height>20</height>
+                          </size>
+                         </property>
+                        </spacer>
+                       </item>
+                       <item>
+                        <widget class="QPushButton" name="pushButton">
+                         <property name="text">
+                          <string>Ping All</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
                      </widget>
                     </item>
-                    <item row="1" column="0">
-                     <widget class="QSplitter" name="splitter_2">
-                      <property name="maximumSize">
-                       <size>
-                        <width>16777215</width>
-                        <height>16777215</height>
-                       </size>
-                      </property>
-                      <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
-                      </property>
-                      <widget class="QLabel" name="label_12">
-                       <property name="text">
-                        <string>Ip 1</string>
-                       </property>
-                      </widget>
-                      <widget class="QLineEdit" name="lineEdit_ip1">
-                       <property name="sizePolicy">
-                        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                         <horstretch>0</horstretch>
-                         <verstretch>0</verstretch>
-                        </sizepolicy>
-                       </property>
-                       <property name="text">
-                        <string/>
-                       </property>
-                      </widget>
-                     </widget>
-                    </item>
-                    <item row="3" column="1">
-                     <widget class="QSplitter" name="splitter_6">
-                      <property name="sizePolicy">
-                       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                        <horstretch>0</horstretch>
-                        <verstretch>0</verstretch>
-                       </sizepolicy>
-                      </property>
-                      <property name="minimumSize">
-                       <size>
-                        <width>180</width>
-                        <height>0</height>
-                       </size>
-                      </property>
-                      <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
-                      </property>
-                      <widget class="QLabel" name="label_24">
-                       <property name="text">
-                        <string>Mac Address</string>
-                       </property>
-                      </widget>
-                      <widget class="QLineEdit" name="lineEdit_mac3">
-                       <property name="sizePolicy">
-                        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                         <horstretch>0</horstretch>
-                         <verstretch>0</verstretch>
-                        </sizepolicy>
-                       </property>
-                       <property name="maximumSize">
-                        <size>
-                         <width>16777215</width>
-                         <height>23</height>
-                        </size>
-                       </property>
-                      </widget>
-                     </widget>
-                    </item>
-                    <item row="1" column="1">
-                     <widget class="QSplitter" name="splitter_4">
-                      <property name="sizePolicy">
-                       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                        <horstretch>0</horstretch>
-                        <verstretch>0</verstretch>
-                       </sizepolicy>
-                      </property>
-                      <property name="minimumSize">
-                       <size>
-                        <width>180</width>
-                        <height>0</height>
-                       </size>
-                      </property>
-                      <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
-                      </property>
-                      <widget class="QLabel" name="label_20">
-                       <property name="text">
-                        <string>Mac Address</string>
-                       </property>
-                      </widget>
-                      <widget class="QLineEdit" name="lineEdit_mac1">
-                       <property name="sizePolicy">
-                        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                         <horstretch>0</horstretch>
-                         <verstretch>0</verstretch>
-                        </sizepolicy>
-                       </property>
-                      </widget>
-                     </widget>
-                    </item>
-                    <item row="2" column="0">
-                     <widget class="QSplitter" name="splitter_3">
-                      <property name="maximumSize">
-                       <size>
-                        <width>16777215</width>
-                        <height>16777215</height>
-                       </size>
-                      </property>
-                      <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
-                      </property>
-                      <widget class="QLabel" name="label_19">
-                       <property name="text">
-                        <string>Ip 2</string>
-                       </property>
-                      </widget>
-                      <widget class="QLineEdit" name="lineEdit_ip2">
-                       <property name="sizePolicy">
-                        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                         <horstretch>0</horstretch>
-                         <verstretch>0</verstretch>
-                        </sizepolicy>
-                       </property>
-                       <property name="text">
-                        <string/>
-                       </property>
-                      </widget>
-                     </widget>
-                    </item>
-                    <item row="3" column="0">
-                     <widget class="QSplitter" name="splitter_7">
-                      <property name="maximumSize">
-                       <size>
-                        <width>16777215</width>
-                        <height>16777215</height>
-                       </size>
-                      </property>
-                      <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
-                      </property>
-                      <widget class="QLabel" name="label_25">
-                       <property name="text">
-                        <string>Ip 3</string>
-                       </property>
-                      </widget>
-                      <widget class="QLineEdit" name="lineEdit_ip3">
-                       <property name="sizePolicy">
-                        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                         <horstretch>0</horstretch>
-                         <verstretch>0</verstretch>
-                        </sizepolicy>
-                       </property>
-                       <property name="text">
-                        <string/>
-                       </property>
-                      </widget>
-                     </widget>
-                    </item>
-                    <item row="4" column="1">
-                     <widget class="QSplitter" name="splitter_8">
-                      <property name="minimumSize">
-                       <size>
-                        <width>180</width>
-                        <height>0</height>
-                       </size>
-                      </property>
-                      <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
-                      </property>
-                      <widget class="QLabel" name="label_26">
-                       <property name="text">
-                        <string>Mac Address</string>
-                       </property>
-                      </widget>
-                      <widget class="QLineEdit" name="lineEdit_mac4">
-                       <property name="sizePolicy">
-                        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                         <horstretch>0</horstretch>
-                         <verstretch>0</verstretch>
-                        </sizepolicy>
-                       </property>
-                      </widget>
-                     </widget>
-                    </item>
-                    <item row="5" column="1">
-                     <widget class="QSplitter" name="splitter_11">
-                      <property name="minimumSize">
-                       <size>
-                        <width>180</width>
-                        <height>0</height>
-                       </size>
-                      </property>
-                      <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
-                      </property>
-                      <widget class="QLabel" name="label_29">
-                       <property name="text">
-                        <string>Mac Address</string>
-                       </property>
-                      </widget>
-                      <widget class="QLineEdit" name="lineEdit_mac5">
-                       <property name="sizePolicy">
-                        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                         <horstretch>0</horstretch>
-                         <verstretch>0</verstretch>
-                        </sizepolicy>
-                       </property>
-                      </widget>
-                     </widget>
-                    </item>
-                    <item row="4" column="0">
-                     <widget class="QSplitter" name="splitter_9">
-                      <property name="maximumSize">
-                       <size>
-                        <width>16777215</width>
-                        <height>16777215</height>
-                       </size>
-                      </property>
-                      <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
-                      </property>
-                      <widget class="QLabel" name="label_27">
-                       <property name="text">
-                        <string>Ip 4</string>
-                       </property>
-                      </widget>
-                      <widget class="QLineEdit" name="lineEdit_ip4">
-                       <property name="sizePolicy">
-                        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                         <horstretch>0</horstretch>
-                         <verstretch>0</verstretch>
-                        </sizepolicy>
-                       </property>
-                      </widget>
-                     </widget>
-                    </item>
-                    <item row="5" column="0">
-                     <widget class="QSplitter" name="splitter_10">
-                      <property name="maximumSize">
-                       <size>
-                        <width>16777215</width>
-                        <height>16777215</height>
-                       </size>
-                      </property>
-                      <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
-                      </property>
-                      <widget class="QLabel" name="label_28">
-                       <property name="text">
-                        <string>Ip 5</string>
-                       </property>
-                      </widget>
-                      <widget class="QLineEdit" name="lineEdit_ip5">
-                       <property name="sizePolicy">
-                        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                         <horstretch>0</horstretch>
-                         <verstretch>0</verstretch>
-                        </sizepolicy>
-                       </property>
-                      </widget>
-                     </widget>
-                    </item>
-                    <item row="3" column="3">
+                    <item row="4" column="6">
                      <widget class="QPushButton" name="pushButton_ping3">
                       <property name="maximumSize">
                        <size>
@@ -763,7 +548,7 @@ QTabBar::close-button:hover {
                       </property>
                      </widget>
                     </item>
-                    <item row="5" column="3">
+                    <item row="6" column="6">
                      <widget class="QPushButton" name="pushButton_ping5">
                       <property name="maximumSize">
                        <size>
@@ -776,20 +561,7 @@ QTabBar::close-button:hover {
                       </property>
                      </widget>
                     </item>
-                    <item row="1" column="3">
-                     <widget class="QPushButton" name="pushButton_ping1">
-                      <property name="maximumSize">
-                       <size>
-                        <width>50</width>
-                        <height>16777215</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>Ping</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="4" column="3">
+                    <item row="5" column="6">
                      <widget class="QPushButton" name="pushButton_ping4">
                       <property name="maximumSize">
                        <size>
@@ -802,7 +574,20 @@ QTabBar::close-button:hover {
                       </property>
                      </widget>
                     </item>
-                    <item row="2" column="3">
+                    <item row="2" column="6">
+                     <widget class="QPushButton" name="pushButton_ping1">
+                      <property name="maximumSize">
+                       <size>
+                        <width>50</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>Ping</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="3" column="6">
                      <widget class="QPushButton" name="pushButton_ping2">
                       <property name="maximumSize">
                        <size>
@@ -815,87 +600,7 @@ QTabBar::close-button:hover {
                       </property>
                      </widget>
                     </item>
-                    <item row="1" column="2">
-                     <widget class="QLabel" name="label_ping_status_ip1">
-                      <property name="minimumSize">
-                       <size>
-                        <width>40</width>
-                        <height>0</height>
-                       </size>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true"/>
-                      </property>
-                      <property name="text">
-                       <string>--</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="2" column="2">
-                     <widget class="QLabel" name="label_ping_status_ip2">
-                      <property name="minimumSize">
-                       <size>
-                        <width>40</width>
-                        <height>0</height>
-                       </size>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true"/>
-                      </property>
-                      <property name="text">
-                       <string>--</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="5" column="2">
-                     <widget class="QLabel" name="label_ping_status_ip5">
-                      <property name="minimumSize">
-                       <size>
-                        <width>40</width>
-                        <height>0</height>
-                       </size>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true"/>
-                      </property>
-                      <property name="text">
-                       <string>--</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="4" column="2">
-                     <widget class="QLabel" name="label_ping_status_ip4">
-                      <property name="minimumSize">
-                       <size>
-                        <width>40</width>
-                        <height>0</height>
-                       </size>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true"/>
-                      </property>
-                      <property name="text">
-                       <string>--</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="3" column="2">
-                     <widget class="QLabel" name="label_ping_status_ip3">
-                      <property name="minimumSize">
-                       <size>
-                        <width>40</width>
-                        <height>0</height>
-                       </size>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true"/>
-                      </property>
-                      <property name="text">
-                       <string>--</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="1">
+                    <item row="0" column="5" colspan="2">
                      <widget class="QPushButton" name="pushButton_5">
                       <property name="sizePolicy">
                        <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
@@ -912,6 +617,450 @@ QTabBar::close-button:hover {
                       <property name="text">
                        <string>Scan Network</string>
                       </property>
+                     </widget>
+                    </item>
+                    <item row="2" column="0" rowspan="5" colspan="4">
+                     <widget class="QFrame" name="frame_22">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>150</height>
+                       </size>
+                      </property>
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                      <layout class="QGridLayout" name="gridLayout_41">
+                       <item row="0" column="0">
+                        <widget class="QSplitter" name="splitter_2">
+                         <property name="maximumSize">
+                          <size>
+                           <width>16777215</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
+                         <property name="orientation">
+                          <enum>Qt::Horizontal</enum>
+                         </property>
+                         <widget class="QLabel" name="label_12">
+                          <property name="text">
+                           <string>Ip 1</string>
+                          </property>
+                         </widget>
+                         <widget class="QLineEdit" name="lineEdit_ip1">
+                          <property name="sizePolicy">
+                           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                           </sizepolicy>
+                          </property>
+                          <property name="text">
+                           <string/>
+                          </property>
+                         </widget>
+                        </widget>
+                       </item>
+                       <item row="0" column="1">
+                        <widget class="QSplitter" name="splitter_4">
+                         <property name="sizePolicy">
+                          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                           <horstretch>0</horstretch>
+                           <verstretch>0</verstretch>
+                          </sizepolicy>
+                         </property>
+                         <property name="minimumSize">
+                          <size>
+                           <width>180</width>
+                           <height>0</height>
+                          </size>
+                         </property>
+                         <property name="orientation">
+                          <enum>Qt::Horizontal</enum>
+                         </property>
+                         <widget class="QLabel" name="label_20">
+                          <property name="text">
+                           <string>Mac Address</string>
+                          </property>
+                         </widget>
+                         <widget class="QLineEdit" name="lineEdit_mac1">
+                          <property name="sizePolicy">
+                           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                           </sizepolicy>
+                          </property>
+                         </widget>
+                        </widget>
+                       </item>
+                       <item row="1" column="0">
+                        <widget class="QSplitter" name="splitter_3">
+                         <property name="maximumSize">
+                          <size>
+                           <width>16777215</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
+                         <property name="orientation">
+                          <enum>Qt::Horizontal</enum>
+                         </property>
+                         <widget class="QLabel" name="label_19">
+                          <property name="text">
+                           <string>Ip 2</string>
+                          </property>
+                         </widget>
+                         <widget class="QLineEdit" name="lineEdit_ip2">
+                          <property name="sizePolicy">
+                           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                           </sizepolicy>
+                          </property>
+                          <property name="text">
+                           <string/>
+                          </property>
+                         </widget>
+                        </widget>
+                       </item>
+                       <item row="1" column="1">
+                        <widget class="QSplitter" name="splitter_5">
+                         <property name="minimumSize">
+                          <size>
+                           <width>180</width>
+                           <height>0</height>
+                          </size>
+                         </property>
+                         <property name="orientation">
+                          <enum>Qt::Horizontal</enum>
+                         </property>
+                         <widget class="QLabel" name="label_21">
+                          <property name="text">
+                           <string>Mac Address</string>
+                          </property>
+                         </widget>
+                         <widget class="QLineEdit" name="lineEdit_mac2">
+                          <property name="sizePolicy">
+                           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                           </sizepolicy>
+                          </property>
+                         </widget>
+                        </widget>
+                       </item>
+                       <item row="2" column="1">
+                        <widget class="QSplitter" name="splitter_6">
+                         <property name="sizePolicy">
+                          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                           <horstretch>0</horstretch>
+                           <verstretch>0</verstretch>
+                          </sizepolicy>
+                         </property>
+                         <property name="minimumSize">
+                          <size>
+                           <width>180</width>
+                           <height>0</height>
+                          </size>
+                         </property>
+                         <property name="orientation">
+                          <enum>Qt::Horizontal</enum>
+                         </property>
+                         <widget class="QLabel" name="label_24">
+                          <property name="text">
+                           <string>Mac Address</string>
+                          </property>
+                         </widget>
+                         <widget class="QLineEdit" name="lineEdit_mac3">
+                          <property name="sizePolicy">
+                           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                           </sizepolicy>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>16777215</width>
+                            <height>23</height>
+                           </size>
+                          </property>
+                         </widget>
+                        </widget>
+                       </item>
+                       <item row="2" column="0">
+                        <widget class="QSplitter" name="splitter_7">
+                         <property name="maximumSize">
+                          <size>
+                           <width>16777215</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
+                         <property name="orientation">
+                          <enum>Qt::Horizontal</enum>
+                         </property>
+                         <widget class="QLabel" name="label_25">
+                          <property name="text">
+                           <string>Ip 3</string>
+                          </property>
+                         </widget>
+                         <widget class="QLineEdit" name="lineEdit_ip3">
+                          <property name="sizePolicy">
+                           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                           </sizepolicy>
+                          </property>
+                          <property name="text">
+                           <string/>
+                          </property>
+                         </widget>
+                        </widget>
+                       </item>
+                       <item row="4" column="1">
+                        <widget class="QSplitter" name="splitter_11">
+                         <property name="minimumSize">
+                          <size>
+                           <width>180</width>
+                           <height>0</height>
+                          </size>
+                         </property>
+                         <property name="orientation">
+                          <enum>Qt::Horizontal</enum>
+                         </property>
+                         <widget class="QLabel" name="label_29">
+                          <property name="text">
+                           <string>Mac Address</string>
+                          </property>
+                         </widget>
+                         <widget class="QLineEdit" name="lineEdit_mac5">
+                          <property name="sizePolicy">
+                           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                           </sizepolicy>
+                          </property>
+                         </widget>
+                        </widget>
+                       </item>
+                       <item row="3" column="1">
+                        <widget class="QSplitter" name="splitter_8">
+                         <property name="minimumSize">
+                          <size>
+                           <width>180</width>
+                           <height>0</height>
+                          </size>
+                         </property>
+                         <property name="orientation">
+                          <enum>Qt::Horizontal</enum>
+                         </property>
+                         <widget class="QLabel" name="label_26">
+                          <property name="text">
+                           <string>Mac Address</string>
+                          </property>
+                         </widget>
+                         <widget class="QLineEdit" name="lineEdit_mac4">
+                          <property name="sizePolicy">
+                           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                           </sizepolicy>
+                          </property>
+                         </widget>
+                        </widget>
+                       </item>
+                       <item row="3" column="0">
+                        <widget class="QSplitter" name="splitter_9">
+                         <property name="maximumSize">
+                          <size>
+                           <width>16777215</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
+                         <property name="orientation">
+                          <enum>Qt::Horizontal</enum>
+                         </property>
+                         <widget class="QLabel" name="label_27">
+                          <property name="text">
+                           <string>Ip 4</string>
+                          </property>
+                         </widget>
+                         <widget class="QLineEdit" name="lineEdit_ip4">
+                          <property name="sizePolicy">
+                           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                           </sizepolicy>
+                          </property>
+                         </widget>
+                        </widget>
+                       </item>
+                       <item row="4" column="0">
+                        <widget class="QSplitter" name="splitter_10">
+                         <property name="maximumSize">
+                          <size>
+                           <width>16777215</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
+                         <property name="orientation">
+                          <enum>Qt::Horizontal</enum>
+                         </property>
+                         <widget class="QLabel" name="label_28">
+                          <property name="text">
+                           <string>Ip 5</string>
+                          </property>
+                         </widget>
+                         <widget class="QLineEdit" name="lineEdit_ip5">
+                          <property name="sizePolicy">
+                           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                           </sizepolicy>
+                          </property>
+                         </widget>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item row="2" column="4" rowspan="5">
+                     <widget class="QFrame" name="frame_23">
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                      <layout class="QGridLayout" name="gridLayout_42">
+                       <item row="0" column="0">
+                        <widget class="QLabel" name="label_78">
+                         <property name="text">
+                          <string>-</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="1" column="0">
+                        <widget class="QLabel" name="label_80">
+                         <property name="text">
+                          <string>-</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="2" column="0">
+                        <widget class="QLabel" name="label_81">
+                         <property name="text">
+                          <string>-</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="3" column="0">
+                        <widget class="QLabel" name="label_82">
+                         <property name="text">
+                          <string>-</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="4" column="0">
+                        <widget class="QLabel" name="label_83">
+                         <property name="text">
+                          <string>-</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item row="2" column="5" rowspan="5">
+                     <widget class="QFrame" name="frame_24">
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                      <layout class="QGridLayout" name="gridLayout_43">
+                       <item row="0" column="0">
+                        <widget class="QLabel" name="label_ping_status_ip1">
+                         <property name="minimumSize">
+                          <size>
+                           <width>40</width>
+                           <height>0</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true"/>
+                         </property>
+                         <property name="text">
+                          <string>--</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="1" column="0">
+                        <widget class="QLabel" name="label_ping_status_ip2">
+                         <property name="minimumSize">
+                          <size>
+                           <width>40</width>
+                           <height>0</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true"/>
+                         </property>
+                         <property name="text">
+                          <string>--</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="2" column="0">
+                        <widget class="QLabel" name="label_ping_status_ip3">
+                         <property name="minimumSize">
+                          <size>
+                           <width>40</width>
+                           <height>0</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true"/>
+                         </property>
+                         <property name="text">
+                          <string>--</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="3" column="0">
+                        <widget class="QLabel" name="label_ping_status_ip4">
+                         <property name="minimumSize">
+                          <size>
+                           <width>40</width>
+                           <height>0</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true"/>
+                         </property>
+                         <property name="text">
+                          <string>--</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="4" column="0">
+                        <widget class="QLabel" name="label_ping_status_ip5">
+                         <property name="minimumSize">
+                          <size>
+                           <width>40</width>
+                           <height>0</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true"/>
+                         </property>
+                         <property name="text">
+                          <string>--</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
                      </widget>
                     </item>
                    </layout>
@@ -1463,111 +1612,6 @@ QTabBar::close-button:hover {
              </property>
             </spacer>
            </item>
-           <item row="1" column="1">
-            <widget class="QGroupBox" name="groupBox_2">
-             <property name="title">
-              <string>Sites Config</string>
-             </property>
-             <layout class="QGridLayout" name="gridLayout_25">
-              <item row="2" column="0">
-               <widget class="QLabel" name="label_64">
-                <property name="text">
-                 <string>Site Name 3</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_62">
-                <property name="text">
-                 <string>Site Name 1</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="label_63">
-                <property name="text">
-                 <string>Site Name 2</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QLineEdit" name="lineEdit_site_name1"/>
-              </item>
-              <item row="1" column="1">
-               <widget class="QLineEdit" name="lineEdit_site_name2"/>
-              </item>
-              <item row="1" column="2">
-               <widget class="QLabel" name="label_status_site2">
-                <property name="text">
-                 <string>Status Site 2</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="1">
-               <widget class="QLineEdit" name="lineEdit_site_name3"/>
-              </item>
-              <item row="0" column="2">
-               <widget class="QLabel" name="label_status_site1">
-                <property name="text">
-                 <string>Status Site 1</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="2">
-               <widget class="QLabel" name="label_status_site3">
-                <property name="text">
-                 <string>Status Site 3</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="3">
-               <widget class="QLabel" name="label_status_site1_2">
-                <property name="text">
-                 <string>Visited ?</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="3">
-               <widget class="QLabel" name="label_status_site3_2">
-                <property name="text">
-                 <string>Visited ?</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="3">
-               <widget class="QLabel" name="label_status_site2_2">
-                <property name="text">
-                 <string>Visited ?</string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="2" colspan="2">
-               <widget class="QPushButton" name="pushButton_site_block">
-                <property name="text">
-                 <string>Block Sites</string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="1">
-               <widget class="QCheckBox" name="checkBox_disable_www">
-                <property name="text">
-                 <string>Disable add www / .com</string>
-                </property>
-                <property name="tristate">
-                 <bool>false</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="0">
-               <widget class="QCheckBox" name="checkBox">
-                <property name="text">
-                 <string>Save To DB</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
            <item row="1" column="2">
             <spacer name="horizontalSpacer_8">
              <property name="orientation">
@@ -1593,6 +1637,186 @@ QTabBar::close-button:hover {
               </size>
              </property>
             </spacer>
+           </item>
+           <item row="1" column="1">
+            <widget class="QGroupBox" name="groupBox_2">
+             <property name="title">
+              <string>Sites Config</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_25">
+              <item row="3" column="0" colspan="2">
+               <widget class="QSplitter" name="splitter_28">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <widget class="QLabel" name="label_63">
+                 <property name="text">
+                  <string>Site Name 2</string>
+                 </property>
+                </widget>
+                <widget class="QLineEdit" name="lineEdit_site_name2"/>
+               </widget>
+              </item>
+              <item row="4" column="0" colspan="2">
+               <widget class="QSplitter" name="splitter_29">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <widget class="QLabel" name="label_64">
+                 <property name="text">
+                  <string>Site Name 3</string>
+                 </property>
+                </widget>
+                <widget class="QLineEdit" name="lineEdit_site_name3"/>
+               </widget>
+              </item>
+              <item row="1" column="0" rowspan="2" colspan="2">
+               <widget class="QSplitter" name="splitter">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <widget class="QLabel" name="label_62">
+                 <property name="text">
+                  <string>Site Name 1</string>
+                 </property>
+                </widget>
+                <widget class="QLineEdit" name="lineEdit_site_name1"/>
+               </widget>
+              </item>
+              <item row="0" column="2" colspan="3">
+               <widget class="QLabel" name="label_status_site1_6">
+                <property name="text">
+                 <string>Status From DB</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="5">
+               <widget class="QLabel" name="label_status_site_3">
+                <property name="text">
+                 <string>Visited ?</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="5">
+               <widget class="QLabel" name="label_status_site_2">
+                <property name="text">
+                 <string>Visited ?</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="6">
+               <widget class="QLabel" name="label_website_host_1">
+                <property name="text">
+                 <string>--</string>
+                </property>
+                <property name="scaledContents">
+                 <bool>false</bool>
+                </property>
+                <property name="wordWrap">
+                 <bool>false</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="5">
+               <widget class="QLabel" name="label_status_site1_4">
+                <property name="text">
+                 <string>Visited</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="6">
+               <widget class="QLabel" name="label_status_site1_5">
+                <property name="minimumSize">
+                 <size>
+                  <width>200</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Host Website</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="2" rowspan="2" colspan="3">
+               <widget class="QLabel" name="label_status_site1">
+                <property name="text">
+                 <string>Status Site 1</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="6" rowspan="2">
+               <widget class="QLabel" name="label_website_host_2">
+                <property name="text">
+                 <string>--</string>
+                </property>
+                <property name="scaledContents">
+                 <bool>false</bool>
+                </property>
+                <property name="wordWrap">
+                 <bool>false</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="5" rowspan="2">
+               <widget class="QLabel" name="label_status_site_1">
+                <property name="text">
+                 <string>Visited ?</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="2" colspan="3">
+               <widget class="QLabel" name="label_status_site3">
+                <property name="text">
+                 <string>Status Site 3</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="6">
+               <widget class="QLabel" name="label_website_host_3">
+                <property name="text">
+                 <string>--</string>
+                </property>
+                <property name="scaledContents">
+                 <bool>false</bool>
+                </property>
+                <property name="wordWrap">
+                 <bool>false</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="2" colspan="3">
+               <widget class="QLabel" name="label_status_site2">
+                <property name="text">
+                 <string>Status Site 2</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="6">
+               <widget class="QPushButton" name="pushButton_site_block">
+                <property name="text">
+                 <string>Block New Sites</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="0">
+               <widget class="QCheckBox" name="checkBox_disable_www">
+                <property name="text">
+                 <string>Disable add www / .com</string>
+                </property>
+                <property name="tristate">
+                 <bool>false</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="2" colspan="4">
+               <widget class="QCheckBox" name="checkBox">
+                <property name="text">
+                 <string>With Save To DB</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
            </item>
           </layout>
          </widget>
@@ -2338,7 +2562,464 @@ QTabBar::close-button:hover {
               <enum>QFrame::Raised</enum>
              </property>
              <layout class="QGridLayout" name="gridLayout_9">
-              <item row="0" column="0">
+              <item row="2" column="0">
+               <widget class="QFrame" name="frame_7">
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QGridLayout" name="gridLayout_16">
+                 <item row="0" column="0">
+                  <spacer name="horizontalSpacer_3">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>404</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item row="0" column="2">
+                  <spacer name="horizontalSpacer_4">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>404</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QGroupBox" name="groupBox_4">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>200</height>
+                    </size>
+                   </property>
+                   <property name="title">
+                    <string>Internet Speed</string>
+                   </property>
+                   <layout class="QGridLayout" name="gridLayout_15">
+                    <item row="6" column="0" colspan="2">
+                     <layout class="QHBoxLayout" name="horizontalLayout_20">
+                      <item>
+                       <widget class="QLabel" name="label_17">
+                        <property name="text">
+                         <string>Sponsor</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLineEdit" name="lineEdit_sponsor">
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
+                        </property>
+                        <property name="text">
+                         <string>-</string>
+                        </property>
+                        <property name="readOnly">
+                         <bool>true</bool>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item row="0" column="0">
+                     <layout class="QHBoxLayout" name="horizontalLayout_5">
+                      <item>
+                       <widget class="QLabel" name="label_7">
+                        <property name="text">
+                         <string>Download Speed</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLineEdit" name="lineEdit_download">
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>60</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="text">
+                         <string>0</string>
+                        </property>
+                        <property name="readOnly">
+                         <bool>true</bool>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_6">
+                        <property name="text">
+                         <string>MB/S</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item row="0" column="1">
+                     <layout class="QHBoxLayout" name="horizontalLayout_15">
+                      <item>
+                       <widget class="QLabel" name="label_9">
+                        <property name="text">
+                         <string>Ping</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLineEdit" name="lineEdit_ping">
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>60</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                        <property name="readOnly">
+                         <bool>true</bool>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_8">
+                        <property name="text">
+                         <string>ms</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item row="1" column="0">
+                     <layout class="QHBoxLayout" name="horizontalLayout_14">
+                      <item>
+                       <widget class="QLabel" name="label_11">
+                        <property name="text">
+                         <string>Upload Speed</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLineEdit" name="lineEdit_upload">
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>60</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="text">
+                         <string>0</string>
+                        </property>
+                        <property name="readOnly">
+                         <bool>true</bool>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_15">
+                        <property name="text">
+                         <string>MB/S</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item row="8" column="1" colspan="3">
+                     <layout class="QHBoxLayout" name="horizontalLayout_19">
+                      <item>
+                       <widget class="QLabel" name="label_31">
+                        <property name="text">
+                         <string>Lat</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLineEdit" name="lineEdit_lat">
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
+                        </property>
+                        <property name="text">
+                         <string>-</string>
+                        </property>
+                        <property name="readOnly">
+                         <bool>true</bool>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item row="5" column="2" colspan="3">
+                     <layout class="QHBoxLayout" name="horizontalLayout_21">
+                      <item>
+                       <widget class="QLabel" name="label_30">
+                        <property name="text">
+                         <string>City</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLineEdit" name="lineEdit_city">
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
+                        </property>
+                        <property name="text">
+                         <string>-</string>
+                        </property>
+                        <property name="readOnly">
+                         <bool>true</bool>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item row="0" column="4">
+                     <widget class="QPushButton" name="pushButton_test_speed">
+                      <property name="enabled">
+                       <bool>true</bool>
+                      </property>
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="text">
+                       <string>Test Speed</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="8" column="4">
+                     <layout class="QHBoxLayout" name="horizontalLayout_18">
+                      <item>
+                       <widget class="QLabel" name="label_46">
+                        <property name="text">
+                         <string>Lon</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLineEdit" name="lineEdit_lon">
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
+                        </property>
+                        <property name="text">
+                         <string>-</string>
+                        </property>
+                        <property name="readOnly">
+                         <bool>true</bool>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item row="8" column="0">
+                     <widget class="QLabel" name="label_test_time">
+                      <property name="text">
+                       <string>Last Scaned :</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="5" column="0" colspan="2">
+                     <layout class="QHBoxLayout" name="horizontalLayout_17">
+                      <item>
+                       <widget class="QLabel" name="label_16">
+                        <property name="text">
+                         <string>Host</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLineEdit" name="lineEdit_host">
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
+                        </property>
+                        <property name="minimumSize">
+                         <size>
+                          <width>200</width>
+                          <height>0</height>
+                         </size>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                        <property name="readOnly">
+                         <bool>true</bool>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item row="1" column="1" colspan="4">
+                     <layout class="QHBoxLayout" name="horizontalLayout_25">
+                      <item>
+                       <widget class="QLabel" name="label_90">
+                        <property name="text">
+                         <string>Country</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLineEdit" name="lineEdit_country">
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
+                        </property>
+                        <property name="text">
+                         <string>-</string>
+                        </property>
+                        <property name="readOnly">
+                         <bool>true</bool>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item row="3" column="0">
+                     <layout class="QHBoxLayout" name="horizontalLayout_29">
+                      <item>
+                       <widget class="QLabel" name="label_94">
+                        <property name="text">
+                         <string>Sponsor Server</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLineEdit" name="lineEdit_sponsor_server">
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
+                        </property>
+                        <property name="minimumSize">
+                         <size>
+                          <width>150</width>
+                          <height>0</height>
+                         </size>
+                        </property>
+                        <property name="text">
+                         <string>-</string>
+                        </property>
+                        <property name="readOnly">
+                         <bool>true</bool>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item row="6" column="3" colspan="2">
+                     <layout class="QHBoxLayout" name="horizontalLayout_42">
+                      <item>
+                       <widget class="QLabel" name="label_110">
+                        <property name="text">
+                         <string>area</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLineEdit" name="lineEdit_area">
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
+                        </property>
+                        <property name="minimumSize">
+                         <size>
+                          <width>80</width>
+                          <height>0</height>
+                         </size>
+                        </property>
+                        <property name="text">
+                         <string>-</string>
+                        </property>
+                        <property name="readOnly">
+                         <bool>true</bool>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item row="3" column="1" colspan="4">
+                     <layout class="QHBoxLayout" name="horizontalLayout_16">
+                      <item>
+                       <widget class="QLabel" name="label_84">
+                        <property name="text">
+                         <string>IP</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLineEdit" name="lineEdit_global_ip">
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
+                        </property>
+                        <property name="text">
+                         <string>-</string>
+                        </property>
+                        <property name="readOnly">
+                         <bool>true</bool>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item row="1" column="0">
                <widget class="QFrame" name="frame_6">
                 <property name="frameShape">
                  <enum>QFrame::StyledPanel</enum>
@@ -2433,7 +3114,7 @@ color: rgb(220,220,220);</string>
                      </widget>
                     </item>
                     <item>
-                     <widget class="QLabel" name="label_40">
+                     <widget class="QLabel" name="label_all_up">
                       <property name="sizePolicy">
                        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                         <horstretch>0</horstretch>
@@ -2539,7 +3220,7 @@ color: rgb(60, 231, 195);</string>
  color: rgb(128, 102, 168);</string>
                       </property>
                       <property name="text">
-                       <string>192.168.1.2</string>
+                       <string>Global Ip Address</string>
                       </property>
                       <property name="alignment">
                        <set>Qt::AlignCenter</set>
@@ -2655,7 +3336,7 @@ color: rgb(220,220,220);</string>
                      </widget>
                     </item>
                     <item>
-                     <widget class="QLabel" name="label_59">
+                     <widget class="QLabel" name="label_all_down">
                       <property name="sizePolicy">
                        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                         <horstretch>0</horstretch>
@@ -2686,247 +3367,6 @@ color: rgb(60, 231, 195);</string>
                 </layout>
                </widget>
               </item>
-              <item row="1" column="0">
-               <widget class="QFrame" name="frame_7">
-                <property name="frameShape">
-                 <enum>QFrame::StyledPanel</enum>
-                </property>
-                <property name="frameShadow">
-                 <enum>QFrame::Raised</enum>
-                </property>
-                <layout class="QGridLayout" name="gridLayout_16">
-                 <item row="0" column="1">
-                  <widget class="QGroupBox" name="groupBox_4">
-                   <property name="minimumSize">
-                    <size>
-                     <width>0</width>
-                     <height>200</height>
-                    </size>
-                   </property>
-                   <property name="title">
-                    <string>Internet Speed</string>
-                   </property>
-                   <layout class="QGridLayout" name="gridLayout_15">
-                    <item row="0" column="0" colspan="2">
-                     <widget class="QLabel" name="label_7">
-                      <property name="text">
-                       <string>Download Speed</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="2" colspan="2">
-                     <widget class="QLineEdit" name="lineEdit_download">
-                      <property name="maximumSize">
-                       <size>
-                        <width>60</width>
-                        <height>16777215</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>0</string>
-                      </property>
-                      <property name="readOnly">
-                       <bool>true</bool>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="4">
-                     <widget class="QLabel" name="label_6">
-                      <property name="text">
-                       <string>MB/S</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="5" colspan="2">
-                     <widget class="QLabel" name="label_11">
-                      <property name="text">
-                       <string>Upload Speed</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="7">
-                     <widget class="QLineEdit" name="lineEdit_upload">
-                      <property name="maximumSize">
-                       <size>
-                        <width>60</width>
-                        <height>16777215</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>0</string>
-                      </property>
-                      <property name="readOnly">
-                       <bool>true</bool>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="8">
-                     <widget class="QLabel" name="label_15">
-                      <property name="text">
-                       <string>MB/S</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="1" column="0">
-                     <widget class="QLabel" name="label_9">
-                      <property name="text">
-                       <string>Ping</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="1" column="1" colspan="2">
-                     <widget class="QLineEdit" name="lineEdit_ping">
-                      <property name="maximumSize">
-                       <size>
-                        <width>60</width>
-                        <height>16777215</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string/>
-                      </property>
-                      <property name="readOnly">
-                       <bool>true</bool>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="1" column="3" colspan="2">
-                     <widget class="QLabel" name="label_8">
-                      <property name="text">
-                       <string>ms</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="1" column="5">
-                     <widget class="QLabel" name="label_17">
-                      <property name="text">
-                       <string>Sponsor</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="1" column="6" colspan="3">
-                     <widget class="QLineEdit" name="lineEdit_sponsor">
-                      <property name="text">
-                       <string>-</string>
-                      </property>
-                      <property name="readOnly">
-                       <bool>true</bool>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="2" column="0">
-                     <widget class="QLabel" name="label_16">
-                      <property name="text">
-                       <string>Host</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="2" column="1" colspan="4">
-                     <widget class="QLineEdit" name="lineEdit_host">
-                      <property name="text">
-                       <string/>
-                      </property>
-                      <property name="readOnly">
-                       <bool>true</bool>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="2" column="5">
-                     <widget class="QLabel" name="label_30">
-                      <property name="text">
-                       <string>City</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="2" column="6" colspan="3">
-                     <widget class="QLineEdit" name="lineEdit_city">
-                      <property name="text">
-                       <string>-</string>
-                      </property>
-                      <property name="readOnly">
-                       <bool>true</bool>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="3" column="0">
-                     <widget class="QLabel" name="label_46">
-                      <property name="text">
-                       <string>Lon</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="3" column="1" colspan="4">
-                     <widget class="QLineEdit" name="lineEdit_lon">
-                      <property name="text">
-                       <string>-</string>
-                      </property>
-                      <property name="readOnly">
-                       <bool>true</bool>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="3" column="5">
-                     <widget class="QLabel" name="label_31">
-                      <property name="text">
-                       <string>Lat</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="3" column="6" colspan="3">
-                     <widget class="QLineEdit" name="lineEdit_lat">
-                      <property name="text">
-                       <string>-</string>
-                      </property>
-                      <property name="readOnly">
-                       <bool>true</bool>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
-                 </item>
-                 <item row="1" column="1">
-                  <spacer name="verticalSpacer_3">
-                   <property name="orientation">
-                    <enum>Qt::Vertical</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>20</width>
-                     <height>182</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                 <item row="0" column="0">
-                  <spacer name="horizontalSpacer_3">
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>404</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                 <item row="0" column="2">
-                  <spacer name="horizontalSpacer_4">
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>404</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                </layout>
-               </widget>
-              </item>
              </layout>
             </widget>
            </item>
@@ -2945,509 +3385,567 @@ color: rgb(60, 231, 195);</string>
              <property name="frameShadow">
               <enum>QFrame::Raised</enum>
              </property>
-             <widget class="QFrame" name="frame_17">
-              <property name="geometry">
-               <rect>
-                <x>10</x>
-                <y>30</y>
-                <width>841</width>
-                <height>311</height>
-               </rect>
-              </property>
-              <property name="frameShape">
-               <enum>QFrame::StyledPanel</enum>
-              </property>
-              <property name="frameShadow">
-               <enum>QFrame::Raised</enum>
-              </property>
-              <widget class="QGroupBox" name="groupBox_3">
-               <property name="geometry">
-                <rect>
-                 <x>0</x>
-                 <y>0</y>
-                 <width>831</width>
-                 <height>301</height>
-                </rect>
-               </property>
-               <property name="title">
-                <string>Devices Ping</string>
-               </property>
-               <widget class="QSplitter" name="splitter_19">
-                <property name="geometry">
-                 <rect>
-                  <x>20</x>
-                  <y>30</y>
-                  <width>178</width>
-                  <height>23</height>
-                 </rect>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
+             <layout class="QGridLayout" name="gridLayout_48">
+              <item row="0" column="0">
+               <widget class="QSplitter" name="splitter_31">
                 <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
+                 <enum>Qt::Vertical</enum>
                 </property>
-                <widget class="QLabel" name="label_32">
-                 <property name="text">
-                  <string>Ip 1</string>
+                <widget class="QFrame" name="frame_17">
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
                  </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_50">
+                  <item row="0" column="0" colspan="3">
+                   <widget class="QGroupBox" name="groupBox_3">
+                    <property name="title">
+                     <string>Devices Ping</string>
+                    </property>
+                    <layout class="QGridLayout" name="gridLayout_47">
+                     <item row="0" column="0">
+                      <widget class="QSplitter" name="splitter_19">
+                       <property name="maximumSize">
+                        <size>
+                         <width>16777215</width>
+                         <height>16777215</height>
+                        </size>
+                       </property>
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                       <widget class="QLabel" name="label_32">
+                        <property name="text">
+                         <string>Ip 1</string>
+                        </property>
+                       </widget>
+                       <widget class="QLineEdit" name="lineEdit_ip_to_ping_1">
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
+                        </property>
+                        <property name="text">
+                         <string>192.168.1.5</string>
+                        </property>
+                       </widget>
+                      </widget>
+                     </item>
+                     <item row="0" column="1">
+                      <widget class="QSplitter" name="splitter_20">
+                       <property name="maximumSize">
+                        <size>
+                         <width>16777215</width>
+                         <height>16777215</height>
+                        </size>
+                       </property>
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                       <widget class="QLabel" name="label_39">
+                        <property name="text">
+                         <string>Count Ping</string>
+                        </property>
+                       </widget>
+                       <widget class="QLineEdit" name="lineEdit_ip1_ping_count">
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                      </widget>
+                     </item>
+                     <item row="0" column="2">
+                      <widget class="QSplitter" name="splitter_21">
+                       <property name="maximumSize">
+                        <size>
+                         <width>16777215</width>
+                         <height>16777215</height>
+                        </size>
+                       </property>
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                       <widget class="QLabel" name="label_58">
+                        <property name="text">
+                         <string>Last Seen</string>
+                        </property>
+                       </widget>
+                       <widget class="QLineEdit" name="lineEdit_ip1_ping_last">
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                      </widget>
+                     </item>
+                     <item row="1" column="0">
+                      <widget class="QSplitter" name="splitter_24">
+                       <property name="maximumSize">
+                        <size>
+                         <width>16777215</width>
+                         <height>16777215</height>
+                        </size>
+                       </property>
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                       <widget class="QLabel" name="label_67">
+                        <property name="text">
+                         <string>Ip 2</string>
+                        </property>
+                       </widget>
+                       <widget class="QLineEdit" name="lineEdit_ip_to_ping_2">
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                      </widget>
+                     </item>
+                     <item row="1" column="1">
+                      <widget class="QSplitter" name="splitter_23">
+                       <property name="maximumSize">
+                        <size>
+                         <width>16777215</width>
+                         <height>16777215</height>
+                        </size>
+                       </property>
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                       <widget class="QLabel" name="label_66">
+                        <property name="text">
+                         <string>Count Ping</string>
+                        </property>
+                       </widget>
+                       <widget class="QLineEdit" name="lineEdit_ip2_ping_count">
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                      </widget>
+                     </item>
+                     <item row="1" column="2">
+                      <widget class="QSplitter" name="splitter_22">
+                       <property name="maximumSize">
+                        <size>
+                         <width>16777215</width>
+                         <height>16777215</height>
+                        </size>
+                       </property>
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                       <widget class="QLabel" name="label_65">
+                        <property name="text">
+                         <string>Last Seen</string>
+                        </property>
+                       </widget>
+                       <widget class="QLineEdit" name="lineEdit_ip1_ping_last_2">
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                      </widget>
+                     </item>
+                     <item row="2" column="0">
+                      <widget class="QSplitter" name="splitter_27">
+                       <property name="maximumSize">
+                        <size>
+                         <width>16777215</width>
+                         <height>16777215</height>
+                        </size>
+                       </property>
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                       <widget class="QLabel" name="label_70">
+                        <property name="text">
+                         <string>Ip 3</string>
+                        </property>
+                       </widget>
+                       <widget class="QLineEdit" name="lineEdit_ip_to_ping_3">
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                      </widget>
+                     </item>
+                     <item row="2" column="1">
+                      <widget class="QSplitter" name="splitter_26">
+                       <property name="maximumSize">
+                        <size>
+                         <width>16777215</width>
+                         <height>16777215</height>
+                        </size>
+                       </property>
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                       <widget class="QLabel" name="label_69">
+                        <property name="text">
+                         <string>Count Ping</string>
+                        </property>
+                       </widget>
+                       <widget class="QLineEdit" name="lineEdit_ip3_ping_count">
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                      </widget>
+                     </item>
+                     <item row="2" column="2">
+                      <widget class="QSplitter" name="splitter_25">
+                       <property name="maximumSize">
+                        <size>
+                         <width>16777215</width>
+                         <height>16777215</height>
+                        </size>
+                       </property>
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                       <widget class="QLabel" name="label_68">
+                        <property name="text">
+                         <string>Last Seen</string>
+                        </property>
+                       </widget>
+                       <widget class="QLineEdit" name="lineEdit_ip1_ping_last_3">
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                  <item row="0" column="3" rowspan="2">
+                   <widget class="QFrame" name="frame_25">
+                    <property name="frameShape">
+                     <enum>QFrame::StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Raised</enum>
+                    </property>
+                    <layout class="QGridLayout" name="gridLayout_49">
+                     <item row="0" column="0">
+                      <layout class="QGridLayout" name="gridLayout_44">
+                       <item row="0" column="1">
+                        <widget class="QCheckBox" name="checkBox_ping_ip_scanned">
+                         <property name="text">
+                          <string>IP Scanned</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="1" column="1">
+                        <widget class="QCheckBox" name="checkBox_save_ping_db">
+                         <property name="text">
+                          <string>Save Ping To DB</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="0" column="0">
+                        <layout class="QHBoxLayout" name="horizontalLayout_13">
+                         <item>
+                          <widget class="QLabel" name="label_79">
+                           <property name="text">
+                            <string>Timeout</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QSpinBox" name="spinBox_ping_timeout">
+                           <property name="value">
+                            <number>10</number>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                       <item row="1" column="0">
+                        <layout class="QHBoxLayout" name="horizontalLayout_12">
+                         <item>
+                          <widget class="QLabel" name="label_77">
+                           <property name="text">
+                            <string>Step By</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QDoubleSpinBox" name="doubleSpinBox_ping_stepby">
+                           <property name="value">
+                            <double>1.000000000000000</double>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                       <item row="2" column="0">
+                        <widget class="QCheckBox" name="checkBox_ping_timer">
+                         <property name="text">
+                          <string> Timer Check</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="2" column="1">
+                        <widget class="QCheckBox" name="checkBox_save_device_db">
+                         <property name="text">
+                          <string>Save Devices To DB</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                     <item row="1" column="0">
+                      <layout class="QGridLayout" name="gridLayout_46">
+                       <item row="0" column="1">
+                        <layout class="QHBoxLayout" name="horizontalLayout_22">
+                         <item>
+                          <widget class="QLabel" name="label_76">
+                           <property name="text">
+                            <string>Pings Count (DB)</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QLineEdit" name="lineEdit_count_ping_3">
+                           <property name="text">
+                            <string/>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                       <item row="1" column="1">
+                        <layout class="QHBoxLayout" name="horizontalLayout_23">
+                         <item>
+                          <widget class="QLabel" name="label_86">
+                           <property name="text">
+                            <string>Devices Count (DB)</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QLineEdit" name="lineEdit_count_device">
+                           <property name="text">
+                            <string/>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                       <item row="0" column="0" rowspan="2">
+                        <widget class="QPushButton" name="pushButton_refresh_db_2">
+                         <property name="text">
+                          <string>Refresh</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QFrame" name="frame_26">
+                    <property name="frameShape">
+                     <enum>QFrame::StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Raised</enum>
+                    </property>
+                    <layout class="QGridLayout" name="gridLayout_51">
+                     <item row="0" column="0">
+                      <widget class="QPushButton" name="pushButton_checker_ping_3">
+                       <property name="text">
+                        <string>Start Ping Checker</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <spacer name="horizontalSpacer_13">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>380</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                 </layout>
                 </widget>
-                <widget class="QLineEdit" name="lineEdit_ip_to_ping_1">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
+                <widget class="QFrame" name="frame_19">
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
                  </property>
-                 <property name="text">
-                  <string/>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
                  </property>
+                 <layout class="QGridLayout" name="gridLayout_45">
+                  <item row="0" column="1">
+                   <widget class="QPushButton" name="pushButton_get_db_tables">
+                    <property name="text">
+                     <string>Get Data From Db</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="2">
+                   <widget class="QLabel" name="label_89">
+                    <property name="text">
+                     <string>Refresh .. seconds ago</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QPushButton" name="pushButton_4">
+                    <property name="text">
+                     <string>Refresh</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0" colspan="3">
+                   <widget class="QSplitter" name="splitter_30">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <widget class="QWidget" name="layoutWidget">
+                     <layout class="QVBoxLayout" name="verticalLayout_ping">
+                      <item>
+                       <widget class="QLabel" name="label_87">
+                        <property name="text">
+                         <string>Ping Table</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QTableWidget" name="tableWidget1_ping">
+                        <column>
+                         <property name="text">
+                          <string>ID</string>
+                         </property>
+                        </column>
+                        <column>
+                         <property name="text">
+                          <string>Owner</string>
+                         </property>
+                        </column>
+                        <column>
+                         <property name="text">
+                          <string>answer</string>
+                         </property>
+                        </column>
+                        <column>
+                         <property name="text">
+                          <string>Time</string>
+                         </property>
+                        </column>
+                        <column>
+                         <property name="text">
+                          <string>Details</string>
+                         </property>
+                        </column>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                    <widget class="QWidget" name="layoutWidget_2">
+                     <layout class="QVBoxLayout" name="verticalLayout_ping_2">
+                      <item>
+                       <widget class="QLabel" name="label_88">
+                        <property name="text">
+                         <string>Device Table</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QTableWidget" name="tableWidget_dev_db">
+                        <column>
+                         <property name="text">
+                          <string>ID</string>
+                         </property>
+                        </column>
+                        <column>
+                         <property name="text">
+                          <string>IP</string>
+                         </property>
+                        </column>
+                        <column>
+                         <property name="text">
+                          <string>Mac</string>
+                         </property>
+                        </column>
+                        <column>
+                         <property name="text">
+                          <string>Name</string>
+                         </property>
+                        </column>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                   </widget>
+                  </item>
+                 </layout>
                 </widget>
                </widget>
-               <widget class="QSplitter" name="splitter_20">
-                <property name="geometry">
-                 <rect>
-                  <x>210</x>
-                  <y>30</y>
-                  <width>111</width>
-                  <height>23</height>
-                 </rect>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <widget class="QLabel" name="label_39">
-                 <property name="text">
-                  <string>Count Ping</string>
-                 </property>
-                </widget>
-                <widget class="QLineEdit" name="lineEdit_ip1_ping_count">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="text">
-                  <string/>
-                 </property>
-                </widget>
-               </widget>
-               <widget class="QSplitter" name="splitter_21">
-                <property name="geometry">
-                 <rect>
-                  <x>330</x>
-                  <y>30</y>
-                  <width>178</width>
-                  <height>23</height>
-                 </rect>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <widget class="QLabel" name="label_58">
-                 <property name="text">
-                  <string>Last Seen</string>
-                 </property>
-                </widget>
-                <widget class="QLineEdit" name="lineEdit_ip1_ping_last">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="text">
-                  <string/>
-                 </property>
-                </widget>
-               </widget>
-               <widget class="QSplitter" name="splitter_22">
-                <property name="geometry">
-                 <rect>
-                  <x>330</x>
-                  <y>60</y>
-                  <width>178</width>
-                  <height>23</height>
-                 </rect>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <widget class="QLabel" name="label_65">
-                 <property name="text">
-                  <string>Last Seen</string>
-                 </property>
-                </widget>
-                <widget class="QLineEdit" name="lineEdit_ip1_ping_last_2">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="text">
-                  <string/>
-                 </property>
-                </widget>
-               </widget>
-               <widget class="QSplitter" name="splitter_23">
-                <property name="geometry">
-                 <rect>
-                  <x>210</x>
-                  <y>60</y>
-                  <width>111</width>
-                  <height>23</height>
-                 </rect>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <widget class="QLabel" name="label_66">
-                 <property name="text">
-                  <string>Count Ping</string>
-                 </property>
-                </widget>
-                <widget class="QLineEdit" name="lineEdit_ip2_ping_count">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="text">
-                  <string/>
-                 </property>
-                </widget>
-               </widget>
-               <widget class="QSplitter" name="splitter_24">
-                <property name="geometry">
-                 <rect>
-                  <x>20</x>
-                  <y>60</y>
-                  <width>178</width>
-                  <height>23</height>
-                 </rect>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <widget class="QLabel" name="label_67">
-                 <property name="text">
-                  <string>Ip 2</string>
-                 </property>
-                </widget>
-                <widget class="QLineEdit" name="lineEdit_ip_to_ping_2">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="text">
-                  <string/>
-                 </property>
-                </widget>
-               </widget>
-               <widget class="QSplitter" name="splitter_25">
-                <property name="geometry">
-                 <rect>
-                  <x>330</x>
-                  <y>90</y>
-                  <width>178</width>
-                  <height>23</height>
-                 </rect>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <widget class="QLabel" name="label_68">
-                 <property name="text">
-                  <string>Last Seen</string>
-                 </property>
-                </widget>
-                <widget class="QLineEdit" name="lineEdit_ip1_ping_last_3">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="text">
-                  <string/>
-                 </property>
-                </widget>
-               </widget>
-               <widget class="QSplitter" name="splitter_26">
-                <property name="geometry">
-                 <rect>
-                  <x>210</x>
-                  <y>90</y>
-                  <width>111</width>
-                  <height>23</height>
-                 </rect>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <widget class="QLabel" name="label_69">
-                 <property name="text">
-                  <string>Count Ping</string>
-                 </property>
-                </widget>
-                <widget class="QLineEdit" name="lineEdit_ip3_ping_count">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="text">
-                  <string/>
-                 </property>
-                </widget>
-               </widget>
-               <widget class="QSplitter" name="splitter_27">
-                <property name="geometry">
-                 <rect>
-                  <x>20</x>
-                  <y>90</y>
-                  <width>178</width>
-                  <height>23</height>
-                 </rect>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <widget class="QLabel" name="label_70">
-                 <property name="text">
-                  <string>Ip 3</string>
-                 </property>
-                </widget>
-                <widget class="QLineEdit" name="lineEdit_ip_to_ping_3">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="text">
-                  <string/>
-                 </property>
-                </widget>
-               </widget>
-               <widget class="QLabel" name="label_76">
-                <property name="geometry">
-                 <rect>
-                  <x>670</x>
-                  <y>20</y>
-                  <width>81</width>
-                  <height>21</height>
-                 </rect>
-                </property>
-                <property name="text">
-                 <string>Pings Count (DB)</string>
-                </property>
-               </widget>
-               <widget class="QLineEdit" name="lineEdit_count_ping_3">
-                <property name="geometry">
-                 <rect>
-                  <x>760</x>
-                  <y>20</y>
-                  <width>61</width>
-                  <height>20</height>
-                 </rect>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-               <widget class="QPushButton" name="pushButton_refresh_db_2">
-                <property name="geometry">
-                 <rect>
-                  <x>730</x>
-                  <y>50</y>
-                  <width>91</width>
-                  <height>31</height>
-                 </rect>
-                </property>
-                <property name="text">
-                 <string>Refresh</string>
-                </property>
-               </widget>
-               <widget class="QWidget" name="layoutWidget_3">
-                <property name="geometry">
-                 <rect>
-                  <x>690</x>
-                  <y>210</y>
-                  <width>121</width>
-                  <height>31</height>
-                 </rect>
-                </property>
-                <layout class="QHBoxLayout" name="horizontalLayout_12">
-                 <item>
-                  <widget class="QLabel" name="label_77">
-                   <property name="text">
-                    <string>Step By</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QDoubleSpinBox" name="doubleSpinBox_ping_stepby">
-                   <property name="value">
-                    <double>1.000000000000000</double>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </widget>
-               <widget class="QPushButton" name="pushButton_checker_ping_3">
-                <property name="geometry">
-                 <rect>
-                  <x>690</x>
-                  <y>250</y>
-                  <width>121</width>
-                  <height>31</height>
-                 </rect>
-                </property>
-                <property name="text">
-                 <string>Start Ping Checker</string>
-                </property>
-               </widget>
-               <widget class="QWidget" name="layoutWidget_4">
-                <property name="geometry">
-                 <rect>
-                  <x>560</x>
-                  <y>210</y>
-                  <width>121</width>
-                  <height>31</height>
-                 </rect>
-                </property>
-                <layout class="QHBoxLayout" name="horizontalLayout_13">
-                 <item>
-                  <widget class="QLabel" name="label_79">
-                   <property name="text">
-                    <string>Timeout</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QSpinBox" name="spinBox_ping_timeout">
-                   <property name="value">
-                    <number>10</number>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </widget>
-               <widget class="QCheckBox" name="checkBox_save_ping_db">
-                <property name="geometry">
-                 <rect>
-                  <x>560</x>
-                  <y>256</y>
-                  <width>121</width>
-                  <height>21</height>
-                 </rect>
-                </property>
-                <property name="text">
-                 <string>Save To DB</string>
-                </property>
-               </widget>
-               <widget class="QCheckBox" name="checkBox_ping_timer">
-                <property name="geometry">
-                 <rect>
-                  <x>690</x>
-                  <y>180</y>
-                  <width>121</width>
-                  <height>21</height>
-                 </rect>
-                </property>
-                <property name="text">
-                 <string> Timer Check</string>
-                </property>
-               </widget>
-               <widget class="QCheckBox" name="checkBox_ping_ip_scanned">
-                <property name="geometry">
-                 <rect>
-                  <x>560</x>
-                  <y>180</y>
-                  <width>121</width>
-                  <height>21</height>
-                 </rect>
-                </property>
-                <property name="text">
-                 <string>IP Scanned</string>
-                </property>
-               </widget>
-              </widget>
-             </widget>
-             <widget class="QFrame" name="frame_19">
-              <property name="geometry">
-               <rect>
-                <x>10</x>
-                <y>350</y>
-                <width>841</width>
-                <height>271</height>
-               </rect>
-              </property>
-              <property name="frameShape">
-               <enum>QFrame::StyledPanel</enum>
-              </property>
-              <property name="frameShadow">
-               <enum>QFrame::Raised</enum>
-              </property>
-             </widget>
+              </item>
+             </layout>
             </widget>
            </item>
           </layout>
@@ -3464,6 +3962,9 @@ color: rgb(60, 231, 195);</string>
         <width>170</width>
         <height>0</height>
        </size>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
       </property>
       <property name="styleSheet">
        <string notr="true"/>
@@ -3491,6 +3992,9 @@ color: rgb(60, 231, 195);</string>
            <pointsize>12</pointsize>
           </font>
          </property>
+         <property name="autoFillBackground">
+          <bool>false</bool>
+         </property>
          <property name="styleSheet">
           <string notr="true">
 #toolBox::tab {
@@ -3498,7 +4002,6 @@ color: rgb(60, 231, 195);</string>
 	text-align:left;
 	border-radius: 2px;
 }
-
 
 #toolBox::tab:selected {
 	font-weight: bold;
@@ -3525,7 +4028,7 @@ color: rgb(60, 231, 195);</string>
             <x>0</x>
             <y>0</y>
             <width>162</width>
-            <height>640</height>
+            <height>633</height>
            </rect>
           </property>
           <attribute name="icon">
@@ -3683,7 +4186,7 @@ color: rgb(60, 231, 195);</string>
             <x>0</x>
             <y>0</y>
             <width>162</width>
-            <height>640</height>
+            <height>633</height>
            </rect>
           </property>
           <attribute name="icon">

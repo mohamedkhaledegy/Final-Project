@@ -30,21 +30,26 @@ class PingInfo(BaseModel):
     created_at = DateTimeField(default=datetime.datetime.now)
     details = TextField(null=True)
 
-class BlockSite(BaseModel):
-    ip = CharField()
-    host_name = CharField(null=True)
-    details = TextField(null=True)
+# class BlockSite(BaseModel):
+#     url = CharField()
+#     ip = CharField(null=True)
+#     host_name = CharField(null=True)
+#     details = TextField(null=True)
 
-class PacketInfo(BaseModel):
-    time_stamp = CharField(null=True)
-    src_ip = CharField(null=True)
-    dst_ip = CharField(null=True)
-    src_mac = CharField(null=True)
-    dst_mac = CharField(null=True)
-    src_port = CharField(null=True)
-    dst_port = CharField(null=True)
-    host_name = CharField(null=True)
-    type = CharField(null=True)
-    protocol = CharField(null=True)
-    length_packet = CharField(null=True)
-    info = CharField(null=True)
+# class VisitBlockSite(BaseModel):
+#     site = ForeignKeyField(BlockSite,backref="site",null=True)
+#     create_time = DateTimeField(default=datetime.datetime.now, verbose_name="create time")
+    
+# class PacketInfo(BaseModel):
+#     time_stamp = CharField(null=True)
+#     src_ip = CharField(null=True)
+#     dst_ip = CharField(null=True)
+#     src_mac = CharField(null=True)
+#     dst_mac = CharField(null=True)
+#     src_port = CharField(null=True)
+#     dst_port = CharField(null=True)
+#     host_name = CharField(null=True)
+#     type = CharField(null=True)
+#     protocol = CharField(null=True)
+#     length_packet = CharField(null=True)
+#     info = CharField(null=True)

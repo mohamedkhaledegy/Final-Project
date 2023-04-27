@@ -1,5 +1,6 @@
 
 from PySide2.QtCore import Signal,QRunnable,QObject,Slot
+import threading
 
 class WorkerSignals(QObject):
     finished = Signal() # create a signal

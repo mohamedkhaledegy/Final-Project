@@ -23,7 +23,7 @@ from PySide2.QtUiTools import loadUiType
 
 # Import Network Modules
 from scapy import all as sc
-#import pyshark
+# import pyshark
 
 # from front import resource_rc
 
@@ -70,10 +70,25 @@ class Login(QMainWindow , ui_login):
         self.setupUi(self)
         self.btn_open = self.findChild(qtw.QPushButton,"pushButton")
         self.btn_open.clicked.connect(self.log_in_system)
+        
     def log_in_system(self):
-        self.window2 = Main()
-        self.close()
-        self.window2.show()
+        valid_auth = self.authenticate_user()
+        if valid_auth == True:
+            self.window2 = Main()
+            self.close()
+            self.window2.show()
+        else:
+            print("Wrong Password")
+    def authenticate_user(self):
+        self.user = self.findChild(qtw.QLineEdit,"lineEdit_user_log").text()
+        self.password = self.findChild(qtw.QLineEdit,"lineEdit_password_log").text()
+        print(self.user)
+        valid = False
+        user_name = "mk"
+        user_pass = "mk"
+        if self.user == user_name and self.password == user_pass:
+            valid = True
+        return valid
 
 class Main(QMainWindow,ui_main):
     def __init__(self):
@@ -130,7 +145,7 @@ class Main(QMainWindow,ui_main):
         self.win = Login()
         self.close()
         self.win.show()
-
+    
     def set_vars(self):
         ## For DB
         self.db = my_db
@@ -145,6 +160,8 @@ class Main(QMainWindow,ui_main):
         self.LOOPPINGER = True
         self.LOOPTEST = True
         self.LOOPSCAN = True
+        self.LOOPBNDWDTH = True
+        self.LOOPSRVS= True
         self.SNF = True
         self.pkt_num = 0
         self.threadpool = QThreadPool()
@@ -171,6 +188,7 @@ class Main(QMainWindow,ui_main):
             self.lineEdit_count_ping.setText(str(len(pingss)))
             self.lineEdit_count_ping_3.setText(str(len(pingss)))
             self.lineEdit_count_ip.setText(str(len(devss)))
+            self.lineEdit_count_device.setText(str(len(devss)))
             print(len(devss))
             print(len(pingss))
         except:
@@ -235,14 +253,14 @@ class Main(QMainWindow,ui_main):
         }
         try:
             ping_response = self.ping_ip(ip_to_ping)
-            
             label_to_color = self.findChild(qtw.QLabel,f"label_ping_status_ip{num_ip}")
             if ip_to_ping == "" :
-                label_to_color.setStyleSheet(u"background-color: rgb(0, 0, 0);")
+                label_to_color.setStyleSheet("background-color:slategray; border-radius:10px")
+                #label_to_color.setStyleSheet(u"background-color: rgb(0, 0, 0);")
             else:
                 if "Reply from" in ping_response and \
                     not "Destination host unreachable." in ping_response:
-                    label_to_color.setStyleSheet(u"background-color: rgb(0, 255, 0);padding: 2px;")
+                    label_to_color.setStyleSheet("background-color:royalblue; border-radius:10px")
                     ## Find Results In Respons String In Terminal
                     ttl_index = ping_response.find("TTL=")
                     ttl = ping_response[ttl_index+4:ttl_index+7].strip()
@@ -253,11 +271,13 @@ class Main(QMainWindow,ui_main):
                     ip_ping_response['Checked'] = True
                     ip_ping_response['Response'] = True
                     ip_ping_response['TTL'] = ttl
+                    if "time<1" in time_ping:
+                        time_ping = "0"
                     ip_ping_response['ResTime'] = time_ping
                 else:
                     ip_ping_response['Checked'] = True
                     ip_ping_response['Response'] = False
-                    label_to_color.setStyleSheet(u"background-color: rgb(170, 0, 0);")
+                    label_to_color.setStyleSheet(u"background-color: rgb(170, 0, 0); border-radius:10px")
         except Exception as err:
             print("Failed To Ping" , err)
         finally:
@@ -315,7 +335,7 @@ class Main(QMainWindow,ui_main):
         #self.frame_2_circle_progres.rpb_setValue(100)
         print("First Thread Result")
         self.btn_thread.setText("Finished")
-        time.sleep(1)
+        QThread.sleep(1)
 
     def first_thread_finished(self):
         print("First Thread Scan finished")
@@ -346,6 +366,7 @@ class Main(QMainWindow,ui_main):
 
     def third_thrd_speed_test(self):
         self.frame_3_circle_progres.show()
+        self.pushButton_test_speed.setText("Processing...")
         print("Start Test Speed")
         global speed_test_dict
         st = speedtest.Speedtest()
@@ -422,10 +443,12 @@ class Main(QMainWindow,ui_main):
 
     def third_thrd_speed_test_result(self):
         print("Third Thread Scan Result")
-    
+        self.pushButton_test_speed.setText("Test again")
 
     def fourth_thrd_speed_test_result(self):
         print("Fourth Thread Speed Test Progress Result")
+        self.LOOPTEST = True
+        self.frame_3_circle_progres.hide()
 
     def second_thread_scan_finished(self):
         print("Second Thread Scan finished")
@@ -434,10 +457,23 @@ class Main(QMainWindow,ui_main):
         print("Third Thread Speed Test Finished")
         down_speed_mb = return_bytes_by_mb(speed_test_dict['download'])
         up_speed_mb = return_bytes_by_mb(speed_test_dict['upload'])
+        time_stamp = speed_test_dict['timestamp']
+        all_uploaded = return_bytes_by_mb(speed_test_dict['bytes_sent'])
+        all_downloaded = return_bytes_by_mb(speed_test_dict['bytes_received'])
+        try:
+            time_stamp = round(time_stamp,2)
+            print(time_stamp)
+        except:
+            pass
         # Convert To Limit 2 After ,
         dwn_mb = round(down_speed_mb,2)
         up_mb = round(up_speed_mb,2)
+        all_up = str(round(all_uploaded,2)) + " Mb Uploaded"
+        all_down = str(round(all_downloaded,2)) + " Mb Downloaded"
         ping = round(speed_test_dict['ping'],2)
+        print(time_stamp)
+        print(all_up)
+        print(all_down)
         # Set To Gui
         self.lineEdit_download.setText(str(dwn_mb))
         self.label_download_meter.setText(str(dwn_mb))
@@ -445,11 +481,19 @@ class Main(QMainWindow,ui_main):
         self.label_upload_meter.setText(str(up_mb))
         self.lineEdit_ping.setText(str(ping))
         self.label_meter_ping.setText(str(ping))
+        self.lineEdit_country.setText(str(speed_test_dict['server']['country']))
         self.lineEdit_host.setText(str(speed_test_dict['server']['host']))
-        self.lineEdit_city.setText(str(speed_test_dict['server']['name']))
+        self.lineEdit_sponsor_server.setText(str(speed_test_dict['server']['sponsor']))
+        self.lineEdit_area.setText(str(speed_test_dict['server']['name']))
+        self.lineEdit_city.setText(str(speed_test_dict['client']['country']))
         self.lineEdit_sponsor.setText(str(speed_test_dict['client']['isp']))
         self.lineEdit_lon.setText(str(speed_test_dict['client']['lon']))
         self.lineEdit_lat.setText(str(speed_test_dict['client']['lat']))
+        self.lineEdit_global_ip.setText(str(speed_test_dict['client']['ip']))
+        self.label_all_up.setText(str(all_up))
+        self.label_all_down.setText(str(all_down))
+        self.label_test_time.setText(str(time_stamp))
+        self.label_meter_ip.setText(str(speed_test_dict['client']['ip']))
 
     def fourth_thrd_speed_test_finished(self):
         print("Fourth Thread Speed Test Finished")
@@ -477,7 +521,6 @@ class Main(QMainWindow,ui_main):
         worker.signals.result.connect(self.sniffer_results)
         worker.signals.finished.connect(self.sniffer_finished)
         self.threadpool.start(worker)
-
 
     ###### Network Functions Custom for re view results catched
     def get_serv(self,src_port,dst_port):
@@ -714,7 +757,7 @@ class Main(QMainWindow,ui_main):
     def block_site_worker(self):
         worker = Worker(self.start_block_site_sample)
         self.threadpool.start(worker)
-        
+
     def start_block_site_sample(self):
         """
             BlockSite Functions Start Thread
@@ -760,7 +803,7 @@ class Main(QMainWindow,ui_main):
         worker = Worker(self.start_calculate_bandwitdh_sample)
         #worker.signals.result.connect(self.ping_checker_results)
         self.threadpool.start(worker)
-        
+
     def start_calculate_bandwitdh_sample(self):
         """
             BandWidth Calculate Functions Start Thread
@@ -794,9 +837,10 @@ class Main(QMainWindow,ui_main):
         worker = Worker(self.start_calculate_bandwitdh_services_method1)
         worker2 = Worker(self.start_calculate_bandwitdh_services_method2)
         worker3 = Worker(self.start_sniff_services)
-        #worker.signals.result.connect(self.ping_checker_results)
+        worker.signals.result.connect(self.bandwitdh_services_results)
         self.threadpool.start(worker)
-        global worker_bandwidth_2 , worker_bandwidth_3
+        global worker_bandwidth_1,worker_bandwidth_2 , worker_bandwidth_3
+        worker_bandwidth_1 = worker
         worker_bandwidth_2 = worker2
         worker_bandwidth_3 = worker3
         self.threadpool.start(worker2)
@@ -819,9 +863,8 @@ class Main(QMainWindow,ui_main):
         # self.tableWidget_bandwidth_services.setColumnCount(4)
         # columns = ('PID','Name','Download','Upload')
         # self.tableWidget_bandwidth_services.setHorizontalHeaderLabels(columns)
-        try:
-            while timeout_counter < timeout_ping:
-                time.sleep(step_by)
+        while timeout_counter < timeout_ping and self.LOOPSRVS !=False:
+            try:
                 # self.bandwidth_set_to_dict(response_dic=res)
                 #timeout_counter += step_by
                 time_end = datetime.now()
@@ -830,11 +873,16 @@ class Main(QMainWindow,ui_main):
                 timeout_counter = float(all_time)
                 response_services = print_pid2traffic()
                 self.set_services_bandwidth_to_table(response_services)
-        except:
-            print("Finished Bandwidth Traffic Start")
+                time.sleep(step_by)
+            except Exception as err:
+                time.sleep(step_by)
+                print("Error Bandwidth Traffic",err)
+        print("Finished Bandwidth Traffic Start")
+        self.LOOPSRVS = False
         #self.threadpool.clear()
-        #self.threadpool.cancel(worker_bandwidth_2)
-        #self.threadpool.cancel(worker_bandwidth_3)
+        # self.threadpool.cancel(worker_bandwidth_1)
+        self.threadpool.cancel(worker_bandwidth_2)
+        self.threadpool.cancel(worker_bandwidth_3)
 
     def set_services_bandwidth_to_table(self,resp):
         """
@@ -867,6 +915,11 @@ class Main(QMainWindow,ui_main):
                     #print("dict_resp",dict_resp['name'])
                     count_services += 1
 
+    def bandwitdh_services_results(self):
+        QThread.sleep(2)
+        self.LOOPSRVS = True
+        print("Timer Bandwidth Services Finished")
+
     def start_calculate_bandwitdh_services_method2(self):
         """
             A function that keeps listening for connections on this machine 
@@ -880,26 +933,26 @@ class Main(QMainWindow,ui_main):
         timeout_ping = float(gui_timeout_ping)
         time_st = datetime.now()
         #print("Bandwidth Traffic Start")
-        try:
-            while timeout_counter < timeout_ping:
-                time.sleep(step_by)
+        while self.LOOPSRVS != False:
+            try:
                 time_end = datetime.now()
                 all_time = time_end - time_st
                 all_time = all_time.seconds
                 timeout_counter = float(all_time)
-                while True:
+                #while True:
                     # using psutil, we can grab each connection's source and destination ports
                     # and their process ID
-                    for c in psutil.net_connections():
-                        if c.laddr and c.raddr and c.pid:
-                            # if local address, remote address and PID are in the connection
-                            # add them to our global dictionary
-                            connection2pid[(c.laddr.port, c.raddr.port)] = c.pid
-                            connection2pid[(c.raddr.port, c.laddr.port)] = c.pid
+                for c in psutil.net_connections():
+                    if c.laddr and c.raddr and c.pid:
+                        # if local address, remote address and PID are in the connection
+                        # add them to our global dictionary
+                        connection2pid[(c.laddr.port, c.raddr.port)] = c.pid
+                        connection2pid[(c.raddr.port, c.laddr.port)] = c.pid
+                #time.sleep(step_by)
                     #print(connection2pid)
-        except:
-            pass
-
+            except Exception as err:
+                print("Error",err)
+       
     def start_sniff_services(self):
         gui_step_by = self.findChild(qtw.QDoubleSpinBox,"doubleSpinBox_bandwidth_services").text()
         gui_timeout_ping = self.findChild(qtw.QSpinBox,"spinBox_timeout_bandwidth_services").text()
@@ -907,17 +960,17 @@ class Main(QMainWindow,ui_main):
         step_by = float(gui_step_by)
         timeout_ping = float(gui_timeout_ping)
         time_st = datetime.now()
-        try:
-            while timeout_counter < timeout_ping:
+        while self.LOOPSRVS != False:
+            try:
                 time_end = datetime.now()
                 all_time = time_end - time_st
                 all_time = all_time.seconds
                 timeout_counter = float(all_time)
                 sc.sniff(prn=process_packet, store=False)
-                time.sleep(step_by)
-        except:
-            pass
-
+                #time.sleep(step_by)
+            except Exception as err:
+                print("Error",err)
+                #time.sleep(step_by)
     def process_packet(self,packet):
         global pid2traffic
         try:
@@ -961,12 +1014,40 @@ class Main(QMainWindow,ui_main):
         step_by = float(gui_step_by)
         timeout_ping = float(gui_timeout_ping)
         time_st = datetime.now()
+        ip_scanned_checked = self.checkBox_ping_ip_scanned.isChecked()
         multi_check = self.checkBox_ping_timer.isChecked()
+        save_device_db_check = self.checkBox_save_device_db.isChecked()
         print("Ping Checker Is Running")
+        if save_device_db_check:
+            list_to_check = []
+            for n in range(4):
+                try:
+                    text = self.findChild(qtw.QLineEdit,f'lineEdit_ip_to_ping_{str(n)}').text()
+                    if text != "":
+                        list_to_check.append(text)
+                except:
+                    pass
+            if ip_scanned_checked != True:
+                print("IP Scanned Manual",list_to_check)
+                if len(list_to_check) >= 1:
+                    for ip in list_to_check:
+                        try:
+                            #print("Create IP Scanned In Database Info")
+                            self.insert_ip_to_db(scanned_dic=False,ip_to_save=ip)
+                        except:
+                            self.db.close()
+                            pass
+            else:
+                try:
+                    #print("Create IP Scanned In Database Info")
+                    self.insert_ip_to_db()
+                except:
+                    self.db.close()
+                    pass
         if multi_check:
             while timeout_counter < timeout_ping:
                 self.ping_checker()
-                QThread.msleep(step_by)
+                time.sleep(step_by)
                 #timeout_counter += step_by
                 time_end = datetime.now()
                 all_time = time_end - time_st
@@ -975,7 +1056,6 @@ class Main(QMainWindow,ui_main):
         else:
             self.ping_checker()
         #print(str_time)
-
     def thread_ping_save_in_db(self):
         worker = Worker(self.ping_checker)
         #worker.signals.result.connect(self.ping_checker_results)
@@ -984,6 +1064,7 @@ class Main(QMainWindow,ui_main):
     def ping_checker(self):
         ip_scanned_checked = self.checkBox_ping_ip_scanned.isChecked()
         save_ping_to_db_checked = self.checkBox_save_ping_db.isChecked()
+        save_device_to_db_checked = self.checkBox_save_device_db.isChecked()
         list_to_check = []
         for n in range(4):
             try:
@@ -993,19 +1074,13 @@ class Main(QMainWindow,ui_main):
             except:
                 pass
         #print("Start Create If Not In DB")
-        
         #print("Start Ping Checker")
         if ip_scanned_checked:
-            try:
-                #print("Create IP Scanned In Database Info")
-                self.insert_ip_to_db()
-            except:
-                self.db.close()
-                pass
             try:
                 for row_num , row_info in ip_scanned.items():
                     ip = row_info['IP']
                     mac = row_info['Mac']
+                    ## Get Ip Ping Response And prepare it to save in db if checked 
                     ip_ping_response = self.collect_ping_to_dict(ip)
                     if save_ping_to_db_checked:
                         try:
@@ -1035,6 +1110,7 @@ class Main(QMainWindow,ui_main):
             for ip in list_to_check:
                 ip_ping_response = self.collect_ping_to_dict(ip)
                 print(ip_ping_response)
+                
                 if save_ping_to_db_checked:
                     try:
                         self.db.connect()
@@ -1049,30 +1125,48 @@ class Main(QMainWindow,ui_main):
                         self.db.close()
                         print("Error",err)
                         pass
-            #print(list_to_check)
-                    
-    def insert_ip_to_db(self):
+            #print(list_to_check)              
+    def insert_ip_to_db(self,scanned_dic=True,ip_to_save=None):
         try:
-            print(ip_scanned)
-            print(len(ip_scanned))
-            for row_num , row_info in ip_scanned.items():
-                ip = row_info['IP']
-                mac = row_info['Mac']
+            if scanned_dic == True:
+                print(ip_scanned)
+                print(len(ip_scanned))
+                for row_num , row_info in ip_scanned.items():
+                    ip = row_info['IP']
+                    mac = row_info['Mac']
+                    try:
+                        self.db.connect()
+                        ip_1 = Device.create(
+                            ip_dev=ip,
+                            mac_address=mac
+                            )
+                        ip_1.save()
+                        self.db.close()
+                        print("Device Created", ip,mac ,"Success")
+                    except "UNIQUE" in Exception:
+                        print("Device Already Inserted : ",err)
+                        self.db.close()
+                    except Exception as err:
+                        print("Failed To Create Instance : ",err)
+                        self.db.close()
+            else:
+                print(ip_to_save)
                 try:
                     self.db.connect()
                     ip_1 = Device.create(
-                        ip_dev=ip,
-                        mac_address=mac
+                        ip_dev=ip_to_save,
+                        is_local=False,
                         )
                     ip_1.save()
                     self.db.close()
-                    print("Device Created", ip,mac ,"Success")
+                    print("Device Created", ip_to_save ,"Success")
                 except "UNIQUE" in Exception:
                     print("Device Already Inserted : ",err)
                     self.db.close()
                 except Exception as err:
                     print("Failed To Create Instance : ",err)
                     self.db.close()
+
         except NameError:
             print("Scan Network First Please ....")
             self.db.close()
@@ -1117,6 +1211,54 @@ class Main(QMainWindow,ui_main):
     def ping_checker_results(self):
         print("Done Results")
 
+    ### Table Widget Ping And Device ###
+    def set_table_widget_from_db(self):
+        worker = Worker(self.get_table_rows)
+        worker.signals.result.connect(self.results_get_info_table)
+        self.threadpool.start(worker)
+
+    def get_table_rows(self):
+        from db_to_qt import devss
+        from db_to_qt import pingss
+        global dev_db , ping_db , max_ping_table
+        dev_db = devss
+        ping_db = pingss
+        #max_ping_table = -5
+        self.tableWidget1_ping.setRowCount(len(ping_db))
+        # self.tableWidget1_ping.setRowCount(max_ping_table)
+        print(len(devss))
+        print(len(pingss))
+        
+    def results_get_info_table(self):
+        print("Done Get Data")
+        try:
+            for counter , ping in enumerate(ping_db):
+                print("Counter",counter)
+                print("ID Ping",ping.id)
+                try:
+                    time_ping = str(ping.created_at).split(".")[0]
+                    print(time_ping)
+                except:
+                    pass
+                try:
+                    owner_ip = str(ping.owner.ip_dev)
+                except:
+                    owner_ip = "Not Found"
+                item_id = qtw.QTableWidgetItem(str(ping.id))
+                item_anwser = qtw.QTableWidgetItem(str(ping.is_anwsred))
+                item_time = qtw.QTableWidgetItem(str(time_ping))
+                item_owner = qtw.QTableWidgetItem(str(owner_ip))
+                self.tableWidget1_ping.setItem(counter,1,item_owner)
+                #item_det = qtw.QTableWidgetItem(str(ping.details))
+                #self.tableWidget1_ping.setItem(counter,4,item_det)
+                self.tableWidget1_ping.setItem(counter,0,item_id)
+                self.tableWidget1_ping.setItem(counter,2,item_anwser)
+                self.tableWidget1_ping.setItem(counter,3,item_time)
+                print("time",counter)
+        except Exception as err:
+            print(err)
+        print("Finished")
+
 def create_app():
     #widget_meters = AnalogGaugeWidget()
     #window = Main()
@@ -1159,4 +1301,3 @@ if __name__ == '__main__':
     app.setStyleSheet(qdarkstyle.load_stylesheet_pyside2())
     create_app()
     is_program_running = True
-
