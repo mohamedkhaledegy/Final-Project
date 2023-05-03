@@ -90,8 +90,8 @@ def setup_btn(self):
         self.btn_network_config.clicked.connect(lambda : self.main_widget.setCurrentIndex(1))
         self.btn_acc_config.clicked.connect(lambda : self.main_widget.setCurrentIndex(2))
         self.btn_database_settings.clicked.connect(lambda : self.main_widget.setCurrentIndex(3))
-        self.btn_meters.clicked.connect(lambda : self.main_widget.setCurrentIndex(5))
-        self.btn_devices.clicked.connect(lambda : self.main_widget.setCurrentIndex(6))
+        self.btn_meters.clicked.connect(lambda : self.main_widget.setCurrentIndex(4))
+        self.btn_devices.clicked.connect(lambda : self.main_widget.setCurrentIndex(5))
         self.btn_home.clicked.connect(lambda : self.main_widget.setCurrentIndex(0))
         self.main_widget.setCurrentIndex(0)
     except Exception as err:

@@ -17,7 +17,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(400, 560)
+        MainWindow.resize(400, 523)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.gridLayout = QGridLayout(self.centralwidget)
@@ -36,7 +36,7 @@ class Ui_MainWindow(object):
         self.gridLayout_3.setObjectName(u"gridLayout_3")
         self.label_3 = QLabel(self.frame_2)
         self.label_3.setObjectName(u"label_3")
-        self.label_3.setMaximumSize(QSize(300, 16777215))
+        self.label_3.setMaximumSize(QSize(350, 16777215))
         font = QFont()
         font.setPointSize(20)
         font.setBold(True)
@@ -60,6 +60,7 @@ class Ui_MainWindow(object):
 
         self.lineEdit_user_log = QLineEdit(self.frame)
         self.lineEdit_user_log.setObjectName(u"lineEdit_user_log")
+        self.lineEdit_user_log.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout.addWidget(self.lineEdit_user_log)
 
@@ -76,6 +77,7 @@ class Ui_MainWindow(object):
         self.lineEdit_password_log = QLineEdit(self.frame)
         self.lineEdit_password_log.setObjectName(u"lineEdit_password_log")
         self.lineEdit_password_log.setEchoMode(QLineEdit.Password)
+        self.lineEdit_password_log.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_2.addWidget(self.lineEdit_password_log)
 
@@ -84,6 +86,7 @@ class Ui_MainWindow(object):
 
         self.pushButton = QPushButton(self.frame)
         self.pushButton.setObjectName(u"pushButton")
+        self.pushButton.setMinimumSize(QSize(0, 40))
         self.pushButton.setFocusPolicy(Qt.TabFocus)
 
         self.verticalLayout_3.addWidget(self.pushButton)
@@ -91,9 +94,17 @@ class Ui_MainWindow(object):
 
         self.gridLayout_2.addLayout(self.verticalLayout_3, 1, 0, 1, 1)
 
-        self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.label_logo = QLabel(self.frame)
+        self.label_logo.setObjectName(u"label_logo")
+        sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label_logo.sizePolicy().hasHeightForWidth())
+        self.label_logo.setSizePolicy(sizePolicy)
+        self.label_logo.setStyleSheet(u"")
+        self.label_logo.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout_2.addItem(self.verticalSpacer_2, 2, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.label_logo, 2, 0, 1, 1)
 
 
         self.gridLayout.addWidget(self.frame, 0, 0, 1, 1)
@@ -121,5 +132,6 @@ class Ui_MainWindow(object):
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Password", None))
         self.lineEdit_password_log.setInputMask("")
         self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Login", None))
+        self.label_logo.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
     # retranslateUi
 

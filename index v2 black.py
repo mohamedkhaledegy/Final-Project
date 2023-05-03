@@ -63,13 +63,17 @@ ui_main,_ = loadUiType('front/main_window2.ui')
 ui_login,_ot = loadUiType('front/second_window.ui')
 
 is_program_running = True
-
+logo_url = "front/logo_small.png"
 class Login(QMainWindow , ui_login):
     def __init__(self):
         QMainWindow.__init__(self)
         self.setupUi(self)
         self.btn_open = self.findChild(qtw.QPushButton,"pushButton")
         self.btn_open.clicked.connect(self.log_in_system)
+        
+        pixmap = QPixmap(f'{logo_url}')
+        self.label_logo.setPixmap(pixmap)
+        self.label_logo.resize(pixmap.width(), pixmap.height())
         
     def log_in_system(self):
         valid_auth = self.authenticate_user()
