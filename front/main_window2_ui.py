@@ -20,7 +20,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1065, 764)
+        MainWindow.resize(1065, 787)
         MainWindow.setStyleSheet(u"")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
@@ -199,47 +199,47 @@ class Ui_MainWindow(object):
         self.label_18 = QLabel(self.frame_5)
         self.label_18.setObjectName(u"label_18")
 
-        self.gridLayout_13.addWidget(self.label_18, 1, 0, 1, 1)
+        self.gridLayout_13.addWidget(self.label_18, 2, 0, 1, 1)
+
+        self.label_75 = QLabel(self.frame_5)
+        self.label_75.setObjectName(u"label_75")
+
+        self.gridLayout_13.addWidget(self.label_75, 2, 2, 1, 1)
 
         self.label_10 = QLabel(self.frame_5)
         self.label_10.setObjectName(u"label_10")
 
         self.gridLayout_13.addWidget(self.label_10, 0, 2, 1, 1)
 
-        self.label_75 = QLabel(self.frame_5)
-        self.label_75.setObjectName(u"label_75")
-
-        self.gridLayout_13.addWidget(self.label_75, 1, 2, 1, 1)
-
         self.spinBox_pkt_count_by = QSpinBox(self.frame_5)
         self.spinBox_pkt_count_by.setObjectName(u"spinBox_pkt_count_by")
         self.spinBox_pkt_count_by.setMaximum(1000)
         self.spinBox_pkt_count_by.setValue(4)
 
-        self.gridLayout_13.addWidget(self.spinBox_pkt_count_by, 1, 3, 1, 1)
+        self.gridLayout_13.addWidget(self.spinBox_pkt_count_by, 2, 3, 1, 1)
+
+        self.pushButton_start_cap = QPushButton(self.frame_5)
+        self.pushButton_start_cap.setObjectName(u"pushButton_start_cap")
+        sizePolicy2 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Preferred)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.pushButton_start_cap.sizePolicy().hasHeightForWidth())
+        self.pushButton_start_cap.setSizePolicy(sizePolicy2)
+
+        self.gridLayout_13.addWidget(self.pushButton_start_cap, 0, 5, 3, 1)
+
+        self.pushButton_stop_cap = QPushButton(self.frame_5)
+        self.pushButton_stop_cap.setObjectName(u"pushButton_stop_cap")
+        sizePolicy2.setHeightForWidth(self.pushButton_stop_cap.sizePolicy().hasHeightForWidth())
+        self.pushButton_stop_cap.setSizePolicy(sizePolicy2)
+
+        self.gridLayout_13.addWidget(self.pushButton_stop_cap, 0, 4, 3, 1)
 
         self.spinBox_pkt_limit = QSpinBox(self.frame_5)
         self.spinBox_pkt_limit.setObjectName(u"spinBox_pkt_limit")
         self.spinBox_pkt_limit.setMaximum(10000)
 
         self.gridLayout_13.addWidget(self.spinBox_pkt_limit, 0, 3, 1, 1)
-
-        self.pushButton_stop_cap = QPushButton(self.frame_5)
-        self.pushButton_stop_cap.setObjectName(u"pushButton_stop_cap")
-        sizePolicy2 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Preferred)
-        sizePolicy2.setHorizontalStretch(0)
-        sizePolicy2.setVerticalStretch(0)
-        sizePolicy2.setHeightForWidth(self.pushButton_stop_cap.sizePolicy().hasHeightForWidth())
-        self.pushButton_stop_cap.setSizePolicy(sizePolicy2)
-
-        self.gridLayout_13.addWidget(self.pushButton_stop_cap, 0, 4, 2, 1)
-
-        self.pushButton_start_cap = QPushButton(self.frame_5)
-        self.pushButton_start_cap.setObjectName(u"pushButton_start_cap")
-        sizePolicy2.setHeightForWidth(self.pushButton_start_cap.sizePolicy().hasHeightForWidth())
-        self.pushButton_start_cap.setSizePolicy(sizePolicy2)
-
-        self.gridLayout_13.addWidget(self.pushButton_start_cap, 0, 5, 2, 1)
 
         self.splitter_14.addWidget(self.frame_5)
         self.groupBox_ip_discovered = QGroupBox(self.splitter_14)
@@ -252,91 +252,113 @@ class Ui_MainWindow(object):
         self.groupBox_ip_discovered.setSizePolicy(sizePolicy3)
         self.gridLayout_8 = QGridLayout(self.groupBox_ip_discovered)
         self.gridLayout_8.setObjectName(u"gridLayout_8")
-        self.frame_20 = QFrame(self.groupBox_ip_discovered)
-        self.frame_20.setObjectName(u"frame_20")
-        self.frame_20.setFrameShape(QFrame.StyledPanel)
-        self.frame_20.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_4 = QHBoxLayout(self.frame_20)
-        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
-        self.horizontalLayout_4.setContentsMargins(-1, 0, -1, 0)
-        self.frame_8 = QFrame(self.frame_20)
-        self.frame_8.setObjectName(u"frame_8")
-        self.frame_8.setFrameShape(QFrame.StyledPanel)
-        self.frame_8.setFrameShadow(QFrame.Raised)
-        self.gridLayout_18 = QGridLayout(self.frame_8)
-        self.gridLayout_18.setObjectName(u"gridLayout_18")
-        self.gridLayout_18.setContentsMargins(-1, 0, -1, 0)
-        self.checkBox_ping_timer_all = QCheckBox(self.frame_8)
-        self.checkBox_ping_timer_all.setObjectName(u"checkBox_ping_timer_all")
-        self.checkBox_ping_timer_all.setChecked(True)
+        self.frame_24 = QFrame(self.groupBox_ip_discovered)
+        self.frame_24.setObjectName(u"frame_24")
+        self.frame_24.setFrameShape(QFrame.StyledPanel)
+        self.frame_24.setFrameShadow(QFrame.Raised)
+        self.gridLayout_43 = QGridLayout(self.frame_24)
+        self.gridLayout_43.setObjectName(u"gridLayout_43")
+        self.label_ping_status_ip1 = QLabel(self.frame_24)
+        self.label_ping_status_ip1.setObjectName(u"label_ping_status_ip1")
+        self.label_ping_status_ip1.setMinimumSize(QSize(40, 0))
+        self.label_ping_status_ip1.setStyleSheet(u"")
 
-        self.gridLayout_18.addWidget(self.checkBox_ping_timer_all, 0, 0, 1, 1)
+        self.gridLayout_43.addWidget(self.label_ping_status_ip1, 0, 0, 1, 1)
 
-        self.label_33 = QLabel(self.frame_8)
-        self.label_33.setObjectName(u"label_33")
+        self.label_ping_status_ip2 = QLabel(self.frame_24)
+        self.label_ping_status_ip2.setObjectName(u"label_ping_status_ip2")
+        self.label_ping_status_ip2.setMinimumSize(QSize(40, 0))
+        self.label_ping_status_ip2.setStyleSheet(u"")
 
-        self.gridLayout_18.addWidget(self.label_33, 0, 2, 1, 1)
+        self.gridLayout_43.addWidget(self.label_ping_status_ip2, 1, 0, 1, 1)
 
-        self.spinBox_step_ping_all = QSpinBox(self.frame_8)
-        self.spinBox_step_ping_all.setObjectName(u"spinBox_step_ping_all")
-        self.spinBox_step_ping_all.setMinimum(3)
+        self.label_ping_status_ip3 = QLabel(self.frame_24)
+        self.label_ping_status_ip3.setObjectName(u"label_ping_status_ip3")
+        self.label_ping_status_ip3.setMinimumSize(QSize(40, 0))
+        self.label_ping_status_ip3.setStyleSheet(u"")
 
-        self.gridLayout_18.addWidget(self.spinBox_step_ping_all, 0, 1, 1, 1)
+        self.gridLayout_43.addWidget(self.label_ping_status_ip3, 2, 0, 1, 1)
 
+        self.label_ping_status_ip4 = QLabel(self.frame_24)
+        self.label_ping_status_ip4.setObjectName(u"label_ping_status_ip4")
+        self.label_ping_status_ip4.setMinimumSize(QSize(40, 0))
+        self.label_ping_status_ip4.setStyleSheet(u"")
 
-        self.horizontalLayout_4.addWidget(self.frame_8)
+        self.gridLayout_43.addWidget(self.label_ping_status_ip4, 3, 0, 1, 1)
 
-        self.pushButton_ping_all_stop = QPushButton(self.frame_20)
-        self.pushButton_ping_all_stop.setObjectName(u"pushButton_ping_all_stop")
-        self.pushButton_ping_all_stop.setEnabled(False)
+        self.label_ping_status_ip5 = QLabel(self.frame_24)
+        self.label_ping_status_ip5.setObjectName(u"label_ping_status_ip5")
+        self.label_ping_status_ip5.setMinimumSize(QSize(40, 0))
+        self.label_ping_status_ip5.setStyleSheet(u"")
 
-        self.horizontalLayout_4.addWidget(self.pushButton_ping_all_stop)
-
-        self.pushButton_ping_all = QPushButton(self.frame_20)
-        self.pushButton_ping_all.setObjectName(u"pushButton_ping_all")
-
-        self.horizontalLayout_4.addWidget(self.pushButton_ping_all)
+        self.gridLayout_43.addWidget(self.label_ping_status_ip5, 4, 0, 1, 1)
 
 
-        self.gridLayout_8.addWidget(self.frame_20, 0, 0, 1, 5)
+        self.gridLayout_8.addWidget(self.frame_24, 2, 5, 5, 1)
 
-        self.pushButton_ping3 = QPushButton(self.groupBox_ip_discovered)
-        self.pushButton_ping3.setObjectName(u"pushButton_ping3")
-        self.pushButton_ping3.setMaximumSize(QSize(50, 16777215))
+        self.frame_23 = QFrame(self.groupBox_ip_discovered)
+        self.frame_23.setObjectName(u"frame_23")
+        self.frame_23.setFrameShape(QFrame.StyledPanel)
+        self.frame_23.setFrameShadow(QFrame.Raised)
+        self.gridLayout_42 = QGridLayout(self.frame_23)
+        self.gridLayout_42.setObjectName(u"gridLayout_42")
+        self.label_78 = QLabel(self.frame_23)
+        self.label_78.setObjectName(u"label_78")
 
-        self.gridLayout_8.addWidget(self.pushButton_ping3, 4, 6, 1, 1)
+        self.gridLayout_42.addWidget(self.label_78, 0, 1, 1, 1)
 
-        self.pushButton_ping5 = QPushButton(self.groupBox_ip_discovered)
-        self.pushButton_ping5.setObjectName(u"pushButton_ping5")
-        self.pushButton_ping5.setMaximumSize(QSize(50, 16777215))
+        self.label_81 = QLabel(self.frame_23)
+        self.label_81.setObjectName(u"label_81")
 
-        self.gridLayout_8.addWidget(self.pushButton_ping5, 6, 6, 1, 1)
+        self.gridLayout_42.addWidget(self.label_81, 3, 1, 1, 1)
 
-        self.pushButton_ping4 = QPushButton(self.groupBox_ip_discovered)
-        self.pushButton_ping4.setObjectName(u"pushButton_ping4")
-        self.pushButton_ping4.setMaximumSize(QSize(50, 16777215))
+        self.label_80 = QLabel(self.frame_23)
+        self.label_80.setObjectName(u"label_80")
 
-        self.gridLayout_8.addWidget(self.pushButton_ping4, 5, 6, 1, 1)
+        self.gridLayout_42.addWidget(self.label_80, 2, 1, 1, 1)
 
-        self.pushButton_ping1 = QPushButton(self.groupBox_ip_discovered)
-        self.pushButton_ping1.setObjectName(u"pushButton_ping1")
-        self.pushButton_ping1.setMaximumSize(QSize(50, 16777215))
+        self.label_83 = QLabel(self.frame_23)
+        self.label_83.setObjectName(u"label_83")
 
-        self.gridLayout_8.addWidget(self.pushButton_ping1, 2, 6, 1, 1)
+        self.gridLayout_42.addWidget(self.label_83, 5, 1, 1, 1)
 
-        self.pushButton_ping2 = QPushButton(self.groupBox_ip_discovered)
-        self.pushButton_ping2.setObjectName(u"pushButton_ping2")
-        self.pushButton_ping2.setMaximumSize(QSize(50, 16777215))
+        self.label_82 = QLabel(self.frame_23)
+        self.label_82.setObjectName(u"label_82")
 
-        self.gridLayout_8.addWidget(self.pushButton_ping2, 3, 6, 1, 1)
+        self.gridLayout_42.addWidget(self.label_82, 4, 1, 1, 1)
 
-        self.pushButton_5 = QPushButton(self.groupBox_ip_discovered)
-        self.pushButton_5.setObjectName(u"pushButton_5")
-        sizePolicy2.setHeightForWidth(self.pushButton_5.sizePolicy().hasHeightForWidth())
-        self.pushButton_5.setSizePolicy(sizePolicy2)
-        self.pushButton_5.setMinimumSize(QSize(0, 30))
+        self.checkBox_ping_1 = QCheckBox(self.frame_23)
+        self.checkBox_ping_1.setObjectName(u"checkBox_ping_1")
+        self.checkBox_ping_1.setChecked(False)
 
-        self.gridLayout_8.addWidget(self.pushButton_5, 0, 5, 1, 2)
+        self.gridLayout_42.addWidget(self.checkBox_ping_1, 0, 0, 1, 1)
+
+        self.checkBox_ping_2 = QCheckBox(self.frame_23)
+        self.checkBox_ping_2.setObjectName(u"checkBox_ping_2")
+        self.checkBox_ping_2.setChecked(False)
+
+        self.gridLayout_42.addWidget(self.checkBox_ping_2, 2, 0, 1, 1)
+
+        self.checkBox_ping_3 = QCheckBox(self.frame_23)
+        self.checkBox_ping_3.setObjectName(u"checkBox_ping_3")
+        self.checkBox_ping_3.setChecked(False)
+
+        self.gridLayout_42.addWidget(self.checkBox_ping_3, 3, 0, 1, 1)
+
+        self.checkBox_ping_4 = QCheckBox(self.frame_23)
+        self.checkBox_ping_4.setObjectName(u"checkBox_ping_4")
+        self.checkBox_ping_4.setChecked(False)
+
+        self.gridLayout_42.addWidget(self.checkBox_ping_4, 4, 0, 1, 1)
+
+        self.checkBox_ping_5 = QCheckBox(self.frame_23)
+        self.checkBox_ping_5.setObjectName(u"checkBox_ping_5")
+        self.checkBox_ping_5.setChecked(False)
+
+        self.gridLayout_42.addWidget(self.checkBox_ping_5, 5, 0, 1, 1)
+
+
+        self.gridLayout_8.addWidget(self.frame_23, 2, 4, 5, 1)
 
         self.frame_22 = QFrame(self.groupBox_ip_discovered)
         self.frame_22.setObjectName(u"frame_22")
@@ -506,83 +528,93 @@ class Ui_MainWindow(object):
 
         self.gridLayout_8.addWidget(self.frame_22, 2, 0, 5, 4)
 
-        self.frame_23 = QFrame(self.groupBox_ip_discovered)
-        self.frame_23.setObjectName(u"frame_23")
-        self.frame_23.setFrameShape(QFrame.StyledPanel)
-        self.frame_23.setFrameShadow(QFrame.Raised)
-        self.gridLayout_42 = QGridLayout(self.frame_23)
-        self.gridLayout_42.setObjectName(u"gridLayout_42")
-        self.label_78 = QLabel(self.frame_23)
-        self.label_78.setObjectName(u"label_78")
+        self.pushButton_ping4 = QPushButton(self.groupBox_ip_discovered)
+        self.pushButton_ping4.setObjectName(u"pushButton_ping4")
+        self.pushButton_ping4.setMaximumSize(QSize(50, 16777215))
 
-        self.gridLayout_42.addWidget(self.label_78, 0, 0, 1, 1)
+        self.gridLayout_8.addWidget(self.pushButton_ping4, 5, 6, 1, 1)
 
-        self.label_80 = QLabel(self.frame_23)
-        self.label_80.setObjectName(u"label_80")
+        self.pushButton_ping5 = QPushButton(self.groupBox_ip_discovered)
+        self.pushButton_ping5.setObjectName(u"pushButton_ping5")
+        self.pushButton_ping5.setMaximumSize(QSize(50, 16777215))
 
-        self.gridLayout_42.addWidget(self.label_80, 1, 0, 1, 1)
+        self.gridLayout_8.addWidget(self.pushButton_ping5, 6, 6, 1, 1)
 
-        self.label_81 = QLabel(self.frame_23)
-        self.label_81.setObjectName(u"label_81")
+        self.pushButton_ping1 = QPushButton(self.groupBox_ip_discovered)
+        self.pushButton_ping1.setObjectName(u"pushButton_ping1")
+        self.pushButton_ping1.setMaximumSize(QSize(50, 16777215))
 
-        self.gridLayout_42.addWidget(self.label_81, 2, 0, 1, 1)
+        self.gridLayout_8.addWidget(self.pushButton_ping1, 2, 6, 1, 1)
 
-        self.label_82 = QLabel(self.frame_23)
-        self.label_82.setObjectName(u"label_82")
+        self.pushButton_ping2 = QPushButton(self.groupBox_ip_discovered)
+        self.pushButton_ping2.setObjectName(u"pushButton_ping2")
+        self.pushButton_ping2.setMaximumSize(QSize(50, 16777215))
 
-        self.gridLayout_42.addWidget(self.label_82, 3, 0, 1, 1)
+        self.gridLayout_8.addWidget(self.pushButton_ping2, 3, 6, 1, 1)
 
-        self.label_83 = QLabel(self.frame_23)
-        self.label_83.setObjectName(u"label_83")
+        self.pushButton_ping3 = QPushButton(self.groupBox_ip_discovered)
+        self.pushButton_ping3.setObjectName(u"pushButton_ping3")
+        self.pushButton_ping3.setMaximumSize(QSize(50, 16777215))
 
-        self.gridLayout_42.addWidget(self.label_83, 4, 0, 1, 1)
+        self.gridLayout_8.addWidget(self.pushButton_ping3, 4, 6, 1, 1)
 
+        self.pushButton_5 = QPushButton(self.groupBox_ip_discovered)
+        self.pushButton_5.setObjectName(u"pushButton_5")
+        sizePolicy2.setHeightForWidth(self.pushButton_5.sizePolicy().hasHeightForWidth())
+        self.pushButton_5.setSizePolicy(sizePolicy2)
+        self.pushButton_5.setMinimumSize(QSize(0, 30))
 
-        self.gridLayout_8.addWidget(self.frame_23, 2, 4, 5, 1)
+        self.gridLayout_8.addWidget(self.pushButton_5, 0, 0, 1, 1)
 
-        self.frame_24 = QFrame(self.groupBox_ip_discovered)
-        self.frame_24.setObjectName(u"frame_24")
-        self.frame_24.setFrameShape(QFrame.StyledPanel)
-        self.frame_24.setFrameShadow(QFrame.Raised)
-        self.gridLayout_43 = QGridLayout(self.frame_24)
-        self.gridLayout_43.setObjectName(u"gridLayout_43")
-        self.label_ping_status_ip1 = QLabel(self.frame_24)
-        self.label_ping_status_ip1.setObjectName(u"label_ping_status_ip1")
-        self.label_ping_status_ip1.setMinimumSize(QSize(40, 0))
-        self.label_ping_status_ip1.setStyleSheet(u"")
+        self.frame_20 = QFrame(self.groupBox_ip_discovered)
+        self.frame_20.setObjectName(u"frame_20")
+        self.frame_20.setFrameShape(QFrame.NoFrame)
+        self.frame_20.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_4 = QHBoxLayout(self.frame_20)
+        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
+        self.horizontalLayout_4.setContentsMargins(-1, 0, -1, 0)
+        self.frame_8 = QFrame(self.frame_20)
+        self.frame_8.setObjectName(u"frame_8")
+        self.frame_8.setFrameShape(QFrame.NoFrame)
+        self.frame_8.setFrameShadow(QFrame.Raised)
+        self.gridLayout_18 = QGridLayout(self.frame_8)
+        self.gridLayout_18.setObjectName(u"gridLayout_18")
+        self.gridLayout_18.setContentsMargins(-1, 0, -1, 0)
+        self.checkBox_ping_timer_all = QCheckBox(self.frame_8)
+        self.checkBox_ping_timer_all.setObjectName(u"checkBox_ping_timer_all")
+        self.checkBox_ping_timer_all.setChecked(True)
 
-        self.gridLayout_43.addWidget(self.label_ping_status_ip1, 0, 0, 1, 1)
+        self.gridLayout_18.addWidget(self.checkBox_ping_timer_all, 0, 0, 1, 1)
 
-        self.label_ping_status_ip2 = QLabel(self.frame_24)
-        self.label_ping_status_ip2.setObjectName(u"label_ping_status_ip2")
-        self.label_ping_status_ip2.setMinimumSize(QSize(40, 0))
-        self.label_ping_status_ip2.setStyleSheet(u"")
+        self.label_33 = QLabel(self.frame_8)
+        self.label_33.setObjectName(u"label_33")
 
-        self.gridLayout_43.addWidget(self.label_ping_status_ip2, 1, 0, 1, 1)
+        self.gridLayout_18.addWidget(self.label_33, 0, 2, 1, 1)
 
-        self.label_ping_status_ip3 = QLabel(self.frame_24)
-        self.label_ping_status_ip3.setObjectName(u"label_ping_status_ip3")
-        self.label_ping_status_ip3.setMinimumSize(QSize(40, 0))
-        self.label_ping_status_ip3.setStyleSheet(u"")
+        self.spinBox_step_ping_all = QSpinBox(self.frame_8)
+        self.spinBox_step_ping_all.setObjectName(u"spinBox_step_ping_all")
+        self.spinBox_step_ping_all.setMinimum(2)
 
-        self.gridLayout_43.addWidget(self.label_ping_status_ip3, 2, 0, 1, 1)
-
-        self.label_ping_status_ip4 = QLabel(self.frame_24)
-        self.label_ping_status_ip4.setObjectName(u"label_ping_status_ip4")
-        self.label_ping_status_ip4.setMinimumSize(QSize(40, 0))
-        self.label_ping_status_ip4.setStyleSheet(u"")
-
-        self.gridLayout_43.addWidget(self.label_ping_status_ip4, 3, 0, 1, 1)
-
-        self.label_ping_status_ip5 = QLabel(self.frame_24)
-        self.label_ping_status_ip5.setObjectName(u"label_ping_status_ip5")
-        self.label_ping_status_ip5.setMinimumSize(QSize(40, 0))
-        self.label_ping_status_ip5.setStyleSheet(u"")
-
-        self.gridLayout_43.addWidget(self.label_ping_status_ip5, 4, 0, 1, 1)
+        self.gridLayout_18.addWidget(self.spinBox_step_ping_all, 0, 1, 1, 1)
 
 
-        self.gridLayout_8.addWidget(self.frame_24, 2, 5, 5, 1)
+        self.horizontalLayout_4.addWidget(self.frame_8)
+
+        self.pushButton_ping_all_stop = QPushButton(self.frame_20)
+        self.pushButton_ping_all_stop.setObjectName(u"pushButton_ping_all_stop")
+        self.pushButton_ping_all_stop.setEnabled(False)
+        self.pushButton_ping_all_stop.setMinimumSize(QSize(0, 30))
+
+        self.horizontalLayout_4.addWidget(self.pushButton_ping_all_stop)
+
+        self.pushButton_ping_all = QPushButton(self.frame_20)
+        self.pushButton_ping_all.setObjectName(u"pushButton_ping_all")
+        self.pushButton_ping_all.setMinimumSize(QSize(0, 30))
+
+        self.horizontalLayout_4.addWidget(self.pushButton_ping_all)
+
+
+        self.gridLayout_8.addWidget(self.frame_20, 0, 1, 1, 5)
 
         self.splitter_14.addWidget(self.groupBox_ip_discovered)
         self.splitter_16.addWidget(self.splitter_14)
@@ -1258,21 +1290,6 @@ class Ui_MainWindow(object):
         self.pushButton_refresh_db.setObjectName(u"pushButton_refresh_db")
         self.pushButton_refresh_db.setGeometry(QRect(184, 182, 91, 31))
         self.tabWidget.addTab(self.tab_database, "")
-        self.tab_5 = QWidget()
-        self.tab_5.setObjectName(u"tab_5")
-        self.pushButton_capture = QPushButton(self.tab_5)
-        self.pushButton_capture.setObjectName(u"pushButton_capture")
-        self.pushButton_capture.setGeometry(QRect(20, 10, 101, 31))
-        self.pushButton_checker_ping = QPushButton(self.tab_5)
-        self.pushButton_checker_ping.setObjectName(u"pushButton_checker_ping")
-        self.pushButton_checker_ping.setGeometry(QRect(20, 50, 101, 31))
-        self.pushButton_save_ping = QPushButton(self.tab_5)
-        self.pushButton_save_ping.setObjectName(u"pushButton_save_ping")
-        self.pushButton_save_ping.setGeometry(QRect(20, 90, 101, 31))
-        self.comboBox_2 = QComboBox(self.tab_5)
-        self.comboBox_2.setObjectName(u"comboBox_2")
-        self.comboBox_2.setGeometry(QRect(130, 90, 161, 31))
-        self.tabWidget.addTab(self.tab_5, "")
         self.tab = QWidget()
         self.tab.setObjectName(u"tab")
         self.gridLayout_10 = QGridLayout(self.tab)
@@ -1289,13 +1306,17 @@ class Ui_MainWindow(object):
         self.frame_7.setFrameShadow(QFrame.Raised)
         self.gridLayout_16 = QGridLayout(self.frame_7)
         self.gridLayout_16.setObjectName(u"gridLayout_16")
-        self.horizontalSpacer_3 = QSpacerItem(404, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.gridLayout_16.addItem(self.horizontalSpacer_3, 0, 0, 1, 1)
-
         self.horizontalSpacer_4 = QSpacerItem(404, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
-        self.gridLayout_16.addItem(self.horizontalSpacer_4, 0, 2, 1, 1)
+        self.gridLayout_16.addItem(self.horizontalSpacer_4, 1, 2, 1, 1)
+
+        self.horizontalSpacer_3 = QSpacerItem(404, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_16.addItem(self.horizontalSpacer_3, 1, 0, 1, 1)
+
+        self.verticalSpacer_3 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.gridLayout_16.addItem(self.verticalSpacer_3, 2, 1, 1, 1)
 
         self.groupBox_4 = QGroupBox(self.frame_7)
         self.groupBox_4.setObjectName(u"groupBox_4")
@@ -1431,14 +1452,6 @@ class Ui_MainWindow(object):
 
         self.gridLayout_15.addLayout(self.horizontalLayout_21, 5, 2, 1, 3)
 
-        self.pushButton_test_speed = QPushButton(self.groupBox_4)
-        self.pushButton_test_speed.setObjectName(u"pushButton_test_speed")
-        self.pushButton_test_speed.setEnabled(True)
-        sizePolicy2.setHeightForWidth(self.pushButton_test_speed.sizePolicy().hasHeightForWidth())
-        self.pushButton_test_speed.setSizePolicy(sizePolicy2)
-
-        self.gridLayout_15.addWidget(self.pushButton_test_speed, 0, 4, 1, 1)
-
         self.horizontalLayout_18 = QHBoxLayout()
         self.horizontalLayout_18.setObjectName(u"horizontalLayout_18")
         self.label_46 = QLabel(self.groupBox_4)
@@ -1555,8 +1568,16 @@ class Ui_MainWindow(object):
 
         self.gridLayout_15.addLayout(self.horizontalLayout_16, 3, 1, 1, 4)
 
+        self.pushButton_test_speed = QPushButton(self.groupBox_4)
+        self.pushButton_test_speed.setObjectName(u"pushButton_test_speed")
+        self.pushButton_test_speed.setEnabled(True)
+        sizePolicy2.setHeightForWidth(self.pushButton_test_speed.sizePolicy().hasHeightForWidth())
+        self.pushButton_test_speed.setSizePolicy(sizePolicy2)
 
-        self.gridLayout_16.addWidget(self.groupBox_4, 0, 1, 1, 1)
+        self.gridLayout_15.addWidget(self.pushButton_test_speed, 0, 4, 1, 1)
+
+
+        self.gridLayout_16.addWidget(self.groupBox_4, 1, 1, 1, 1)
 
 
         self.gridLayout_9.addWidget(self.frame_7, 2, 0, 1, 1)
@@ -2145,7 +2166,7 @@ class Ui_MainWindow(object):
 "")
         self.general_page = QWidget()
         self.general_page.setObjectName(u"general_page")
-        self.general_page.setGeometry(QRect(0, 0, 162, 633))
+        self.general_page.setGeometry(QRect(0, 0, 162, 656))
         self.verticalLayout = QVBoxLayout(self.general_page)
         self.verticalLayout.setSpacing(10)
         self.verticalLayout.setObjectName(u"verticalLayout")
@@ -2161,6 +2182,15 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addWidget(self.pushButton_home)
 
+        self.pushButton_meters = QPushButton(self.general_page)
+        self.pushButton_meters.setObjectName(u"pushButton_meters")
+        self.pushButton_meters.setFont(font)
+        self.pushButton_meters.setFocusPolicy(Qt.NoFocus)
+        self.pushButton_meters.setStyleSheet(u"")
+        self.pushButton_meters.setCheckable(False)
+
+        self.verticalLayout.addWidget(self.pushButton_meters)
+
         self.pushButton_devices = QPushButton(self.general_page)
         self.pushButton_devices.setObjectName(u"pushButton_devices")
         self.pushButton_devices.setFont(font)
@@ -2170,14 +2200,13 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addWidget(self.pushButton_devices)
 
-        self.pushButton_meters = QPushButton(self.general_page)
-        self.pushButton_meters.setObjectName(u"pushButton_meters")
-        self.pushButton_meters.setFont(font)
-        self.pushButton_meters.setFocusPolicy(Qt.NoFocus)
-        self.pushButton_meters.setStyleSheet(u"")
-        self.pushButton_meters.setCheckable(False)
+        self.pushButton_network_config = QPushButton(self.general_page)
+        self.pushButton_network_config.setObjectName(u"pushButton_network_config")
+        self.pushButton_network_config.setFont(font)
+        self.pushButton_network_config.setFocusPolicy(Qt.NoFocus)
+        self.pushButton_network_config.setCheckable(False)
 
-        self.verticalLayout.addWidget(self.pushButton_meters)
+        self.verticalLayout.addWidget(self.pushButton_network_config)
 
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
@@ -2188,19 +2217,11 @@ class Ui_MainWindow(object):
         self.toolBox.addItem(self.general_page, icon1, u"General")
         self.cars_page = QWidget()
         self.cars_page.setObjectName(u"cars_page")
-        self.cars_page.setGeometry(QRect(0, 0, 162, 633))
+        self.cars_page.setGeometry(QRect(0, 0, 162, 656))
         self.verticalLayout_2 = QVBoxLayout(self.cars_page)
         self.verticalLayout_2.setSpacing(10)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.verticalLayout_2.setContentsMargins(5, 0, 5, 5)
-        self.pushButton_network_config = QPushButton(self.cars_page)
-        self.pushButton_network_config.setObjectName(u"pushButton_network_config")
-        self.pushButton_network_config.setFont(font)
-        self.pushButton_network_config.setFocusPolicy(Qt.NoFocus)
-        self.pushButton_network_config.setCheckable(False)
-
-        self.verticalLayout_2.addWidget(self.pushButton_network_config)
-
         self.pushButton_acc_config = QPushButton(self.cars_page)
         self.pushButton_acc_config.setObjectName(u"pushButton_acc_config")
         self.pushButton_acc_config.setFont(font)
@@ -2247,8 +2268,8 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         self.pushButton_8.toggled.connect(self.menu_widget.setHidden)
 
-        self.tabWidget.setCurrentIndex(0)
-        self.toolBox.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(4)
+        self.toolBox.setCurrentIndex(0)
         self.toolBox.layout().setSpacing(10)
 
 
@@ -2265,21 +2286,26 @@ class Ui_MainWindow(object):
         self.pushButton_details_new_window.setText(QCoreApplication.translate("MainWindow", u"Log Out", None))
         self.label_22.setText(QCoreApplication.translate("MainWindow", u"Interface", None))
         self.label_18.setText(QCoreApplication.translate("MainWindow", u"Main Device", None))
-        self.label_10.setText(QCoreApplication.translate("MainWindow", u"Packet Limit", None))
         self.label_75.setText(QCoreApplication.translate("MainWindow", u"Loop Sniff Every (Packet)", None))
-        self.pushButton_stop_cap.setText(QCoreApplication.translate("MainWindow", u"Stop Capture", None))
+        self.label_10.setText(QCoreApplication.translate("MainWindow", u"Packet Limit", None))
         self.pushButton_start_cap.setText(QCoreApplication.translate("MainWindow", u"Start Capture", None))
+        self.pushButton_stop_cap.setText(QCoreApplication.translate("MainWindow", u"Stop Capture", None))
         self.groupBox_ip_discovered.setTitle(QCoreApplication.translate("MainWindow", u"Ip Discovered", None))
-        self.checkBox_ping_timer_all.setText(QCoreApplication.translate("MainWindow", u" Auto Ping Every", None))
-        self.label_33.setText(QCoreApplication.translate("MainWindow", u"seconds", None))
-        self.pushButton_ping_all_stop.setText(QCoreApplication.translate("MainWindow", u"Stop", None))
-        self.pushButton_ping_all.setText(QCoreApplication.translate("MainWindow", u"Start Ping All", None))
-        self.pushButton_ping3.setText(QCoreApplication.translate("MainWindow", u"Ping", None))
-        self.pushButton_ping5.setText(QCoreApplication.translate("MainWindow", u"Ping", None))
-        self.pushButton_ping4.setText(QCoreApplication.translate("MainWindow", u"Ping", None))
-        self.pushButton_ping1.setText(QCoreApplication.translate("MainWindow", u"Ping", None))
-        self.pushButton_ping2.setText(QCoreApplication.translate("MainWindow", u"Ping", None))
-        self.pushButton_5.setText(QCoreApplication.translate("MainWindow", u"Scan Network", None))
+        self.label_ping_status_ip1.setText(QCoreApplication.translate("MainWindow", u"--", None))
+        self.label_ping_status_ip2.setText(QCoreApplication.translate("MainWindow", u"--", None))
+        self.label_ping_status_ip3.setText(QCoreApplication.translate("MainWindow", u"--", None))
+        self.label_ping_status_ip4.setText(QCoreApplication.translate("MainWindow", u"--", None))
+        self.label_ping_status_ip5.setText(QCoreApplication.translate("MainWindow", u"--", None))
+        self.label_78.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_81.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_80.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_83.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_82.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.checkBox_ping_1.setText(QCoreApplication.translate("MainWindow", u"Ping", None))
+        self.checkBox_ping_2.setText(QCoreApplication.translate("MainWindow", u"Ping", None))
+        self.checkBox_ping_3.setText(QCoreApplication.translate("MainWindow", u"Ping", None))
+        self.checkBox_ping_4.setText(QCoreApplication.translate("MainWindow", u"Ping", None))
+        self.checkBox_ping_5.setText(QCoreApplication.translate("MainWindow", u"Ping", None))
         self.label_12.setText(QCoreApplication.translate("MainWindow", u"Ip 1", None))
         self.lineEdit_ip1.setText("")
         self.label_20.setText(QCoreApplication.translate("MainWindow", u"Mac Address", None))
@@ -2293,16 +2319,16 @@ class Ui_MainWindow(object):
         self.label_26.setText(QCoreApplication.translate("MainWindow", u"Mac Address", None))
         self.label_27.setText(QCoreApplication.translate("MainWindow", u"Ip 4", None))
         self.label_28.setText(QCoreApplication.translate("MainWindow", u"Ip 5", None))
-        self.label_78.setText(QCoreApplication.translate("MainWindow", u"-", None))
-        self.label_80.setText(QCoreApplication.translate("MainWindow", u"-", None))
-        self.label_81.setText(QCoreApplication.translate("MainWindow", u"-", None))
-        self.label_82.setText(QCoreApplication.translate("MainWindow", u"-", None))
-        self.label_83.setText(QCoreApplication.translate("MainWindow", u"-", None))
-        self.label_ping_status_ip1.setText(QCoreApplication.translate("MainWindow", u"--", None))
-        self.label_ping_status_ip2.setText(QCoreApplication.translate("MainWindow", u"--", None))
-        self.label_ping_status_ip3.setText(QCoreApplication.translate("MainWindow", u"--", None))
-        self.label_ping_status_ip4.setText(QCoreApplication.translate("MainWindow", u"--", None))
-        self.label_ping_status_ip5.setText(QCoreApplication.translate("MainWindow", u"--", None))
+        self.pushButton_ping4.setText(QCoreApplication.translate("MainWindow", u"Ping", None))
+        self.pushButton_ping5.setText(QCoreApplication.translate("MainWindow", u"Ping", None))
+        self.pushButton_ping1.setText(QCoreApplication.translate("MainWindow", u"Ping", None))
+        self.pushButton_ping2.setText(QCoreApplication.translate("MainWindow", u"Ping", None))
+        self.pushButton_ping3.setText(QCoreApplication.translate("MainWindow", u"Ping", None))
+        self.pushButton_5.setText(QCoreApplication.translate("MainWindow", u"Scan Network", None))
+        self.checkBox_ping_timer_all.setText(QCoreApplication.translate("MainWindow", u" Auto Ping Every", None))
+        self.label_33.setText(QCoreApplication.translate("MainWindow", u"seconds", None))
+        self.pushButton_ping_all_stop.setText(QCoreApplication.translate("MainWindow", u"Stop", None))
+        self.pushButton_ping_all.setText(QCoreApplication.translate("MainWindow", u"Start Ping All", None))
         ___qtablewidgetitem = self.tableWidget_cap.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"No", None));
         ___qtablewidgetitem1 = self.tableWidget_cap.horizontalHeaderItem(1)
@@ -2408,10 +2434,6 @@ class Ui_MainWindow(object):
         self.lineEdit_count_ping.setText("")
         self.pushButton_refresh_db.setText(QCoreApplication.translate("MainWindow", u"Refresh", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_database), QCoreApplication.translate("MainWindow", u"Database Settings", None))
-        self.pushButton_capture.setText(QCoreApplication.translate("MainWindow", u"Start Capture 2", None))
-        self.pushButton_checker_ping.setText(QCoreApplication.translate("MainWindow", u"Start Ping Checker", None))
-        self.pushButton_save_ping.setText(QCoreApplication.translate("MainWindow", u"Save Ping In DB", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_5), QCoreApplication.translate("MainWindow", u"System Functions", None))
         self.groupBox_4.setTitle(QCoreApplication.translate("MainWindow", u"Internet Speed", None))
         self.label_17.setText(QCoreApplication.translate("MainWindow", u"Sponsor", None))
         self.lineEdit_sponsor.setText(QCoreApplication.translate("MainWindow", u"-", None))
@@ -2428,7 +2450,6 @@ class Ui_MainWindow(object):
         self.lineEdit_lat.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.label_30.setText(QCoreApplication.translate("MainWindow", u"City", None))
         self.lineEdit_city.setText(QCoreApplication.translate("MainWindow", u"-", None))
-        self.pushButton_test_speed.setText(QCoreApplication.translate("MainWindow", u"Test Speed", None))
         self.label_46.setText(QCoreApplication.translate("MainWindow", u"Lon", None))
         self.lineEdit_lon.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.label_test_time.setText(QCoreApplication.translate("MainWindow", u"Last Scaned :", None))
@@ -2442,6 +2463,7 @@ class Ui_MainWindow(object):
         self.lineEdit_area.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.label_84.setText(QCoreApplication.translate("MainWindow", u"IP", None))
         self.lineEdit_global_ip.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.pushButton_test_speed.setText(QCoreApplication.translate("MainWindow", u"Test Speed", None))
         self.label_37.setText(QCoreApplication.translate("MainWindow", u"Upload", None))
         self.label_upload_meter.setText(QCoreApplication.translate("MainWindow", u"--", None))
         self.label_all_up.setText(QCoreApplication.translate("MainWindow", u"-- Mb Uploaded", None))
@@ -2506,11 +2528,11 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem24.setText(QCoreApplication.translate("MainWindow", u"Name", None));
         self.pushButton_4.setText(QCoreApplication.translate("MainWindow", u"Refresh", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_6), QCoreApplication.translate("MainWindow", u"Devices", None))
-        self.pushButton_home.setText(QCoreApplication.translate("MainWindow", u"Home", None))
-        self.pushButton_devices.setText(QCoreApplication.translate("MainWindow", u"Ping Devices", None))
+        self.pushButton_home.setText(QCoreApplication.translate("MainWindow", u"Scan Network", None))
         self.pushButton_meters.setText(QCoreApplication.translate("MainWindow", u"Internet Meters", None))
-        self.toolBox.setItemText(self.toolBox.indexOf(self.general_page), QCoreApplication.translate("MainWindow", u"General", None))
+        self.pushButton_devices.setText(QCoreApplication.translate("MainWindow", u"Ping Devices", None))
         self.pushButton_network_config.setText(QCoreApplication.translate("MainWindow", u"Network Configuration", None))
+        self.toolBox.setItemText(self.toolBox.indexOf(self.general_page), QCoreApplication.translate("MainWindow", u"General", None))
         self.pushButton_acc_config.setText(QCoreApplication.translate("MainWindow", u"Account Configuration", None))
         self.pushButton_database_settings.setText(QCoreApplication.translate("MainWindow", u"Database Settings", None))
         self.toolBox.setItemText(self.toolBox.indexOf(self.cars_page), QCoreApplication.translate("MainWindow", u"Settings", None))

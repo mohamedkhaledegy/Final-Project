@@ -292,6 +292,8 @@ class Main(QMainWindow,ui_main):
     ###########################################################
         # in this function we create our thread and run it
     def threadRunner(self):
+        
+        self.frame_1_circle_progres.show()
         self.frame_1_circle_progres.show()
         worker_1 = Worker(self.first_thread, num=1)# create our thread and give it a function as argument with its args
         worker_1.signals.result.connect(self.first_thread_result) # connect result signal of our thread to thread_result
@@ -313,6 +315,7 @@ class Main(QMainWindow,ui_main):
         print(stop_point_of_100)
         #QThread.sleep(2)
         num = 0
+        
         for i in range(101):
             #get_v = self.frame_1_circle_progres.rpb_getValue()
             if self.LOOPSCAN == True and i < 100:
@@ -323,6 +326,7 @@ class Main(QMainWindow,ui_main):
                 num += 1
                 #val_now = self.frame_2_cricle_progres.rpb_getValue()
                 #print(val_now)
+                
                 self.frame_1_circle_progres.rpb_setValue(i)
                 QThread.msleep(stop_point_of_100)
             if self.LOOPSCAN == False:
@@ -437,11 +441,13 @@ class Main(QMainWindow,ui_main):
                 label_mac = self.findChild(qtw.QLineEdit,"lineEdit_mac_host")
                 label_ip.setText(str(ip))
                 label_mac.setText(str(mac))
+            check_ip = self.findChild(qtw.QCheckBox,f'checkBox_ping_{str(row_num)}')
             label_ip = self.findChild(qtw.QLineEdit,f"lineEdit_ip{str(row_num)}")
             label_mac = self.findChild(qtw.QLineEdit,f"lineEdit_mac{str(row_num)}")
             #print(dir(self.label_ip))
             label_ip.setText(str(ip))
             label_mac.setText(str(mac))
+            check_ip.setChecked(True)
 
     def third_thrd_speed_test_result(self):
         print("Third Thread Scan Result")
@@ -1009,19 +1015,16 @@ class Main(QMainWindow,ui_main):
     def message_error(self, s):
         print("Error", s)
         dlg = QMessageBox(self)
-        dlg.setText("This is a question dialog")
-        dlg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
-        dlg.setWindowTitle("HELLO!")
+        dlg.setText(s)
+        dlg.setStandardButtons(QMessageBox.Ok)
+        dlg.setWindowTitle("Error")
         button = dlg.exec_()
-        if button == QMessageBox.Yes:
-            print("Yes!")
-        else:
-            print("No!")
+        
     ###################################
     ########### Start Ping ############
     ###################################
     def thread_ping_all(self):
-        worker = Worker(self.ping_all_scanned)
+        worker = Worker(self.start_ping_all_scanned)
         worker.signals.result.connect(self.ping_all_scanned_result)
         self.threadpool.start(worker)
 
@@ -1030,26 +1033,37 @@ class Main(QMainWindow,ui_main):
         #worker.signals.result.connect(self.ping_checker_results)
         self.threadpool.start(worker)
 
-    def ping_all_scanned(self):
+    def start_ping_all_scanned(self):
         print("Ping All Scanned")
         btn_stop_ping = self.findChild(qtw.QPushButton,"pushButton_ping_all_stop")
         btn_strt_ping = self.findChild(qtw.QPushButton,"pushButton_ping_all")
-        gui_step_by = self.findChild(qtw.QDoubleSpinBox,"spinBox_step_ping_all").text()
+        gui_step_by = self.findChild(qtw.QSpinBox,"spinBox_step_ping_all").text()
         step_by = float(gui_step_by)
         btn_strt_ping.setText("Pinging ...")
         btn_strt_ping.setEnabled(False)
         btn_stop_ping.setEnabled(True)
         while self.LOOPPINGER:
-            self.ping_checker()
-            time.sleep(step_by)
-            
+            #self.ping_checker(from_main=True)
+            try:
+                for row_num , row_info in ip_scanned.items():
+                    check_ip = self.findChild(qtw.QCheckBox,f"checkBox_ping_{str(row_num)}").isChecked()
+                    if check_ip == True:
+                        self.which_ip_to_ping(num_ip=row_num)
+                time.sleep(step_by)
+            except NameError:
+                print("Scan Network First Please ....")
+                self.LOOPPINGER = False
+            except Exception as err:
+                print("Error",err)
+                self.LOOPPINGER = False
+
     def ping_all_scanned_result(self):
         print("Ping All Results ")
         try:
             if len(ip_scanned) > 0:
                 print("Scanned")
             else:
-                print("Note Scanned")
+                print("Not Scanned")
         except NameError:
             self.message_error(s="Scan First Please")
             
@@ -1059,6 +1073,10 @@ class Main(QMainWindow,ui_main):
         btn_stop_ping.setEnabled(False)
         btn_strt_ping.setEnabled(True)
         self.LOOPPINGER = True
+
+    def stop_ping(self):
+        print("Ping Stopped")
+        self.LOOPPINGER = False
 
     def ping_checker_auto(self,main=None):
         #time_st = datetime.datetime.now().second
@@ -1170,7 +1188,6 @@ class Main(QMainWindow,ui_main):
             for ip in list_to_check:
                 ip_ping_response = self.collect_ping_to_dict(ip)
                 print(ip_ping_response)
-                
                 if save_ping_to_db_checked:
                     try:
                         self.db.connect()

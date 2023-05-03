@@ -54,6 +54,7 @@ def setup_btn(self):
     #self.findChild(qtw.QPushButton,"pushButton_checker_ping").pressed.connect(self.thread_ping_check_auto_save)
     self.findChild(qtw.QPushButton,"pushButton_checker_ping_3").pressed.connect(self.thread_ping_check_auto_save)
     self.findChild(qtw.QPushButton,"pushButton_ping_all").pressed.connect(self.thread_ping_all)
+    self.findChild(qtw.QPushButton,"pushButton_ping_all_stop").pressed.connect(self.stop_ping)
     #### Bandwidth
     self.findChild(qtw.QPushButton,"pushButton_start_bandwidth").pressed.connect(self.bandwidth_sample_worker)
     self.findChild(qtw.QPushButton,"pushButton_bandwidth_services").pressed.connect(self.bandwidth_services_worker)
@@ -92,7 +93,7 @@ def setup_btn(self):
         self.btn_meters.clicked.connect(lambda : self.main_widget.setCurrentIndex(5))
         self.btn_devices.clicked.connect(lambda : self.main_widget.setCurrentIndex(6))
         self.btn_home.clicked.connect(lambda : self.main_widget.setCurrentIndex(0))
-        self.main_widget.setCurrentIndex(1)
+        self.main_widget.setCurrentIndex(0)
     except Exception as err:
         print("Failed to Set SideBar Buttons Signals :",err)
         pass
