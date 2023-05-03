@@ -96,6 +96,7 @@ class Main(QMainWindow,ui_main):
         self.setupUi(self)
         self.auto_run()
         #self.threadsniffing()
+        
 
     def auto_run(self):
         print("auto Run Enabled")
@@ -122,6 +123,7 @@ class Main(QMainWindow,ui_main):
         # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         ## DataBase Functions ##
         self.set_data_base()
+        #self.message_error(s="Scan Network Please")
         # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         ## Custom Functions ##
         # networks_cards = sc.get_if_list()
@@ -1001,13 +1003,66 @@ class Main(QMainWindow,ui_main):
         self.lineEdit_bandwidth_down.setText(res['Download'])
         self.lineEdit_bandwidth_upload.setText(res['Upload'])
 
+    ###################################
+    ########### Message Box ###########
+    ###################################
+    def message_error(self, s):
+        print("Error", s)
+        dlg = QMessageBox(self)
+        dlg.setText("This is a question dialog")
+        dlg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+        dlg.setWindowTitle("HELLO!")
+        button = dlg.exec_()
+        if button == QMessageBox.Yes:
+            print("Yes!")
+        else:
+            print("No!")
+    ###################################
+    ########### Start Ping ############
+    ###################################
+    def thread_ping_all(self):
+        worker = Worker(self.ping_all_scanned)
+        worker.signals.result.connect(self.ping_all_scanned_result)
+        self.threadpool.start(worker)
+
     def thread_ping_check_auto_save(self):
         worker = Worker(self.ping_checker_auto)
         #worker.signals.result.connect(self.ping_checker_results)
         self.threadpool.start(worker)
 
-    def ping_checker_auto(self):
+    def ping_all_scanned(self):
+        print("Ping All Scanned")
+        btn_stop_ping = self.findChild(qtw.QPushButton,"pushButton_ping_all_stop")
+        btn_strt_ping = self.findChild(qtw.QPushButton,"pushButton_ping_all")
+        gui_step_by = self.findChild(qtw.QDoubleSpinBox,"spinBox_step_ping_all").text()
+        step_by = float(gui_step_by)
+        btn_strt_ping.setText("Pinging ...")
+        btn_strt_ping.setEnabled(False)
+        btn_stop_ping.setEnabled(True)
+        while self.LOOPPINGER:
+            self.ping_checker()
+            time.sleep(step_by)
+            
+    def ping_all_scanned_result(self):
+        print("Ping All Results ")
+        try:
+            if len(ip_scanned) > 0:
+                print("Scanned")
+            else:
+                print("Note Scanned")
+        except NameError:
+            self.message_error(s="Scan First Please")
+            
+        btn_stop_ping = self.findChild(qtw.QPushButton,"pushButton_ping_all_stop")
+        btn_strt_ping = self.findChild(qtw.QPushButton,"pushButton_ping_all")
+        btn_strt_ping.setText("Start Ping")
+        btn_stop_ping.setEnabled(False)
+        btn_strt_ping.setEnabled(True)
+        self.LOOPPINGER = True
+
+    def ping_checker_auto(self,main=None):
         #time_st = datetime.datetime.now().second
+        print(main)
         gui_step_by = self.findChild(qtw.QDoubleSpinBox,"doubleSpinBox_ping_stepby").text()
         gui_timeout_ping = self.findChild(qtw.QSpinBox,"spinBox_ping_timeout").text()
         timeout_counter = 0
@@ -1017,6 +1072,10 @@ class Main(QMainWindow,ui_main):
         ip_scanned_checked = self.checkBox_ping_ip_scanned.isChecked()
         multi_check = self.checkBox_ping_timer.isChecked()
         save_device_db_check = self.checkBox_save_device_db.isChecked()
+        if main == True:
+            ip_scanned_checked = True
+            gui_step_by = self.findChild(qtw.QDoubleSpinBox,"spinBox_step_ping_all").text()
+            step_by = float(gui_step_by)
         print("Ping Checker Is Running")
         if save_device_db_check:
             list_to_check = []
@@ -1047,7 +1106,7 @@ class Main(QMainWindow,ui_main):
         if multi_check:
             while timeout_counter < timeout_ping:
                 self.ping_checker()
-                time.sleep(step_by)
+                QThread.sleep(step_by)
                 #timeout_counter += step_by
                 time_end = datetime.now()
                 all_time = time_end - time_st
@@ -1056,12 +1115,13 @@ class Main(QMainWindow,ui_main):
         else:
             self.ping_checker()
         #print(str_time)
+
     def thread_ping_save_in_db(self):
         worker = Worker(self.ping_checker)
         #worker.signals.result.connect(self.ping_checker_results)
         self.threadpool.start(worker)
 
-    def ping_checker(self):
+    def ping_checker(self,from_main=False):
         ip_scanned_checked = self.checkBox_ping_ip_scanned.isChecked()
         save_ping_to_db_checked = self.checkBox_save_ping_db.isChecked()
         save_device_to_db_checked = self.checkBox_save_device_db.isChecked()
@@ -1102,7 +1162,7 @@ class Main(QMainWindow,ui_main):
                             print("Error In Save To db > ",err)
             except NameError:
                 print("Scan Network First Please ....")
-                return
+                
             except Exception as err:
                 print("Error",err)
                 pass

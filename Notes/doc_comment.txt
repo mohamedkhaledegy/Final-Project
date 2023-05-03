@@ -1,0 +1,20 @@
+1-splash screen 
+logo with text " MTI Network System "
+2- password with symbols * 
+3- menus 
+General 
+Scan Network
+Internet Meters
+Ping Devices
+Network Configuration 
+
+ويبقى الترتيب بتاع التابات في الجنب بترتيبهم كده وبرضو في الـmain كده 
+
+4- online devices on the network - مش شغالة -
+5- error box 
+لما يظهر ايرور يكتب رساله 
+error in the ping request .. contact the administrator to solve it "aministrator_mti@gmail.com "
+6-error = red , ping = green 
+وممكن يشيل empty ديه
+
+ping all مش شغاله

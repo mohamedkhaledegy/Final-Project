@@ -17,6 +17,7 @@ from scapy.all import ARP, Ether, srp
 
 # IP Address for the destination
 def scan_network(target_ip_to_scan,timeout_scan_input=None):
+    strt_tim = time.process_time()
     if not "192" in target_ip_to_scan:
         target_ip_to_scan = "192.168.1.1/24"
     # create ARP packet
@@ -27,7 +28,6 @@ def scan_network(target_ip_to_scan,timeout_scan_input=None):
     # stack them
     packet = ether/arp
     # لو المستخدم ادخل قيمة timeout
-    strt_tim = time.process_time()
     if timeout_scan_input:
         ## لو القيمة اكبر من 0 واقل من دقيقتين
         if 10 > len(timeout_scan_input) > 0:
@@ -36,10 +36,7 @@ def scan_network(target_ip_to_scan,timeout_scan_input=None):
             result = srp(packet,timeout=10)[0]
     else:
         result = srp(packet,timeout=10)[0]
-    
-    end_tim = time.process_time()
-    expnded = end_tim - strt_tim
-    print(expnded)
+    print("Result",result)
     # a list of clients, we will fill this in the upcoming loop
     clients = []
     for sent, received in result:
@@ -54,10 +51,14 @@ def scan_network(target_ip_to_scan,timeout_scan_input=None):
     ip_counter_scaned = 0
     for client in clients:
         ip_counter_scaned += 1
+        print(client)
         #print( "IP:","{:16} Mac Address :{}".format(client['ip'], client['mac']))
         dict_ip_scaned[ip_counter_scaned] = {
             "IP":str(client['ip']),
             "Mac":str(client['mac']) }
+    end_tim = time.process_time()
+    expnded = end_tim - strt_tim
+    print("Expnded Time For Scan",expnded)
     return dict_ip_scaned
 
-#scan_network("192.168.1.1",0)
+#scan_network("192.168.1.1/24",0)

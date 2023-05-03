@@ -271,7 +271,7 @@ QTabBar::close-button:hover {
           <enum>QTabWidget::North</enum>
          </property>
          <property name="currentIndex">
-          <number>4</number>
+          <number>0</number>
          </property>
          <property name="iconSize">
           <size>
@@ -455,83 +455,68 @@ QTabBar::close-button:hover {
                        <enum>QFrame::Raised</enum>
                       </property>
                       <layout class="QHBoxLayout" name="horizontalLayout_4">
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
                        <item>
-                        <widget class="QLabel" name="label_36">
-                         <property name="font">
-                          <font>
-                           <weight>75</weight>
-                           <bold>true</bold>
-                          </font>
+                        <widget class="QFrame" name="frame_8">
+                         <property name="frameShape">
+                          <enum>QFrame::StyledPanel</enum>
                          </property>
-                         <property name="styleSheet">
-                          <string notr="true">color:white;background-color:rgb(255, 0, 0); border-radius:10px;</string>
+                         <property name="frameShadow">
+                          <enum>QFrame::Raised</enum>
+                         </property>
+                         <layout class="QGridLayout" name="gridLayout_18">
+                          <property name="topMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="bottomMargin">
+                           <number>0</number>
+                          </property>
+                          <item row="0" column="0">
+                           <widget class="QCheckBox" name="checkBox_ping_timer_all">
+                            <property name="text">
+                             <string> Auto Ping Every</string>
+                            </property>
+                            <property name="checked">
+                             <bool>true</bool>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="0" column="2">
+                           <widget class="QLabel" name="label_33">
+                            <property name="text">
+                             <string>seconds</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="0" column="1">
+                           <widget class="QSpinBox" name="spinBox_step_ping_all">
+                            <property name="minimum">
+                             <number>3</number>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QPushButton" name="pushButton_ping_all_stop">
+                         <property name="enabled">
+                          <bool>false</bool>
                          </property>
                          <property name="text">
-                          <string>Offline</string>
+                          <string>Stop</string>
                          </property>
                         </widget>
                        </item>
                        <item>
-                        <widget class="QLabel" name="label_34">
-                         <property name="styleSheet">
-                          <string notr="true">color:white;
-background-color:rgb(0, 255, 0);
- border-radius:10px;</string>
-                         </property>
+                        <widget class="QPushButton" name="pushButton_ping_all">
                          <property name="text">
-                          <string>Online</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item>
-                        <widget class="QLabel" name="label_33">
-                         <property name="styleSheet">
-                          <string notr="true">color:white;
-background-color:slategray;
- border-radius:10px;</string>
-                         </property>
-                         <property name="text">
-                          <string>Empty</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item>
-                        <spacer name="horizontalSpacer_11">
-                         <property name="orientation">
-                          <enum>Qt::Horizontal</enum>
-                         </property>
-                         <property name="sizeHint" stdset="0">
-                          <size>
-                           <width>40</width>
-                           <height>20</height>
-                          </size>
-                         </property>
-                        </spacer>
-                       </item>
-                       <item>
-                        <widget class="QLabel" name="label_35">
-                         <property name="text">
-                          <string>Ping Status</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item>
-                        <spacer name="horizontalSpacer_12">
-                         <property name="orientation">
-                          <enum>Qt::Horizontal</enum>
-                         </property>
-                         <property name="sizeHint" stdset="0">
-                          <size>
-                           <width>40</width>
-                           <height>20</height>
-                          </size>
-                         </property>
-                        </spacer>
-                       </item>
-                       <item>
-                        <widget class="QPushButton" name="pushButton">
-                         <property name="text">
-                          <string>Ping All</string>
+                          <string>Start Ping All</string>
                          </property>
                         </widget>
                        </item>
@@ -3453,6 +3438,12 @@ color: rgb(60, 231, 195);</string>
                        </item>
                        <item row="0" column="0" rowspan="2">
                         <widget class="QPushButton" name="pushButton_refresh_db_2">
+                         <property name="minimumSize">
+                          <size>
+                           <width>0</width>
+                           <height>30</height>
+                          </size>
+                         </property>
                          <property name="text">
                           <string>Refresh</string>
                          </property>
@@ -3474,6 +3465,12 @@ color: rgb(60, 231, 195);</string>
                     <layout class="QGridLayout" name="gridLayout_51">
                      <item row="0" column="0">
                       <widget class="QPushButton" name="pushButton_checker_ping_3">
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>30</height>
+                        </size>
+                       </property>
                        <property name="text">
                         <string>Start Ping Checker</string>
                        </property>
@@ -3677,7 +3674,7 @@ color: rgb(60, 231, 195);</string>
 </string>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>1</number>
          </property>
          <property name="tabSpacing">
           <number>10</number>

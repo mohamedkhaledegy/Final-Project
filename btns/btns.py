@@ -53,6 +53,7 @@ def setup_btn(self):
     #self.findChild(qtw.QPushButton,"pushButton_save_ping").pressed.connect(self.thread_ping_save_in_db)
     #self.findChild(qtw.QPushButton,"pushButton_checker_ping").pressed.connect(self.thread_ping_check_auto_save)
     self.findChild(qtw.QPushButton,"pushButton_checker_ping_3").pressed.connect(self.thread_ping_check_auto_save)
+    self.findChild(qtw.QPushButton,"pushButton_ping_all").pressed.connect(self.thread_ping_all)
     #### Bandwidth
     self.findChild(qtw.QPushButton,"pushButton_start_bandwidth").pressed.connect(self.bandwidth_sample_worker)
     self.findChild(qtw.QPushButton,"pushButton_bandwidth_services").pressed.connect(self.bandwidth_services_worker)

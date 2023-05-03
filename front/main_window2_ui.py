@@ -258,49 +258,44 @@ class Ui_MainWindow(object):
         self.frame_20.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_4 = QHBoxLayout(self.frame_20)
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
-        self.label_36 = QLabel(self.frame_20)
-        self.label_36.setObjectName(u"label_36")
-        font1 = QFont()
-        font1.setBold(True)
-        font1.setWeight(75)
-        self.label_36.setFont(font1)
-        self.label_36.setStyleSheet(u"color:white;background-color:rgb(255, 0, 0); border-radius:10px;")
+        self.horizontalLayout_4.setContentsMargins(-1, 0, -1, 0)
+        self.frame_8 = QFrame(self.frame_20)
+        self.frame_8.setObjectName(u"frame_8")
+        self.frame_8.setFrameShape(QFrame.StyledPanel)
+        self.frame_8.setFrameShadow(QFrame.Raised)
+        self.gridLayout_18 = QGridLayout(self.frame_8)
+        self.gridLayout_18.setObjectName(u"gridLayout_18")
+        self.gridLayout_18.setContentsMargins(-1, 0, -1, 0)
+        self.checkBox_ping_timer_all = QCheckBox(self.frame_8)
+        self.checkBox_ping_timer_all.setObjectName(u"checkBox_ping_timer_all")
+        self.checkBox_ping_timer_all.setChecked(True)
 
-        self.horizontalLayout_4.addWidget(self.label_36)
+        self.gridLayout_18.addWidget(self.checkBox_ping_timer_all, 0, 0, 1, 1)
 
-        self.label_34 = QLabel(self.frame_20)
-        self.label_34.setObjectName(u"label_34")
-        self.label_34.setStyleSheet(u"color:white;\n"
-"background-color:rgb(0, 255, 0);\n"
-" border-radius:10px;")
-
-        self.horizontalLayout_4.addWidget(self.label_34)
-
-        self.label_33 = QLabel(self.frame_20)
+        self.label_33 = QLabel(self.frame_8)
         self.label_33.setObjectName(u"label_33")
-        self.label_33.setStyleSheet(u"color:white;\n"
-"background-color:slategray;\n"
-" border-radius:10px;")
 
-        self.horizontalLayout_4.addWidget(self.label_33)
+        self.gridLayout_18.addWidget(self.label_33, 0, 2, 1, 1)
 
-        self.horizontalSpacer_11 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.spinBox_step_ping_all = QSpinBox(self.frame_8)
+        self.spinBox_step_ping_all.setObjectName(u"spinBox_step_ping_all")
+        self.spinBox_step_ping_all.setMinimum(3)
 
-        self.horizontalLayout_4.addItem(self.horizontalSpacer_11)
+        self.gridLayout_18.addWidget(self.spinBox_step_ping_all, 0, 1, 1, 1)
 
-        self.label_35 = QLabel(self.frame_20)
-        self.label_35.setObjectName(u"label_35")
 
-        self.horizontalLayout_4.addWidget(self.label_35)
+        self.horizontalLayout_4.addWidget(self.frame_8)
 
-        self.horizontalSpacer_12 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.pushButton_ping_all_stop = QPushButton(self.frame_20)
+        self.pushButton_ping_all_stop.setObjectName(u"pushButton_ping_all_stop")
+        self.pushButton_ping_all_stop.setEnabled(False)
 
-        self.horizontalLayout_4.addItem(self.horizontalSpacer_12)
+        self.horizontalLayout_4.addWidget(self.pushButton_ping_all_stop)
 
-        self.pushButton = QPushButton(self.frame_20)
-        self.pushButton.setObjectName(u"pushButton")
+        self.pushButton_ping_all = QPushButton(self.frame_20)
+        self.pushButton_ping_all.setObjectName(u"pushButton_ping_all")
 
-        self.horizontalLayout_4.addWidget(self.pushButton)
+        self.horizontalLayout_4.addWidget(self.pushButton_ping_all)
 
 
         self.gridLayout_8.addWidget(self.frame_20, 0, 0, 1, 5)
@@ -1591,10 +1586,10 @@ class Ui_MainWindow(object):
         self.verticalLayout_8.setContentsMargins(10, 50, 10, 50)
         self.label_37 = QLabel(self.frame_circle_3)
         self.label_37.setObjectName(u"label_37")
-        font2 = QFont()
-        font2.setFamily(u"Roboto")
-        font2.setPointSize(11)
-        self.label_37.setFont(font2)
+        font1 = QFont()
+        font1.setFamily(u"Roboto")
+        font1.setPointSize(11)
+        self.label_37.setFont(font1)
         self.label_37.setStyleSheet(u"border: none;\n"
 "color: rgb(60, 231, 195);")
         self.label_37.setAlignment(Qt.AlignCenter)
@@ -1603,10 +1598,10 @@ class Ui_MainWindow(object):
 
         self.label_upload_meter = QLabel(self.frame_circle_3)
         self.label_upload_meter.setObjectName(u"label_upload_meter")
-        font3 = QFont()
-        font3.setFamily(u"Roboto Thin")
-        font3.setPointSize(60)
-        self.label_upload_meter.setFont(font3)
+        font2 = QFont()
+        font2.setFamily(u"Roboto Thin")
+        font2.setPointSize(60)
+        self.label_upload_meter.setFont(font2)
         self.label_upload_meter.setStyleSheet(u"border: none;\n"
 "color: rgb(220,220,220);")
         self.label_upload_meter.setAlignment(Qt.AlignCenter)
@@ -1617,10 +1612,10 @@ class Ui_MainWindow(object):
         self.label_all_up.setObjectName(u"label_all_up")
         sizePolicy4.setHeightForWidth(self.label_all_up.sizePolicy().hasHeightForWidth())
         self.label_all_up.setSizePolicy(sizePolicy4)
-        font4 = QFont()
-        font4.setFamily(u"Roboto")
-        font4.setPointSize(10)
-        self.label_all_up.setFont(font4)
+        font3 = QFont()
+        font3.setFamily(u"Roboto")
+        font3.setPointSize(10)
+        self.label_all_up.setFont(font3)
         self.label_all_up.setStyleSheet(u"border: none;\n"
 "color: rgb(60, 231, 195);")
         self.label_all_up.setAlignment(Qt.AlignCenter)
@@ -1649,7 +1644,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_6.setContentsMargins(10, 50, 10, 50)
         self.label_3 = QLabel(self.frame_circle_1)
         self.label_3.setObjectName(u"label_3")
-        self.label_3.setFont(font2)
+        self.label_3.setFont(font1)
         self.label_3.setStyleSheet(u"border: none;\n"
 "color: rgb(60, 231, 195);")
         self.label_3.setAlignment(Qt.AlignCenter)
@@ -1658,10 +1653,10 @@ class Ui_MainWindow(object):
 
         self.label_meter_ip = QLabel(self.frame_circle_1)
         self.label_meter_ip.setObjectName(u"label_meter_ip")
-        font5 = QFont()
-        font5.setFamily(u"Roboto")
-        font5.setPointSize(8)
-        self.label_meter_ip.setFont(font5)
+        font4 = QFont()
+        font4.setFamily(u"Roboto")
+        font4.setPointSize(8)
+        self.label_meter_ip.setFont(font4)
         self.label_meter_ip.setStyleSheet(u"border: none;\n"
 " color: rgb(128, 102, 168);")
         self.label_meter_ip.setAlignment(Qt.AlignCenter)
@@ -1670,7 +1665,7 @@ class Ui_MainWindow(object):
 
         self.label_meter_ping = QLabel(self.frame_circle_1)
         self.label_meter_ping.setObjectName(u"label_meter_ping")
-        self.label_meter_ping.setFont(font3)
+        self.label_meter_ping.setFont(font2)
         self.label_meter_ping.setStyleSheet(u"border: none;\n"
 "color: rgb(220,220,220);")
         self.label_meter_ping.setAlignment(Qt.AlignCenter)
@@ -1699,7 +1694,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_9.setContentsMargins(10, 50, 10, 50)
         self.label_56 = QLabel(self.frame_circle_4)
         self.label_56.setObjectName(u"label_56")
-        self.label_56.setFont(font2)
+        self.label_56.setFont(font1)
         self.label_56.setStyleSheet(u"border: none;\n"
 "color: rgb(60, 231, 195);")
         self.label_56.setAlignment(Qt.AlignCenter)
@@ -1708,7 +1703,7 @@ class Ui_MainWindow(object):
 
         self.label_download_meter = QLabel(self.frame_circle_4)
         self.label_download_meter.setObjectName(u"label_download_meter")
-        self.label_download_meter.setFont(font3)
+        self.label_download_meter.setFont(font2)
         self.label_download_meter.setStyleSheet(u"border: none;\n"
 "color: rgb(220,220,220);")
         self.label_download_meter.setAlignment(Qt.AlignCenter)
@@ -1719,7 +1714,7 @@ class Ui_MainWindow(object):
         self.label_all_down.setObjectName(u"label_all_down")
         sizePolicy4.setHeightForWidth(self.label_all_down.sizePolicy().hasHeightForWidth())
         self.label_all_down.setSizePolicy(sizePolicy4)
-        self.label_all_down.setFont(font4)
+        self.label_all_down.setFont(font3)
         self.label_all_down.setStyleSheet(u"border: none;\n"
 "color: rgb(60, 231, 195);")
         self.label_all_down.setAlignment(Qt.AlignCenter)
@@ -1994,6 +1989,7 @@ class Ui_MainWindow(object):
 
         self.pushButton_refresh_db_2 = QPushButton(self.frame_25)
         self.pushButton_refresh_db_2.setObjectName(u"pushButton_refresh_db_2")
+        self.pushButton_refresh_db_2.setMinimumSize(QSize(0, 30))
 
         self.gridLayout_46.addWidget(self.pushButton_refresh_db_2, 0, 0, 2, 1)
 
@@ -2011,6 +2007,7 @@ class Ui_MainWindow(object):
         self.gridLayout_51.setObjectName(u"gridLayout_51")
         self.pushButton_checker_ping_3 = QPushButton(self.frame_26)
         self.pushButton_checker_ping_3.setObjectName(u"pushButton_checker_ping_3")
+        self.pushButton_checker_ping_3.setMinimumSize(QSize(0, 30))
 
         self.gridLayout_51.addWidget(self.pushButton_checker_ping_3, 0, 0, 1, 1)
 
@@ -2123,9 +2120,9 @@ class Ui_MainWindow(object):
         self.gridLayout.setContentsMargins(4, 4, 4, 15)
         self.toolBox = QToolBox(self.menu_widget)
         self.toolBox.setObjectName(u"toolBox")
-        font6 = QFont()
-        font6.setPointSize(12)
-        self.toolBox.setFont(font6)
+        font5 = QFont()
+        font5.setPointSize(12)
+        self.toolBox.setFont(font5)
         self.toolBox.setAutoFillBackground(False)
         self.toolBox.setStyleSheet(u"\n"
 "#toolBox::tab {\n"
@@ -2250,8 +2247,8 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         self.pushButton_8.toggled.connect(self.menu_widget.setHidden)
 
-        self.tabWidget.setCurrentIndex(4)
-        self.toolBox.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(0)
+        self.toolBox.setCurrentIndex(1)
         self.toolBox.layout().setSpacing(10)
 
 
@@ -2273,11 +2270,10 @@ class Ui_MainWindow(object):
         self.pushButton_stop_cap.setText(QCoreApplication.translate("MainWindow", u"Stop Capture", None))
         self.pushButton_start_cap.setText(QCoreApplication.translate("MainWindow", u"Start Capture", None))
         self.groupBox_ip_discovered.setTitle(QCoreApplication.translate("MainWindow", u"Ip Discovered", None))
-        self.label_36.setText(QCoreApplication.translate("MainWindow", u"Offline", None))
-        self.label_34.setText(QCoreApplication.translate("MainWindow", u"Online", None))
-        self.label_33.setText(QCoreApplication.translate("MainWindow", u"Empty", None))
-        self.label_35.setText(QCoreApplication.translate("MainWindow", u"Ping Status", None))
-        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Ping All", None))
+        self.checkBox_ping_timer_all.setText(QCoreApplication.translate("MainWindow", u" Auto Ping Every", None))
+        self.label_33.setText(QCoreApplication.translate("MainWindow", u"seconds", None))
+        self.pushButton_ping_all_stop.setText(QCoreApplication.translate("MainWindow", u"Stop", None))
+        self.pushButton_ping_all.setText(QCoreApplication.translate("MainWindow", u"Start Ping All", None))
         self.pushButton_ping3.setText(QCoreApplication.translate("MainWindow", u"Ping", None))
         self.pushButton_ping5.setText(QCoreApplication.translate("MainWindow", u"Ping", None))
         self.pushButton_ping4.setText(QCoreApplication.translate("MainWindow", u"Ping", None))
