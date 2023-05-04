@@ -339,99 +339,6 @@ QTabBar::close-button:hover {
                   <property name="orientation">
                    <enum>Qt::Vertical</enum>
                   </property>
-                  <widget class="QFrame" name="frame_5">
-                   <property name="frameShape">
-                    <enum>QFrame::StyledPanel</enum>
-                   </property>
-                   <property name="frameShadow">
-                    <enum>QFrame::Raised</enum>
-                   </property>
-                   <layout class="QGridLayout" name="gridLayout_13">
-                    <item row="0" column="0">
-                     <widget class="QSplitter" name="splitter_12">
-                      <property name="sizePolicy">
-                       <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-                        <horstretch>0</horstretch>
-                        <verstretch>0</verstretch>
-                       </sizepolicy>
-                      </property>
-                      <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
-                      </property>
-                      <widget class="QLabel" name="label_22">
-                       <property name="text">
-                        <string>Interface</string>
-                       </property>
-                      </widget>
-                      <widget class="QLineEdit" name="lineEdit_interface"/>
-                     </widget>
-                    </item>
-                    <item row="2" column="0">
-                     <widget class="QLabel" name="label_18">
-                      <property name="text">
-                       <string>Main Device</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="2" column="2">
-                     <widget class="QLabel" name="label_75">
-                      <property name="text">
-                       <string>Loop Sniff Every (Packet)</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="2">
-                     <widget class="QLabel" name="label_10">
-                      <property name="text">
-                       <string>Packet Limit</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="2" column="3">
-                     <widget class="QSpinBox" name="spinBox_pkt_count_by">
-                      <property name="maximum">
-                       <number>1000</number>
-                      </property>
-                      <property name="value">
-                       <number>4</number>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="5" rowspan="3">
-                     <widget class="QPushButton" name="pushButton_start_cap">
-                      <property name="sizePolicy">
-                       <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-                        <horstretch>0</horstretch>
-                        <verstretch>0</verstretch>
-                       </sizepolicy>
-                      </property>
-                      <property name="text">
-                       <string>Start Capture</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="4" rowspan="3">
-                     <widget class="QPushButton" name="pushButton_stop_cap">
-                      <property name="sizePolicy">
-                       <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-                        <horstretch>0</horstretch>
-                        <verstretch>0</verstretch>
-                       </sizepolicy>
-                      </property>
-                      <property name="text">
-                       <string>Stop Capture</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="3">
-                     <widget class="QSpinBox" name="spinBox_pkt_limit">
-                      <property name="maximum">
-                       <number>10000</number>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
                   <widget class="QGroupBox" name="groupBox_ip_discovered">
                    <property name="enabled">
                     <bool>true</bool>
@@ -446,196 +353,20 @@ QTabBar::close-button:hover {
                     <string>Ip Discovered</string>
                    </property>
                    <layout class="QGridLayout" name="gridLayout_8">
-                    <item row="2" column="5" rowspan="5">
-                     <widget class="QFrame" name="frame_24">
-                      <property name="frameShape">
-                       <enum>QFrame::StyledPanel</enum>
+                    <item row="5" column="5">
+                     <widget class="QPushButton" name="pushButton_ping4">
+                      <property name="maximumSize">
+                       <size>
+                        <width>50</width>
+                        <height>16777215</height>
+                       </size>
                       </property>
-                      <property name="frameShadow">
-                       <enum>QFrame::Raised</enum>
+                      <property name="text">
+                       <string>Ping</string>
                       </property>
-                      <layout class="QGridLayout" name="gridLayout_43">
-                       <item row="0" column="0">
-                        <widget class="QLabel" name="label_ping_status_ip1">
-                         <property name="minimumSize">
-                          <size>
-                           <width>40</width>
-                           <height>0</height>
-                          </size>
-                         </property>
-                         <property name="styleSheet">
-                          <string notr="true"/>
-                         </property>
-                         <property name="text">
-                          <string>--</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="1" column="0">
-                        <widget class="QLabel" name="label_ping_status_ip2">
-                         <property name="minimumSize">
-                          <size>
-                           <width>40</width>
-                           <height>0</height>
-                          </size>
-                         </property>
-                         <property name="styleSheet">
-                          <string notr="true"/>
-                         </property>
-                         <property name="text">
-                          <string>--</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="2" column="0">
-                        <widget class="QLabel" name="label_ping_status_ip3">
-                         <property name="minimumSize">
-                          <size>
-                           <width>40</width>
-                           <height>0</height>
-                          </size>
-                         </property>
-                         <property name="styleSheet">
-                          <string notr="true"/>
-                         </property>
-                         <property name="text">
-                          <string>--</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="3" column="0">
-                        <widget class="QLabel" name="label_ping_status_ip4">
-                         <property name="minimumSize">
-                          <size>
-                           <width>40</width>
-                           <height>0</height>
-                          </size>
-                         </property>
-                         <property name="styleSheet">
-                          <string notr="true"/>
-                         </property>
-                         <property name="text">
-                          <string>--</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="4" column="0">
-                        <widget class="QLabel" name="label_ping_status_ip5">
-                         <property name="minimumSize">
-                          <size>
-                           <width>40</width>
-                           <height>0</height>
-                          </size>
-                         </property>
-                         <property name="styleSheet">
-                          <string notr="true"/>
-                         </property>
-                         <property name="text">
-                          <string>--</string>
-                         </property>
-                        </widget>
-                       </item>
-                      </layout>
                      </widget>
                     </item>
-                    <item row="2" column="4" rowspan="5">
-                     <widget class="QFrame" name="frame_23">
-                      <property name="frameShape">
-                       <enum>QFrame::StyledPanel</enum>
-                      </property>
-                      <property name="frameShadow">
-                       <enum>QFrame::Raised</enum>
-                      </property>
-                      <layout class="QGridLayout" name="gridLayout_42">
-                       <item row="0" column="1">
-                        <widget class="QLabel" name="label_78">
-                         <property name="text">
-                          <string>-</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="3" column="1">
-                        <widget class="QLabel" name="label_81">
-                         <property name="text">
-                          <string>-</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="2" column="1">
-                        <widget class="QLabel" name="label_80">
-                         <property name="text">
-                          <string>-</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="5" column="1">
-                        <widget class="QLabel" name="label_83">
-                         <property name="text">
-                          <string>-</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="4" column="1">
-                        <widget class="QLabel" name="label_82">
-                         <property name="text">
-                          <string>-</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="0" column="0">
-                        <widget class="QCheckBox" name="checkBox_ping_1">
-                         <property name="text">
-                          <string>Ping</string>
-                         </property>
-                         <property name="checked">
-                          <bool>false</bool>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="2" column="0">
-                        <widget class="QCheckBox" name="checkBox_ping_2">
-                         <property name="text">
-                          <string>Ping</string>
-                         </property>
-                         <property name="checked">
-                          <bool>false</bool>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="3" column="0">
-                        <widget class="QCheckBox" name="checkBox_ping_3">
-                         <property name="text">
-                          <string>Ping</string>
-                         </property>
-                         <property name="checked">
-                          <bool>false</bool>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="4" column="0">
-                        <widget class="QCheckBox" name="checkBox_ping_4">
-                         <property name="text">
-                          <string>Ping</string>
-                         </property>
-                         <property name="checked">
-                          <bool>false</bool>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="5" column="0">
-                        <widget class="QCheckBox" name="checkBox_ping_5">
-                         <property name="text">
-                          <string>Ping</string>
-                         </property>
-                         <property name="checked">
-                          <bool>false</bool>
-                         </property>
-                        </widget>
-                       </item>
-                      </layout>
-                     </widget>
-                    </item>
-                    <item row="2" column="0" rowspan="5" colspan="4">
+                    <item row="2" column="0" rowspan="5" colspan="3">
                      <widget class="QFrame" name="frame_22">
                       <property name="minimumSize">
                        <size>
@@ -940,33 +671,196 @@ QTabBar::close-button:hover {
                       </layout>
                      </widget>
                     </item>
-                    <item row="5" column="6">
-                     <widget class="QPushButton" name="pushButton_ping4">
-                      <property name="maximumSize">
-                       <size>
-                        <width>50</width>
-                        <height>16777215</height>
-                       </size>
+                    <item row="2" column="4" rowspan="5">
+                     <widget class="QFrame" name="frame_24">
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
                       </property>
-                      <property name="text">
-                       <string>Ping</string>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
                       </property>
+                      <layout class="QGridLayout" name="gridLayout_43">
+                       <item row="0" column="0">
+                        <widget class="QLabel" name="label_ping_status_ip1">
+                         <property name="minimumSize">
+                          <size>
+                           <width>40</width>
+                           <height>0</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true"/>
+                         </property>
+                         <property name="text">
+                          <string>--</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="1" column="0">
+                        <widget class="QLabel" name="label_ping_status_ip2">
+                         <property name="minimumSize">
+                          <size>
+                           <width>40</width>
+                           <height>0</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true"/>
+                         </property>
+                         <property name="text">
+                          <string>--</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="2" column="0">
+                        <widget class="QLabel" name="label_ping_status_ip3">
+                         <property name="minimumSize">
+                          <size>
+                           <width>40</width>
+                           <height>0</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true"/>
+                         </property>
+                         <property name="text">
+                          <string>--</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="3" column="0">
+                        <widget class="QLabel" name="label_ping_status_ip4">
+                         <property name="minimumSize">
+                          <size>
+                           <width>40</width>
+                           <height>0</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true"/>
+                         </property>
+                         <property name="text">
+                          <string>--</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="4" column="0">
+                        <widget class="QLabel" name="label_ping_status_ip5">
+                         <property name="minimumSize">
+                          <size>
+                           <width>40</width>
+                           <height>0</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true"/>
+                         </property>
+                         <property name="text">
+                          <string>--</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
                      </widget>
                     </item>
-                    <item row="6" column="6">
-                     <widget class="QPushButton" name="pushButton_ping5">
-                      <property name="maximumSize">
-                       <size>
-                        <width>50</width>
-                        <height>16777215</height>
-                       </size>
+                    <item row="2" column="3" rowspan="5">
+                     <widget class="QFrame" name="frame_23">
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
                       </property>
-                      <property name="text">
-                       <string>Ping</string>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
                       </property>
+                      <layout class="QGridLayout" name="gridLayout_42">
+                       <item row="0" column="1">
+                        <widget class="QLabel" name="label_78">
+                         <property name="text">
+                          <string>-</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="3" column="1">
+                        <widget class="QLabel" name="label_81">
+                         <property name="text">
+                          <string>-</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="2" column="1">
+                        <widget class="QLabel" name="label_80">
+                         <property name="text">
+                          <string>-</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="5" column="1">
+                        <widget class="QLabel" name="label_83">
+                         <property name="text">
+                          <string>-</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="4" column="1">
+                        <widget class="QLabel" name="label_82">
+                         <property name="text">
+                          <string>-</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="0" column="0">
+                        <widget class="QCheckBox" name="checkBox_ping_1">
+                         <property name="text">
+                          <string>Ping</string>
+                         </property>
+                         <property name="checked">
+                          <bool>false</bool>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="2" column="0">
+                        <widget class="QCheckBox" name="checkBox_ping_2">
+                         <property name="text">
+                          <string>Ping</string>
+                         </property>
+                         <property name="checked">
+                          <bool>false</bool>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="3" column="0">
+                        <widget class="QCheckBox" name="checkBox_ping_3">
+                         <property name="text">
+                          <string>Ping</string>
+                         </property>
+                         <property name="checked">
+                          <bool>false</bool>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="4" column="0">
+                        <widget class="QCheckBox" name="checkBox_ping_4">
+                         <property name="text">
+                          <string>Ping</string>
+                         </property>
+                         <property name="checked">
+                          <bool>false</bool>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="5" column="0">
+                        <widget class="QCheckBox" name="checkBox_ping_5">
+                         <property name="text">
+                          <string>Ping</string>
+                         </property>
+                         <property name="checked">
+                          <bool>false</bool>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
                      </widget>
                     </item>
-                    <item row="2" column="6">
+                    <item row="2" column="5">
                      <widget class="QPushButton" name="pushButton_ping1">
                       <property name="maximumSize">
                        <size>
@@ -979,7 +873,7 @@ QTabBar::close-button:hover {
                       </property>
                      </widget>
                     </item>
-                    <item row="3" column="6">
+                    <item row="3" column="5">
                      <widget class="QPushButton" name="pushButton_ping2">
                       <property name="maximumSize">
                        <size>
@@ -992,7 +886,20 @@ QTabBar::close-button:hover {
                       </property>
                      </widget>
                     </item>
-                    <item row="4" column="6">
+                    <item row="6" column="5">
+                     <widget class="QPushButton" name="pushButton_ping5">
+                      <property name="maximumSize">
+                       <size>
+                        <width>50</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>Ping</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="4" column="5">
                      <widget class="QPushButton" name="pushButton_ping3">
                       <property name="maximumSize">
                        <size>
@@ -1024,73 +931,95 @@ QTabBar::close-button:hover {
                       </property>
                      </widget>
                     </item>
-                    <item row="0" column="1" colspan="5">
-                     <widget class="QFrame" name="frame_20">
+                    <item row="0" column="1" colspan="2">
+                     <widget class="QFrame" name="frame_8">
                       <property name="frameShape">
                        <enum>QFrame::NoFrame</enum>
                       </property>
                       <property name="frameShadow">
-                       <enum>QFrame::Plain</enum>
+                       <enum>QFrame::Raised</enum>
                       </property>
                       <property name="lineWidth">
                        <number>0</number>
                       </property>
-                      <layout class="QHBoxLayout" name="horizontalLayout_4">
+                      <layout class="QGridLayout" name="gridLayout_18">
                        <property name="topMargin">
                         <number>0</number>
                        </property>
                        <property name="bottomMargin">
                         <number>0</number>
                        </property>
-                       <item>
-                        <widget class="QFrame" name="frame_8">
-                         <property name="frameShape">
-                          <enum>QFrame::NoFrame</enum>
+                       <item row="1" column="2" colspan="2">
+                        <widget class="QCheckBox" name="checkBox_save_dev_db">
+                         <property name="text">
+                          <string>Save Scanned IP to DB</string>
                          </property>
-                         <property name="frameShadow">
-                          <enum>QFrame::Raised</enum>
+                         <property name="checked">
+                          <bool>false</bool>
                          </property>
-                         <property name="lineWidth">
-                          <number>0</number>
-                         </property>
-                         <layout class="QGridLayout" name="gridLayout_18">
-                          <property name="topMargin">
-                           <number>0</number>
-                          </property>
-                          <property name="bottomMargin">
-                           <number>0</number>
-                          </property>
-                          <item row="0" column="0">
-                           <widget class="QCheckBox" name="checkBox_ping_timer_all">
-                            <property name="text">
-                             <string> Auto Ping Every</string>
-                            </property>
-                            <property name="checked">
-                             <bool>true</bool>
-                            </property>
-                           </widget>
-                          </item>
-                          <item row="0" column="2">
-                           <widget class="QLabel" name="label_33">
-                            <property name="text">
-                             <string>seconds</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item row="0" column="1">
-                           <widget class="QSpinBox" name="spinBox_step_ping_all">
-                            <property name="minimum">
-                             <number>2</number>
-                            </property>
-                            <property name="value">
-                             <number>2</number>
-                            </property>
-                           </widget>
-                          </item>
-                         </layout>
                         </widget>
                        </item>
-                       <item>
+                       <item row="0" column="3" colspan="2">
+                        <widget class="QCheckBox" name="checkBox_listen_dev_off">
+                         <property name="text">
+                          <string>Msg Box For Offline Device</string>
+                         </property>
+                         <property name="checked">
+                          <bool>false</bool>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="0" column="2">
+                        <widget class="QCheckBox" name="checkBox_ping_save_db_home">
+                         <property name="text">
+                          <string>Save Ping Result To DB</string>
+                         </property>
+                         <property name="checked">
+                          <bool>false</bool>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="0" column="0" colspan="2">
+                        <widget class="QCheckBox" name="checkBox_ping_timer_all">
+                         <property name="text">
+                          <string> Auto Ping Every</string>
+                         </property>
+                         <property name="checked">
+                          <bool>true</bool>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="1" column="1">
+                        <widget class="QLabel" name="label_33">
+                         <property name="text">
+                          <string>seconds</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="1" column="0">
+                        <widget class="QSpinBox" name="spinBox_step_ping_all">
+                         <property name="minimum">
+                          <number>2</number>
+                         </property>
+                         <property name="value">
+                          <number>2</number>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="0" column="5">
+                        <widget class="QPushButton" name="pushButton_ping_all">
+                         <property name="minimumSize">
+                          <size>
+                           <width>0</width>
+                           <height>30</height>
+                          </size>
+                         </property>
+                         <property name="text">
+                          <string>Start Ping All</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="1" column="5">
                         <widget class="QPushButton" name="pushButton_ping_all_stop">
                          <property name="enabled">
                           <bool>false</bool>
@@ -1103,19 +1032,6 @@ QTabBar::close-button:hover {
                          </property>
                          <property name="text">
                           <string>Stop</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item>
-                        <widget class="QPushButton" name="pushButton_ping_all">
-                         <property name="minimumSize">
-                          <size>
-                           <width>0</width>
-                           <height>30</height>
-                          </size>
-                         </property>
-                         <property name="text">
-                          <string>Start Ping All</string>
                          </property>
                         </widget>
                        </item>
@@ -1162,13 +1078,104 @@ QTabBar::close-button:hover {
                 </widget>
                 <widget class="QFrame" name="frame_4">
                  <property name="frameShape">
-                  <enum>QFrame::StyledPanel</enum>
+                  <enum>QFrame::NoFrame</enum>
                  </property>
                  <property name="frameShadow">
                   <enum>QFrame::Raised</enum>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_6">
+                  <property name="bottomMargin">
+                   <number>5</number>
+                  </property>
                   <item row="0" column="0">
+                   <widget class="QFrame" name="frame_5">
+                    <property name="frameShape">
+                     <enum>QFrame::NoFrame</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Plain</enum>
+                    </property>
+                    <layout class="QGridLayout" name="gridLayout_13">
+                     <item row="1" column="0">
+                      <widget class="QSplitter" name="splitter_12">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                       <widget class="QLabel" name="label_22">
+                        <property name="text">
+                         <string>Interface</string>
+                        </property>
+                       </widget>
+                       <widget class="QLineEdit" name="lineEdit_interface"/>
+                      </widget>
+                     </item>
+                     <item row="1" column="3">
+                      <widget class="QLabel" name="label_10">
+                       <property name="text">
+                        <string>Packet Limit</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="6" rowspan="3">
+                      <widget class="QPushButton" name="pushButton_start_cap">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="text">
+                        <string>Start Capture</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="5" rowspan="3">
+                      <widget class="QPushButton" name="pushButton_stop_cap">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="text">
+                        <string>Stop Capture</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="4">
+                      <widget class="QSpinBox" name="spinBox_pkt_limit">
+                       <property name="maximum">
+                        <number>10000</number>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="1">
+                      <widget class="QLabel" name="label_75">
+                       <property name="text">
+                        <string>Loop Sniff Every (Packet)</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="2">
+                      <widget class="QSpinBox" name="spinBox_pkt_count_by">
+                       <property name="maximum">
+                        <number>1000</number>
+                       </property>
+                       <property name="value">
+                        <number>4</number>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
                    <widget class="QTableWidget" name="tableWidget_cap">
                     <property name="sizePolicy">
                      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">

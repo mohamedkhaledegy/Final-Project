@@ -28,6 +28,8 @@ class PingInfo(BaseModel):
     owner = ForeignKeyField(Device, backref='owner_ip',null=True)
     is_anwsred = BooleanField(default=True)
     created_at = DateTimeField(default=datetime.datetime.now)
+    ttl = CharField(null=True)
+    resp_time = CharField(null=True)
     details = TextField(null=True)
 
 # class BlockSite(BaseModel):

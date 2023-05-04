@@ -162,6 +162,8 @@ class Main(QMainWindow,ui_main):
         self.packet_dict = {}
         ## For Block Sites
         self.ip_blocked = {}
+        ## Ping Vars
+        self.error_message = None
         ## Breaks
         self.LOOPPINGER = True
         self.LOOPTEST = True
@@ -248,7 +250,7 @@ class Main(QMainWindow,ui_main):
             Function Set For 5 Buttons In Main Window To Ping And Colored results
         """
         ip_to_ping = self.findChild(qtw.QLineEdit,f"lineEdit_ip{str(num_ip)}").text()        
-        mac_addr = self.findChild(qtw.QLabel,f"lineEdit_mac{num_ip}")
+        mac_addr = self.findChild(qtw.QLineEdit,f"lineEdit_mac{str(num_ip)}").text()
         ip_ping_response = {
             'IP':ip_to_ping,
             'Mac':mac_addr,
@@ -296,7 +298,6 @@ class Main(QMainWindow,ui_main):
     ###########################################################
         # in this function we create our thread and run it
     def threadRunner(self):
-        
         self.frame_1_circle_progres.show()
         self.frame_1_circle_progres.show()
         worker_1 = Worker(self.first_thread, num=1)# create our thread and give it a function as argument with its args
@@ -1016,13 +1017,21 @@ class Main(QMainWindow,ui_main):
     ###################################
     ########### Message Box ###########
     ###################################
-    def message_error(self, s):
-        print("Error", s)
-        dlg = QMessageBox(self)
-        dlg.setText(s)
-        dlg.setStandardButtons(QMessageBox.Ok)
-        dlg.setWindowTitle("Error")
-        button = dlg.exec_()
+    def message_error(self, s,timer_sleep=None):
+        if timer_sleep == None:
+            print("Error", s)
+            dlg = QMessageBox(self)
+            dlg.setText(s)
+            dlg.setIcon(QMessageBox.Warning)
+            dlg.setStandardButtons(QMessageBox.Ok)
+            dlg.setWindowTitle("Error")
+            button = dlg.exec_()
+        else:
+            print("Error Timer", s)
+            dlg = QMessageBox(self)
+            dlg.setText(s)
+            dlg.setWindowTitle("Error")
+            button = dlg.exec_()
         
     ###################################
     ########### Start Ping ############
@@ -1039,15 +1048,93 @@ class Main(QMainWindow,ui_main):
 
     def start_ping_all_scanned(self):
         print("Ping All Scanned")
-        btn_stop_ping = self.findChild(qtw.QPushButton,"pushButton_ping_all_stop")
-        btn_strt_ping = self.findChild(qtw.QPushButton,"pushButton_ping_all")
         gui_step_by = self.findChild(qtw.QSpinBox,"spinBox_step_ping_all").text()
+        auto_check = self.checkBox_ping_timer_all.isChecked()
+        ping_save_check = self.checkBox_ping_save_db_home.isChecked()
+        listen_dev_check = self.checkBox_listen_dev_off.isChecked()
+        dev_save_check = self.checkBox_save_dev_db.isChecked()
         step_by = float(gui_step_by)
-        btn_strt_ping.setText("Pinging ...")
-        btn_strt_ping.setEnabled(False)
-        btn_stop_ping.setEnabled(True)
-        while self.LOOPPINGER:
-            #self.ping_checker(from_main=True)
+        print(auto_check)
+        if auto_check:
+            while self.LOOPPINGER:
+                try:
+                    online_devices = 0
+                    self.pushButton_ping_all.setText("Pinging ...")
+                    self.pushButton_ping_all_stop.setEnabled(True)
+                    self.pushButton_ping_all.setEnabled(False)
+                    for row_num , row_info in ip_scanned.items():
+                        check_ip = self.findChild(qtw.QCheckBox,f"checkBox_ping_{str(row_num)}").isChecked()
+                        if check_ip == True:
+                            resp = self.which_ip_to_ping(num_ip=row_num)
+                            if resp['Response'] == True:
+                                online_devices += 1
+                            else:
+                                if listen_dev_check == True:
+                                    self.error_message = f"Device With Ip {resp['IP']} and Mac Address {resp['Mac']} Unable To Ping"
+                                    self.LOOPPINGER = False
+                                    break
+                            if dev_save_check == True:
+                                try:
+                                    print("Start To Create Device")
+                                    ip = resp['IP']
+                                    mac = resp['Mac']
+                                    self.db.connect()
+                                    try:
+                                        dev = Device.select().where(Device.mac_address == mac).get()
+                                        print(dev)
+                                    except:
+                                        dev = None
+                                    if dev != None:
+                                        print("Found",dev)
+                                        self.db.close()
+                                    else:
+                                        print(ip)
+                                        print(mac)
+                                        #self.db.connect()
+                                        dev = Device.create(
+                                            ip_dev=ip,
+                                            mac_address=mac,
+                                            )
+                                        dev.save()
+                                        self.db.close()
+                                        print("Device Created",ip,"Success")
+                                except "UNIQUE" in Exception:
+                                    print("Device Already Inserted : ",err)
+                                    self.db.close()
+                                    pass
+                                except Exception as err:
+                                    print("Failed To Create Instance : ",err)
+                                    self.db.close()
+                                    pass
+                            if ping_save_check == True:
+                                try:
+                                    print("Start To Create Ping")
+                                    self.db.connect()
+                                    dev = Device.select().where(Device.mac_address == resp['Mac']).get()
+                                    print(dev)
+                                    #print(dev.ip_dev)
+                                    ping_obj = PingInfo.create(
+                                        owner=dev,
+                                        is_anwsred = resp['Response'],
+                                        resp_time = resp['ResTime'],
+                                        ttl = resp['TTL'],
+                                    )
+                                    ping_obj.save()
+                                    self.db.close()
+                                    print("Created","IP",resp['IP'],"Response Time",resp['ResTime'])
+                                except Exception as err:
+                                    self.db.close()
+                                    print("Error In Save To db > ",err)
+                    print("Online Devices",online_devices)
+                    self.lcdNumber.display(online_devices)
+                    time.sleep(step_by)
+                except NameError:
+                    print("Scan Network First Please ....")
+                    self.LOOPPINGER = False
+                except Exception as err:
+                    print("Error",err)
+                    self.LOOPPINGER = False
+        else:
             try:
                 for row_num , row_info in ip_scanned.items():
                     check_ip = self.findChild(qtw.QCheckBox,f"checkBox_ping_{str(row_num)}").isChecked()
@@ -1069,8 +1156,10 @@ class Main(QMainWindow,ui_main):
             else:
                 print("Not Scanned")
         except NameError:
-            self.message_error(s="Scan First Please")
-            
+            self.message_error(s="Scan Network First Please")
+        if self.error_message != None:
+            self.message_error(s=str(self.error_message))
+            self.error_message = None
         btn_stop_ping = self.findChild(qtw.QPushButton,"pushButton_ping_all_stop")
         btn_strt_ping = self.findChild(qtw.QPushButton,"pushButton_ping_all")
         btn_strt_ping.setText("Start Ping")

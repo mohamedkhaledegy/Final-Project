@@ -2,11 +2,11 @@ from peewee import *
 #from db.my_models import *
 ## Custom Import
 from db.db_config import db
-from db.my_models import Device , PingInfo , PacketInfo
+from db.my_models import Device , PingInfo #, PacketInfo
 ## Data Base
 db_set = db
 ## Models To Create Table In DataBase
-models_listaa = [Device,PingInfo,PacketInfo]
+models_listaa = [Device,PingInfo]
 
 def connect_create_table(db_choosed,models_choosed):
     print("Done")
