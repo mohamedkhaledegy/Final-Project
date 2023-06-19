@@ -1,4 +1,14 @@
 from PySide2 import QtWidgets as qtw
+import psutil
+
+def list_cards_names():
+    addrs = psutil.net_if_addrs()
+    cards = addrs.keys()
+    list_cards = []
+    for card in cards:
+        #print(card)
+        list_cards.append(card)
+    return list_cards
 
 def set_btns(self):
     ### Tab Widget
@@ -7,7 +17,6 @@ def set_btns(self):
     self.section_network = self.findChild(qtw.QGroupBox,"groupBox_network")
     self.lineEdit_ip_host = self.findChild(qtw.QLineEdit,"lineEdit_ip_host")
     self.lineEdit_mac_host = self.findChild(qtw.QLineEdit,"lineEdit_mac_host")
-
     # interface
     self.btn_stop_cap = self.findChild(qtw.QPushButton,"pushButton_stop_cap")
     self.btn_start_cap = self.findChild(qtw.QPushButton,"pushButton_start_cap")
@@ -17,13 +26,10 @@ def set_btns(self):
     self.btn_ping4 = self.findChild(qtw.QPushButton,"pushButton_ping4")
     self.btn_ping5 = self.findChild(qtw.QPushButton,"pushButton_ping5")
     self.btn_dtls = self.findChild(qtw.QPushButton,"pushButton_details_new_window")
-
     # IP Discovered
     self.section_ip_discovered = self.findChild(qtw.QGroupBox,"groupBox_ip_discovered")
-
     ## Network Config
     # Network
-
     # Internet Speed
     self.lineEdit_city = self.findChild(qtw.QLineEdit,"lineEdit_city") #
     self.lineEdit_download = self.findChild(qtw.QLineEdit,"lineEdit_download") #
@@ -46,6 +52,13 @@ def set_btns(self):
     self.btn_acc_config = self.findChild(qtw.QPushButton,"pushButton_acc_config")#
     ## Table Widget
     #self.table_cap = self.findChild(qtw.QTableWidget,"tableWidget_cap")
+    cards = list_cards_names()
+    comb_network = self.comboBox_network_cards
+    comb_network.addItems(cards)
+    comb_network_sniff = self.comboBox_sniff_cards
+    comb_network_sniff.addItems(cards)
+    print(comb_network.currentText())
+    #print(cards)
 
 def setup_btn(self):
     ###### System Functions Tab
@@ -87,11 +100,11 @@ def setup_btn(self):
     self.btn_stop_cap.clicked.connect(self.stop_snifer)
     #### Side Bar Buttons ####
     try:
-        self.btn_network_config.clicked.connect(lambda : self.main_widget.setCurrentIndex(1))
-        self.btn_acc_config.clicked.connect(lambda : self.main_widget.setCurrentIndex(2))
-        self.btn_database_settings.clicked.connect(lambda : self.main_widget.setCurrentIndex(3))
-        self.btn_meters.clicked.connect(lambda : self.main_widget.setCurrentIndex(4))
-        self.btn_devices.clicked.connect(lambda : self.main_widget.setCurrentIndex(5))
+        self.btn_network_config.clicked.connect(lambda : self.main_widget.setCurrentIndex(3))
+        self.btn_acc_config.clicked.connect(lambda : self.main_widget.setCurrentIndex(4))
+        self.btn_database_settings.clicked.connect(lambda : self.main_widget.setCurrentIndex(5))
+        self.btn_meters.clicked.connect(lambda : self.main_widget.setCurrentIndex(1))
+        self.btn_devices.clicked.connect(lambda : self.main_widget.setCurrentIndex(2))
         self.btn_home.clicked.connect(lambda : self.main_widget.setCurrentIndex(0))
         self.main_widget.setCurrentIndex(0)
     except Exception as err:
